@@ -1,4 +1,4 @@
-# Intarsi posteriori
+# Uni.Lectures — Intarsi posteriori
 
 Base per una presentazione universitaria di Francesco. Vite + TypeScript, Reveal.js, GSAP, dotLottie, Playwright e Sharp. Nessuna foto clinica inclusa.
 
@@ -31,11 +31,20 @@ Leggi PROJECT_SPEC.md, DESIGN_SYSTEM.md, LESSON_STRUCTURE.md e docs/ASSETS.md. L
 
 ## GitHub
 
-Repository locale inizializzata, nessun remote impostato e nessun push eseguito. Crea una repository GitHub **privata e vuota**, senza README generato, poi sostituisci OWNER con il tuo account:
+Repository condivisa: https://github.com/Levius29/Uni.Lectures
+
+Per lavorare su un altro computer:
 
 ```sh
-git remote add origin https://github.com/OWNER/intarsi-lecture.git
-git push -u origin main
+git clone https://github.com/Levius29/Uni.Lectures.git
+cd Uni.Lectures
+npm ci
+npx playwright install chromium
+npm run dev
 ```
 
-Controlla prima `git status` e `git ls-files`. Workflow GitHub Actions incluso: installazione, build e test Chromium; nessun deployment automatico. Nessuna licenza assegnata: scegliere prima di rendere pubblico il codice.
+Il remote origin punta alla repository condivisa. Prima di ogni push controlla `git status` e `git diff --cached`. Gli originali e le copie cliniche restano esclusi da Git.
+
+GitHub Actions verifica installazione, build e test Chromium. Il workflow Jekyll iniziale è stato rimosso perché questo progetto usa Vite. Nessun deployment Pages automatico configurato.
+
+Nessuna licenza assegnata; i materiali clinici non sono inclusi.
