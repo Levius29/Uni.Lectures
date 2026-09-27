@@ -1,0 +1,72 @@
+/* Schemi SVG. Stati guidati da data-step (vedi src/animations/steps.ts). */
+.figure svg text { font-family: var(--text); font-size: 26px; fill: var(--ink); }
+/* Corpo testo negli schemi ≥ 25 px sulla tela, alla larghezza di impaginazione (w-700 / w-1000). */
+.figure svg.fig-molar text { font-size: 34px; }
+.figure svg.fig-margine text { font-size: 30px; }
+.figure svg.fig-luce text { font-size: 32px; }
+.figure svg .lbl text { fill: var(--ink); }
+.figure svg .side, .figure svg .cap { fill: var(--muted); }
+.figure svg .cap { font-weight: 700; }
+
+.tooth .enamel, .panel .enamel { fill: var(--enamel); }
+.tooth .dentin, .panel .dentin, .lamp-case .dentin { fill: var(--dentin); }
+.tooth .pulp { fill: var(--pulp); }
+.outline { fill: none; stroke: var(--outline); stroke-width: 2.5; stroke-linejoin: round; }
+.resto path, path.resto, rect.resto { fill: var(--restoration); fill-opacity: 0.9; }
+.lbl path { fill: none; stroke: var(--muted); stroke-width: 1.5; }
+.dim path { fill: none; stroke: var(--ink); stroke-width: 2; }
+.fig-anim, .resto, .finish, .level, .core, .cavity, .free-cusp, .load, .strain, .lbl-core, .lbl-free {
+  transition: opacity 450ms ease-out, transform 600ms cubic-bezier(.2,.7,.2,1);
+}
+
+/* Mensola (slide 7) */
+.core path { fill: var(--restoration); fill-opacity: 0.18; stroke: var(--restoration); stroke-width: 2.5; stroke-dasharray: 8 6; }
+.cavity path { fill: var(--paper); stroke: var(--outline); stroke-width: 2; stroke-dasharray: 6 6; }
+.cavity, .free-cusp, .load, .strain, .lbl-free { opacity: 0; }
+[data-step="1"] .core, [data-step="2"] .core, [data-step="1"] .lbl-core, [data-step="2"] .lbl-core { opacity: 0; }
+[data-step="1"] .cavity, [data-step="2"] .cavity { opacity: 1; }
+.free-cusp path { fill: var(--restoration); fill-opacity: 0.32; }
+.free-cusp { transform-box: view-box; transform-origin: 354px 244px; }
+[data-step="2"] .free-cusp { opacity: 1; transform: rotate(4deg); }
+.load .arrow-line, .load .arrow-head { fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.load { transform: translateY(-24px); }
+[data-step="2"] .load { opacity: 1; transform: none; }
+.strain { fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round; }
+[data-step="2"] .strain, [data-step="2"] .lbl-free { opacity: 1; transition-delay: 350ms; }
+
+/* Quattro restauri (slide 24) */
+.resto[class*="type-"], .finish { opacity: 0; }
+.finish { fill: var(--accent); stroke: var(--paper); stroke-width: 3; }
+[data-step="1"] .type-1, [data-step="2"] .type-2, [data-step="3"] .type-3, [data-step="4"] .type-4 { opacity: 1; }
+
+/* Preparazioni (slide 11-12) */
+.blockout { fill: #cfe5e2; stroke: var(--restoration); stroke-width: 2; stroke-dasharray: 5 4; }
+.thick path { stroke: var(--accent); stroke-width: 3; stroke-linecap: round; }
+
+/* Margine (slide 20, 21, 23) */
+.bone { fill: var(--bone); }
+.gingiva { fill: var(--gingiva); }
+.crest-line { fill: none; stroke: var(--outline); stroke-width: 2; stroke-dasharray: 4 5; }
+.level path { stroke: var(--accent); stroke-width: 6; stroke-linecap: round; }
+.level circle { fill: var(--ink); }
+.figure svg .level text { fill: var(--paper); font-weight: 700; font-size: 22px; }
+.level { opacity: 0; }
+[data-step="1"] .level-1, [data-step="2"] .level-1, [data-step="2"] .level-2,
+[data-step="3"] .level-1, [data-step="3"] .level-2, [data-step="3"] .level-3 { opacity: 1; }
+.contact-band { fill: var(--accent); fill-opacity: 0.28; stroke: var(--accent); stroke-width: 2.5; }
+.dme { fill: var(--restoration); fill-opacity: 0.45; stroke: var(--restoration); stroke-width: 2; }
+
+/* Bisello (slide 27) */
+.crack { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; }
+
+/* Luce (slide 38) */
+.lamp { fill: var(--ink); }
+.beam, .beam-out { transform-box: fill-box; transform-origin: 50% 0; transform: scaleY(0); transition: transform 700ms cubic-bezier(.2,.7,.2,1); }
+.beam { transition-delay: calc(200ms + var(--i, 0) * 180ms); }
+.beam-out { transition-delay: calc(700ms + var(--i, 0) * 180ms); }
+.present .beam, .present .beam-out { transform: scaleY(1); }
+.cement { fill: var(--light); fill-opacity: calc(0.12 + var(--reach, 0) * 0.88); stroke: var(--outline); stroke-width: 1; }
+
+/* Panoramica (Esc) e stampa (?print-pdf): mostra gli stati finali */
+.reveal.overview .bars .fill, html.print-pdf .bars .fill,
+.reveal.overview .beam, .reveal.overview .beam-out, html.print-pdf .beam, html.print-pdf .beam-out { transform: none; transition: none; }

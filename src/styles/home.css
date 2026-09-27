@@ -1,0 +1,22 @@
+body.home { min-height: 100vh; font-family: var(--text); }
+#corso { box-sizing: border-box; max-width: 1180px; margin: 0 auto; padding: clamp(40px, 8vw, 112px) 16px 64px; display: flex; flex-direction: column; gap: 56px; }
+.home-head h1 { font-family: var(--title); font-weight: 400; font-size: clamp(48px, 8vw, 104px); line-height: 1; letter-spacing: -0.03em; margin: 0; }
+.home-sub { margin: 18px 0 0; font-size: clamp(18px, 2vw, 24px); color: var(--muted); }
+.lesson-list { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+.lesson-list li { border-bottom: 1px solid var(--rule); }
+.lesson-list a, .lesson-list li > div { display: grid; grid-template-columns: 72px 1fr auto; gap: 8px 24px; align-items: baseline; padding: 26px 4px; color: inherit; text-decoration: none; }
+.lesson-list a { transition: background-color 160ms ease-out; }
+.lesson-list a:hover { background: var(--paper-deep); }
+.lesson-list a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.l-num { font-family: var(--title); font-size: 44px; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.l-title { font-family: var(--title); font-size: clamp(22px, 2.4vw, 32px); line-height: 1.2; text-wrap: balance; }
+.l-meta { font-size: 16px; color: var(--muted); white-space: nowrap; }
+.pending .l-num, .pending .l-title { color: var(--muted); }
+.home-foot { display: flex; flex-direction: column; gap: 8px; font-size: 16px; color: var(--muted); }
+.home-foot p { margin: 0; }
+kbd { font-family: var(--text); font-size: 0.9em; padding: 1px 6px; border: 1px solid var(--rule); border-radius: 4px; background: var(--paper-deep); }
+@media (max-width: 640px) {
+  .lesson-list a, .lesson-list li > div { grid-template-columns: 44px 1fr; }
+  .l-num { font-size: 32px; }
+  .l-meta { grid-column: 2; }
+}

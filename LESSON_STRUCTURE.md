@@ -1,6 +1,6 @@
 # Struttura della lezione
 
-Bozza editoriale da adattare a durata e livello degli studenti. Non è un protocollo clinico.
+Modello generico per le lezioni basate su un caso. Ogni lezione ha comunque il proprio testo sorgente in `docs/lezioni/NN/`, che prevale su questo schema (la lezione 1 segue una catena di decisioni: quando indiretto, come preparo, con che materiale, con che cemento). Non è un protocollo clinico.
 
 1. Apertura: titolo, obiettivi e domanda sul caso guida.
 2. Terminologia: inlay, onlay, overlay; schemi revisionati dal docente.

@@ -3,7 +3,11 @@
 - Usa caveman nelle risposte: italiano breve e chiaro. Codice e documenti completi.
 - Leggi PROJECT_SPEC.md, DESIGN_SYSTEM.md e LESSON_STRUCTURE.md prima di modificare.
 - Stack: Vite, TypeScript strict, Reveal.js, GSAP, dotLottie, Playwright, Sharp. Non aggiungere framework senza necessità.
-- Slide in src/slides; animazioni in src/animations; componenti in src/components.
+- Slide in src/slides/NN (una cartella per lezione); animazioni in src/animations; componenti e schemi SVG in src/components. Pagina di ogni lezione in lezioni/NN/index.html; catalogo in src/lessons.ts.
+- Il testo sorgente di ogni lezione è in docs/lezioni/NN/. Le slide lo seguono; se una slide se ne discosta, annotalo in docs/lezioni/NN/stato.md.
+- Contenuti da validare: attributo `verify` sulla slide (badge in sviluppo o con ?revisione) e riga in stato.md.
+- Schemi SVG: etichetta «Schema illustrativo», forme semplificate, testo ≥ 25 px sulla tela. Stati guidati dai frammenti con data-steps / data-step-of.
+- Testo visibile senza trattini lunghi (— –): usa punto, virgola, due punti o trattino semplice negli intervalli.
 - Mai leggere, caricare o inviare clinical-originals a servizi esterni senza esplicita richiesta.
 - Mai includere identificativi paziente, metadati clinici o fotografie non approvate in Git, note relatore, prompt o log.
 - Gli asset AI devono essere dichiarati come schemi illustrativi; mai spacciarli per casi clinici.

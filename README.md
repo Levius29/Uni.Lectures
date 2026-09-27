@@ -1,6 +1,31 @@
-# Uni.Lectures — Intarsi posteriori
+# Uni.Lectures · Conservativa 4
 
-Base per una presentazione universitaria di Francesco. Vite + TypeScript, Reveal.js, GSAP, dotLottie, Playwright e Sharp. Nessuna foto clinica inclusa.
+Corso di restaurativa indiretta (III anno, II semestre) in forma di presentazioni web animate. Vite + TypeScript, Reveal.js, GSAP, dotLottie, Playwright e Sharp. Nessuna foto clinica inclusa.
+
+## Struttura
+
+- `index.html` + `src/home.ts`: pagina del corso con l'elenco delle lezioni (`src/lessons.ts`).
+- `lezioni/NN/index.html`: una pagina per lezione. Vite le trova da sola (`vite.config.ts`).
+- `src/slides/NN/`: contenuto della lezione, diviso per segmenti. `index.ts` esporta titolo, catena narrativa e slide.
+- `src/slides/kit.ts`: mattoni comuni (`slide`, `notes`, `frag`, `divider`).
+- `src/components/`: foto e figure (`slot`), barre dati (`bars`), catena narrativa, schemi SVG in `figures/`.
+- `src/animations/`: ingresso degli elementi e stati degli schemi guidati dai frammenti (`steps.ts`).
+- `docs/lezioni/NN/`: testo sorgente della lezione, lista immagini, bibliografia, stato e punti da validare.
+
+### Aggiungere una lezione
+
+1. Copia `lezioni/01/index.html` in `lezioni/NN/index.html` e cambia `data-lesson` e titolo.
+2. Crea `src/slides/NN/index.ts` sul modello della lezione 1.
+3. Aggiorna la voce in `src/lessons.ts` (stato `bozza`).
+4. `npm run build` e `npm test`.
+
+### Foto cliniche e figure da articolo
+
+Le slide contengono segnaposto con un codice (F1, F2, A1...). Metti le copie approvate in `public/assets/clinical/NN/F1.webp` e le figure da articolo in `public/assets/articoli/NN/A1.webp`: compaiono da sole al posto del segnaposto. Entrambe le cartelle sono escluse da Git. Vedi `docs/ASSETS.md`.
+
+### Revisione dei contenuti
+
+In sviluppo (`npm run dev`) le slide con contenuti da validare mostrano un badge giallo. Nella build il badge compare solo aggiungendo `?revisione` all'indirizzo. L'elenco completo è in `docs/lezioni/NN/stato.md`.
 
 ## Avvio
 
@@ -13,7 +38,7 @@ npx --no-install playwright-cli install-browser chromium
 npm run dev
 ```
 
-Apri l'indirizzo locale mostrato. Frecce: navigazione. F: fullscreen. S: note relatore. Esc: panoramica. Per le note relatore, consenti l'apertura della finestra locale.
+Apri l'indirizzo locale mostrato: la home elenca le lezioni. Frecce: navigazione. F: fullscreen. S: note relatore. Esc: panoramica. Per le note relatore, consenti l'apertura della finestra locale.
 
 ```sh
 npm run build
@@ -34,7 +59,7 @@ Le skill richieste sono in `.agents/skills/` e visibili a Claude tramite `.claud
 
 `image-to-code` può partire da immagini già disponibili in entrambi gli agenti; la fase di generazione richiede che la sessione disponga di uno strumento per creare immagini.
 
-Leggi PROJECT_SPEC.md, DESIGN_SYSTEM.md, LESSON_STRUCTURE.md e docs/ASSETS.md. Le quattro slide iniziali sono una demo editoriale; la lezione clinica va completata e validata.
+Leggi PROJECT_SPEC.md, DESIGN_SYSTEM.md, LESSON_STRUCTURE.md e docs/ASSETS.md. La lezione 1 è una bozza completa: i contenuti marcati «da validare» richiedono la revisione del docente.
 
 ## GitHub
 

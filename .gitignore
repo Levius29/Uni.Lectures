@@ -9,6 +9,8 @@ test-results/
 clinical-processed/
 public/assets/clinical/*
 !public/assets/clinical/.gitkeep
+public/assets/articoli/*
+!public/assets/articoli/.gitkeep
 .env
 .env.*
 !.env.example

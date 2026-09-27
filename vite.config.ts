@@ -1,2 +1,48 @@
-import { defineConfig } from 'vite';
-export default defineConfig({ base: './', server: { host: '127.0.0.1' }, preview: { host: '127.0.0.1' } });
+import { defineConfig, type Plugin } from 'vite';
+import { existsSync, readdirSync } from 'node:fs';
+import { join, relative, resolve } from 'node:path';
+
+// Ogni cartella lezioni/NN con un index.html diventa una pagina della build.
+const lessons = readdirSync('lezioni').filter(id => existsSync(resolve('lezioni', id, 'index.html'))).sort();
+const input = Object.fromEntries([
+  ['home', resolve('index.html')],
+  ...lessons.map(id => [`lezione-${id}`, resolve('lezioni', id, 'index.html')]),
+]);
+
+/**
+ * Elenco delle immagini locali (foto cliniche approvate, figure da articolo) presenti in public/.
+ * Le slide caricano solo i file elencati: niente richieste 404 per i segnaposto.
+ * I file restano fuori da Git; qui passano solo i nomi (neutri, es. 01/F1.webp).
+ */
+function localAssets(): Plugin {
+  const id = 'virtual:local-assets';
+  const dirs = ['public/assets/clinical', 'public/assets/articoli'].map(d => resolve(d));
+  const walk = (dir: string): string[] => existsSync(dir)
+    ? readdirSync(dir, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(join(dir, e.name)) : /\.(webp|jpe?g|png|avif)$/i.test(e.name) ? [join(dir, e.name)] : [])
+    : [];
+  return {
+    name: 'local-assets',
+    resolveId: s => (s === id ? `\0${id}` : undefined),
+    load: s => (s === `\0${id}` ? `export default ${JSON.stringify(dirs.flatMap(walk).map(f => relative(resolve('public'), f).split('\\').join('/')))};` : undefined),
+    configureServer(server) {
+      server.watcher.add(dirs);
+      const refresh = (file: string) => {
+        if (!dirs.some(d => file.startsWith(d))) return;
+        const mod = server.moduleGraph.getModuleById(`\0${id}`);
+        if (mod) server.moduleGraph.invalidateModule(mod);
+        server.ws.send({ type: 'full-reload' });
+      };
+      server.watcher.on('add', refresh);
+      server.watcher.on('unlink', refresh);
+    },
+  };
+}
+
+export default defineConfig({
+  base: './',
+  appType: 'mpa',
+  plugins: [localAssets()],
+  server: { host: '127.0.0.1' },
+  preview: { host: '127.0.0.1' },
+  build: { rollupOptions: { input } },
+});
