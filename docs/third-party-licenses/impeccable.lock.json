@@ -1,0 +1,8 @@
+{
+  "upstream": "pbakaus/impeccable",
+  "revision": "9d715cc4f5564a990ca8345abfdd5df6dc9b41c8",
+  "skillVersion": "4.4.0",
+  "engineVersion": "0.1.6",
+  "codex": "b0234fe8d211172d9200819462c4cf1a8d349b7746417b8a6571cfddbdc4595e",
+  "claude": "d01234fb210d6a4bbfa1770dbf9eb52be378401aabce90b70d9ecbd04b0d7277"
+}

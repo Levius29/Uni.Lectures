@@ -6,9 +6,12 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
+    "pretest": "node scripts/check-skills.mjs",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
-    "images:prepare": "node scripts/prepare-clinical.mjs"
+    "images:prepare": "node scripts/prepare-clinical.mjs",
+    "skills:check": "node scripts/check-skills.mjs",
+    "skills:sync": "scripts/sync-impeccable.sh"
   },
   "keywords": [],
   "type": "module",
