@@ -1,5 +1,5 @@
 /* Schemi SVG. Stati guidati da data-step (vedi src/animations/steps.ts). */
-.figure svg text { font-family: var(--text); font-size: 26px; fill: var(--ink); }
+.figure svg text { font-family: var(--font); font-size: 26px; fill: var(--ink); }
 /* Corpo testo negli schemi ≥ 25 px sulla tela, alla larghezza di impaginazione (w-700 / w-1000). */
 .figure svg.fig-molar text { font-size: 34px; }
 .figure svg.fig-margine text { font-size: 30px; }

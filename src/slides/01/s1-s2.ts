@@ -98,8 +98,8 @@ export const s2 = [
   <header><h2 data-animate>Due risultati controintuitivi</h2></header>
   <div class="body stack">
     <div class="pair" data-animate>
-      <div><p class="tag">A</p><h3>La cresta marginale persa, da sola, non indebolisce in modo significativo</h3><p class="muted">Se la dentina interassiale resta integra. È la preparazione della sola dentina interassiale a indebolire.</p></div>
-      <div><p class="tag">B</p><h3>Il tetto della camera conta meno della cresta marginale</h3><p class="muted">Reeh: perdere il tetto con entrambe le creste conservate indebolisce meno che perdere una o due creste in un dente vitale.</p></div>
+      <div><h3>La cresta marginale persa, da sola, non indebolisce in modo significativo</h3><p class="muted">Se la dentina interassiale resta integra. È la preparazione della sola dentina interassiale a indebolire.</p></div>
+      <div><h3>Il tetto della camera conta meno della cresta marginale</h3><p class="muted">Reeh: perdere il tetto con entrambe le creste conservate indebolisce meno che perdere una o due creste in un dente vitale.</p></div>
     </div>
     ${frag('Un devitalizzato con le creste integre sta meglio di un vitale con una MOD.', { cls: 'callout' })}
   </div>`),

@@ -2,6 +2,8 @@
 
 Riferimento di stile scelto da Francesco: presentazione Canva «Gradient Texture UI Morph Slides» (SlidesCarnival), vista il 27 settembre 2026. Se ne riprendono linguaggio e movimento, non contenuti, immagini o marchi.
 
+Rifinitura (27 settembre 2026) con la disciplina di `docs/design-references/awesome-design-md/apple/DESIGN.md` e i controlli della skill `design-taste-frontend`: pesi tipografici 400/600, niente schede né ombre, lo schema o la foto al centro, un solo accento. I campi sfumati restano: sono la scelta di Francesco, anche se Apple non usa gradienti.
+
 ## Tela
 Formato 16:9, tela 1600×900 a tutto schermo (margine Reveal 0). Margini interni del telaio: 92 px in alto (sotto la striscia), 88 px ai lati, 44 px in basso. `center: false`: titolo sempre in alto.
 
@@ -11,13 +13,15 @@ Fondo quasi nero `#0E1013` con grana leggera su tutto. Testo `#F3F1EC`, secondar
 Il colore pieno vive solo nei **campi sfumati** a tutto schermo (sfondi Reveal): copertina e divisori di segmento. Cinque campi, variabili in `src/styles/theme.css`: `warm` (arancio-rosa), `blue` (blu-viola), `coral`, `amber`, `mint`. Lezione 1: copertina e S1/S7 warm, S3 coral, S4 mint, S5 amber, S6 blue. Le affermazioni restano scure, con righe orizzontali sfumate nel colore del segmento.
 
 ## Tipografia
-Inter variabile (locale, OFL, nessun font remoto). Titoli 700 con spaziatura stretta: copertina 150 px, slide 72 px, affermazioni 84 px, titolo gigante dei divisori 190 px. Corpo 32 px, tabelle 27 px, didascalie e fonti 22-24 px, striscia in alto 20 px. Enfasi con il colore d'accento, non con un secondo carattere.
+Inter variabile (locale, OFL, nessun font remoto). Pesi 400 e 600 (700 solo per la parola gigante dei divisori), niente 500. Titoli 600 con spaziatura stretta: copertina 150 px, slide 72 px, affermazioni 84 px, titolo gigante dei divisori 190 px. Corpo 32 px con interlinea 1,44, tabelle 27 px (31 px con `.tbl.lg` quando sono poche righe), didascalie e fonti 22-24 px, striscia in alto 20 px. Enfasi con il colore d'accento, non con un secondo carattere.
 
 ## Impaginazioni
 - Copertina (`l-cover`): campo sfumato, titolo enorme in basso a sinistra.
-- Divisore (`l-divider`): campo sfumato, parola breve ripetuta in grande che esce dai bordi («Due scuole - Due scuole - …»), sotto il titolo completo e i minuti.
+- Divisore (`l-divider`): campo sfumato, parola breve ripetuta in grande che esce dai bordi («Due scuole - Due scuole - …»), sotto il titolo completo. Niente numero di segmento (la catena in alto orienta già) e niente minuti in slide: vanno nelle note.
 - Affermazione (`l-statement`): testo grande su fondo scuro, righe decorative a destra.
-- Contenuto: titolo + `.body` a una o due colonne. Blocchi affiancati (`.pair`) come schede con angoli di 18 px.
+- Contenuto: titolo + `.body` a una o due colonne. Blocchi affiancati (`.pair`) come due colonne separate da un filetto verticale, senza schede; `.pair.big` per due domande o tesi a confronto.
+- Voci senza ordine (`.items`): griglia a 2 o 3 colonne (`style="--cols:3"`), titolo della voce e riga di spiegazione, filetto sopra; `.items.big` quando le voci sono poche. I numeri (`ol.steps`, 1, 2, 3 senza zero iniziale) solo quando l'ordine conta: gerarchia, sequenze, passaggi.
+- Slide leggere: niente metà inferiore vuota. Si alza la scala (`.big`, `.lg`) o si centra il blocco sotto il titolo (`.center-v`), non si aggiunge testo.
 - Striscia in alto su ogni slide: corso e lezione a sinistra, catena narrativa a destra con l'anello corrente sottolineato.
 
 ## Movimento
@@ -31,10 +35,13 @@ Inter variabile (locale, OFL, nessun font remoto). Titoli 700 con spaziatura str
 Su fondo scuro: restauro teal `#4FB8B1`, smalto `#F6F3EC`, dentina `#DCC9A0`, polpa `#CF8A7C`, gengiva `#CF9087`, osso `#7D766A`, contorni `#B8C0C4`, luce di polimerizzazione blu `#5B9CFF`. Il corallo segnala ciò che va notato (carico, zona proibita, linea di finitura). Etichette ≥ 25 px sulla tela, didascalia «Schema illustrativo». Forme semplificate, da validare dal docente.
 
 ## Foto
-Segnaposto a scheda scura con codice (F1…). Le foto approvate riempiono la scheda (`object-fit: cover`), angoli 18 px, nessuna scritta sopra. Didascalie neutrali, nessun identificativo paziente.
+Segnaposto: cornice tratteggiata trasparente con codice (F1…) in piccolo, così non sembra un elemento grafico. Le foto approvate riempiono la cornice (`object-fit: cover`), angoli 18 px, nessuna scritta sopra, nessuna ombra. Didascalie neutrali, nessun identificativo paziente.
 
 ## Dati
 Barre solo con numeri del testo sorgente, fonte in slide. Intervalli: barra piena fino al minimo e banda tratteggiata fino al massimo; intervalli di misura come barra flottante.
 
 ## Testo
-Nessun trattino lungo nel testo visibile. Virgolette caporali «». Una sola idea per slide; il resto nelle note relatore.
+Nessun trattino lungo nel testo visibile. Virgolette caporali «». Una sola idea per slide; il resto nelle note relatore. Niente etichette generiche («A», «B», «Fase 1»): il titolo della voce è l'etichetta.
+
+## Raggi
+Una sola scala: 18 px per foto, segnaposto e schemi; pillola piena per le opzioni di voto. Nessuna scheda con fondo.

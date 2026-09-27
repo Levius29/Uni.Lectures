@@ -6,22 +6,22 @@ import { luceFigure } from '../../components/figures/luce';
 const photo = (code: string, caption: string, id?: string) => slot({ src: `assets/clinical/01/${code}.webp`, code, caption, id });
 
 export const s5 = [
-  divider({ seg: 'S5', num: '05', short: 'Materiali', title: 'Materiali: spessori, indicazioni, limiti', meta: 'min 47-62, disilicato e compositi CAD-CAM', field: 'amber', notes: notes({
-    time: 'S5, min 47-62, 7 slide.',
+  divider({ seg: 'S5', short: 'Materiali', title: 'Materiali: spessori, indicazioni, limiti', field: 'amber', notes: notes({
+    time: 'S5, min 47-62, 7 slide. Disilicato e compositi CAD-CAM.',
     extra: ['Divisione con la Lezione 2: qui quando lo scelgo e cosa mi limita. Lezione 2: come nasce il pezzo. La zirconia compare solo come paragone.'],
   }) }),
 
   slide({ seg: 'S5', notes: notes({ extra: ['La traslucenza è messa per ultima apposta: è la cerniera verso i cementi.'] }) }, `
   <header><h2 data-animate>Non un catalogo: sei assi</h2></header>
   <div class="body stack center-v">
-    <ol class="steps cols3 big" data-animate>
-      <li><span>Contenuto vetroso<span class="d">mordenzabile o no</span></span></li>
-      <li><span>Modulo elastico<span class="d">ammortizza o trasmette</span></span></li>
-      <li><span>Resistenza a flessione</span></li>
-      <li><span>Riparabilità intraorale</span></li>
-      <li><span>Usura dell'antagonista</span></li>
-      <li class="key"><span>Traslucenza<span class="d">quanta luce passa: la cerniera verso i cementi</span></span></li>
-    </ol>
+    <ul class="items" style="--cols:3" data-animate>
+      <li><h3>Contenuto vetroso</h3><p>mordenzabile o no</p></li>
+      <li><h3>Modulo elastico</h3><p>ammortizza o trasmette</p></li>
+      <li><h3>Resistenza a flessione</h3></li>
+      <li><h3>Riparabilità intraorale</h3></li>
+      <li><h3>Usura dell'antagonista</h3></li>
+      <li class="key"><h3>Traslucenza</h3><p>quanta luce passa: la cerniera verso i cementi</p></li>
+    </ul>
   </div>`),
 
   slide({ seg: 'S5', notes: notes({}) }, `
@@ -61,7 +61,7 @@ export const s5 = [
   <header><h2 data-animate>Gli spessori, con le loro condizioni</h2></header>
   <div class="body">
     <div class="col">
-      <table class="tbl" data-animate>
+      <table class="tbl lg" data-animate>
         <thead><tr><th>Classe</th><th>Occlusale minimo</th></tr></thead>
         <tbody>
           <tr><th>Vetroceramica al disilicato</th><td class="num">1,0-1,5 mm</td></tr>
@@ -113,8 +113,8 @@ export const s5 = [
 ];
 
 export const s6 = [
-  divider({ seg: 'S6', num: '06', short: 'Cementi', title: 'Cementi e cementazione', meta: 'min 62-81, il segmento che non si taglia', field: 'blue', notes: notes({
-    time: 'S6, min 62-81, 9 slide.',
+  divider({ seg: 'S6', short: 'Cementi', title: 'Cementi e cementazione', field: 'blue', notes: notes({
+    time: 'S6, min 62-81, 9 slide. Il segmento che non si taglia.',
     extra: ['La cementazione è l\'unico segmento di cui gli studenti non vedranno mai una dimostrazione altrove.'],
   }) }),
 
@@ -142,15 +142,16 @@ export const s6 = [
 
   slide({ seg: 'S6', notes: notes({}) }, `
   <header><h2 data-animate>I limiti, uno per uno</h2></header>
-  <ul class="list" data-animate>
-    <li><strong>Duale.</strong> Ammine terziarie: instabilità cromatica nel tempo, discolorazione marginale.</li>
-    <li><strong>Preriscaldato.</strong> Finestra brevissima: perde il 45-61% della temperatura in 15 secondi. Con dentina residua sottile, attenzione alla polpa: oltre 5,5 °C è danno.</li>
-    <li><strong>Autoadesivo.</strong> Non mordenza, non ibridizza davvero. Adesione a smalto e dentina inferiore.</li>
-    <li><strong>Tutti.</strong> La luce che attraversa il manufatto è sempre meno di quella che credi.</li>
+  <ul class="items" data-animate>
+    <li><h3>Duale</h3><p>Ammine terziarie: instabilità cromatica nel tempo, discolorazione marginale.</p></li>
+    <li><h3>Preriscaldato</h3><p>Finestra brevissima: perde il 45-61% della temperatura in 15 secondi. Con dentina residua sottile, attenzione alla polpa: oltre 5,5 °C è danno.</p></li>
+    <li><h3>Autoadesivo</h3><p>Non mordenza, non ibridizza davvero. Adesione a smalto e dentina inferiore.</p></li>
+    <li class="key"><h3>Tutti</h3><p>La luce che attraversa il manufatto è sempre meno di quella che credi.</p></li>
   </ul>`),
 
   slide({ seg: 'S6', notes: notes({ say: 'Uno misura quanto il materiale polimerizza. L\'altro come appare il margine dopo un anno e mezzo. Un materiale può polimerizzare meglio e invecchiare peggio. Tenere insieme due evidenze discordanti vale più di qualunque tabella di prodotti.' }) }, `
   <header><h2 data-animate>Due evidenze, direzioni opposte</h2></header>
+  <div class="body stack center-v">
   <div class="pair" data-animate>
     <div>
       <p class="tag">In vitro, 2026</p>
@@ -166,7 +167,8 @@ export const s6 = [
       <p class="source"><i>BMC Oral Health</i> 2025</p>
     </div>
   </div>
-  ${frag('Non è una contraddizione: <strong>misurano cose diverse</strong>.', { cls: 'callout' })}`),
+  ${frag('Non è una contraddizione: <strong>misurano cose diverse</strong>.', { cls: 'callout' })}
+  </div>`),
 
   slide({ seg: 'S6', layout: 'l-statement', stripes: FIELD_COLOR.blue, notes: notes({ extra: ['La scelta del cemento non è indipendente dalla preparazione. È la stessa decisione, presa due ore dopo.'] }) }, `
   <p class="after" data-animate>Gli autoadesivi sono pensati per restauri ritentivi.</p>
@@ -273,7 +275,7 @@ export const s7 = [
   <header><h2 data-animate>La prossima volta: come nasce il pezzo</h2><p class="lead muted" data-animate>Lezione 2. Dal dente preparato al manufatto finito, attraverso il flusso digitale.</p></header>
   <div class="body stack">
     <p class="tag" data-animate>Letture di riferimento</p>
-    <ul class="list tight small" data-animate>
+    <ul class="list tight" data-animate>
       <li>Fichera G, Devoto W, Re D. Cavity configurations for indirect partial-coverage adhesive-cemented restorations. <i>QDT</i> 2006;29:55-67</li>
       <li>Politano G, Van Meerbeek B, Peumans M. Nonretentive bonded ceramic partial crowns. <i>J Adhes Dent</i> 2018;20(6):495-510</li>
       <li>Bottacchiari S. <i>Intarsi in composito. Aspetti strutturali, parodontali ed endodontici.</i> Quintessenza, 2024</li>

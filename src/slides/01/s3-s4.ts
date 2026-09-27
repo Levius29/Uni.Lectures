@@ -9,7 +9,7 @@ import { biselloFigure } from '../../components/figures/bisello';
 const photo = (code: string, caption: string) => slot({ src: `assets/clinical/01/${code}.webp`, code, caption });
 
 export const s3 = [
-  divider({ seg: 'S3', num: '03', short: 'Due scuole', title: 'Due scuole di preparazione', meta: 'min 13-29, il cuore della lezione', field: 'coral', notes: notes({ time: 'S3, min 13-29, 8 slide.' }) }),
+  divider({ seg: 'S3', short: 'Due scuole', title: 'Due scuole di preparazione', field: 'coral', notes: notes({ time: 'S3, min 13-29, 8 slide. Il cuore della lezione.' }) }),
 
   slide({ seg: 'S3', verify: 'La contrapposizione fra le due scuole è una costruzione didattica del corso: dichiararla.', notes: notes({
     say: '"Il modello che vi ho dato è mio; gli autori sono loro. Così potete non essere d\'accordo con me e restare d\'accordo con loro."',
@@ -17,7 +17,7 @@ export const s3 = [
   }) }, `
   <header><h2 data-animate>La domanda che le separa</h2></header>
   <div class="body stack">
-    <div class="pair" data-animate>
+    <div class="pair big" data-animate>
       <div><p class="tag">Scuola geometrica</p><h3>«Che forma deve avere la cavità perché il manufatto stia e il tecnico lavori?»</h3></div>
       <div><p class="tag">Scuola parametrica</p><h3>«Quanto spessore serve a questo materiale, e dove?»</h3></div>
     </div>
@@ -62,7 +62,7 @@ export const s3 = [
 
   slide({ seg: 'S3', notes: notes({ regia: 'L\'ultima riga arriva con un clic: è la lezione.' }) }, `
   <header><h2 data-animate>Il confronto</h2></header>
-  <table class="tbl" data-animate>
+  <table class="tbl lg" data-animate>
     <thead><tr><th></th><th>Geometrica</th><th>Parametrica</th></tr></thead>
     <tbody>
       <tr><th>Cosa tiene il restauro</th><td>Geometria <strong>e</strong> adesione</td><td>Adesione</td></tr>
@@ -84,7 +84,7 @@ export const s3 = [
     <div data-animate>${bars([
       { label: 'Corona totale', value: [70, 75], text: '70-75%', tone: 'accent' },
       { label: 'Overlay, onlay', value: [32, 47], text: '32-47%' },
-    ], { max: 100, mode: 'upto', axis: 'Struttura coronale rimossa, in peso. La banda chiara è l\'intervallo riportato.' })}</div>
+    ], { max: 100, mode: 'upto', size: 'lg', axis: 'Struttura coronale rimossa, in peso. La banda chiara è l\'intervallo riportato.' })}</div>
     <ul class="list" data-animate>
       <li>I disegni ritentivi scaricano le forze sulle pareti, che si fratturano quando scendono <strong>sotto i 2 mm</strong>.</li>
       <li>L'IDS aumenta le forze adesive del <strong>400-600%</strong>: è il presupposto che rende praticabile la parametrica.</li>
@@ -95,17 +95,17 @@ export const s3 = [
     ponte: '"La parametrica esiste solo perché l\'adesione tiene. E l\'adesione dipende da tre cose: dove metto il margine, che materiale scelgo, con cosa incollo. Sono i prossimi tre segmenti."',
   }) }, `
   <header><h2 data-animate>Quando la geometria serve ancora</h2><p class="lead muted" data-animate>La preparazione ritentiva non è superata: ha un dominio più stretto.</p></header>
-  <ul class="list" data-animate>
-    <li>Isolamento incerto</li>
-    <li>Margini interamente in dentina</li>
-    <li>Adesione compromessa: dentina sclerotica, devitalizzato con poco smalto residuo</li>
-    <li>Manufatti in materiali non mordenzabili</li>
+  <ul class="items big" data-animate>
+    <li><h3>Isolamento incerto</h3></li>
+    <li><h3>Margini interamente in dentina</h3></li>
+    <li><h3>Adesione compromessa</h3><p>Dentina sclerotica, devitalizzato con poco smalto residuo.</p></li>
+    <li><h3>Manufatti in materiali non mordenzabili</h3></li>
   </ul>`),
 ];
 
 export const s4 = [
-  divider({ seg: 'S4', num: '04', short: 'Il margine', title: 'Il margine: dove, come, perché', meta: 'min 29-47, il segmento più lungo', field: 'mint', notes: notes({
-    time: 'S4, min 29-47, 12 slide.',
+  divider({ seg: 'S4', short: 'Il margine', title: 'Il margine: dove, come, perché', field: 'mint', notes: notes({
+    time: 'S4, min 29-47, 12 slide. Il segmento più lungo.',
     extra: ['Contingenza: se a metà S4 sei in ritardo di 5 minuti, comprimi S7 a 3 minuti e togli la slide dei disegni di Ferraris. Non toccare S6.'],
   }) }),
 
@@ -205,7 +205,7 @@ export const s4 = [
 
   slide({ seg: 'S4', notes: notes({ extra: ['Slide sacrificabile in caso di ritardo: i disegni prossimali si dicono a voce.', 'Figura originale (A2) non inserita: la tabella copre lo stesso contenuto.'] }) }, `
   <header><h2 data-animate>I tre disegni di Ferraris</h2></header>
-  <table class="tbl" data-animate>
+  <table class="tbl lg" data-animate>
     <thead><tr><th>Disegno</th><th>Dove</th><th>Perché</th></tr></thead>
     <tbody>
       <tr><th>Butt joint</th><td>Sull'occlusale, segue l'andamento cuspidale</td><td>Preparazione minima. Protezione cuspidale, abrasione, erosione</td></tr>

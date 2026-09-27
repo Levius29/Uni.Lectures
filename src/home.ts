@@ -17,7 +17,7 @@ main.innerHTML = `
 <ol class="lesson-list">
 ${lessons.map(l => {
   const ready = l.status !== 'in preparazione';
-  const inner = `<span class="l-num">${l.id}</span><span class="l-title">${esc(l.title)}</span><span class="l-meta">${l.minutes} min, ${esc(l.status)}</span>`;
+  const inner = `<span class="l-num">${Number(l.id)}</span><span class="l-title">${esc(l.title)}</span><span class="l-meta">${l.minutes} min, ${esc(l.status)}</span>`;
   return `<li class="${ready ? 'ready' : 'pending'}">${ready ? `<a href="./lezioni/${l.id}/index.html">${inner}</a>` : `<div>${inner}</div>`}</li>`;
 }).join('\n')}
 </ol>

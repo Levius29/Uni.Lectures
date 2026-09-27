@@ -4,4 +4,5 @@
 .reveal .slides { text-align: left; }
 .reveal .controls { color: var(--ink); }
 .reveal .progress { color: var(--accent); height: 3px; }
-.reveal .slide-number { background: transparent; color: var(--muted); font-family: var(--font); font-size: 15px; }
+/* Numero slide a sinistra delle frecce, non sotto. */
+.reveal .slide-number { background: transparent; color: var(--muted); font-family: var(--font); font-size: 15px; font-variant-numeric: tabular-nums; right: 104px; bottom: 16px; }
