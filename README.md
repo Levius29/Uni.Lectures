@@ -1,6 +1,6 @@
 # Uni.Lectures · Conservativa 4
 
-Corso di restaurativa indiretta (III anno, II semestre) in forma di presentazioni web animate. Vite + TypeScript, Reveal.js, GSAP, dotLottie, Playwright e Sharp. Nessuna foto clinica inclusa.
+Corso di restaurativa indiretta (III anno, II semestre) in forma di presentazioni web animate: fondo scuro con grana, campi sfumati, Inter, transizioni morph (Reveal Auto-Animate). Vite + TypeScript, Reveal.js, GSAP, dotLottie, Playwright e Sharp. Nessuna foto clinica inclusa.
 
 ## Struttura
 
@@ -8,7 +8,8 @@ Corso di restaurativa indiretta (III anno, II semestre) in forma di presentazion
 - `lezioni/NN/index.html`: una pagina per lezione. Vite le trova da sola (`vite.config.ts`).
 - `src/slides/NN/`: contenuto della lezione, diviso per segmenti. `index.ts` esporta titolo, catena narrativa e slide.
 - `src/slides/kit.ts`: mattoni comuni (`slide`, `notes`, `frag`, `divider`).
-- `src/components/`: foto e figure (`slot`), barre dati (`bars`), catena narrativa, schemi SVG in `figures/`.
+- `src/components/`: foto e figure (`slot`), barre dati (`bars`), striscia in alto con la catena (`chain`), schemi SVG in `figures/`.
+- Morph: elementi con lo stesso `data-id` in slide consecutive si trasformano; `data-carry` porta un titolo, tagliato, nella slide successiva. Vedi `DESIGN_SYSTEM.md`.
 - `src/animations/`: ingresso degli elementi e stati degli schemi guidati dai frammenti (`steps.ts`).
 - `docs/lezioni/NN/`: testo sorgente della lezione, lista immagini, bibliografia, stato e punti da validare.
 

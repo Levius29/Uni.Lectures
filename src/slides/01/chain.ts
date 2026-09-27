@@ -7,4 +7,3 @@ export const CHAIN_LINKS: ChainLink[] = [
   { label: 'Con che materiale', segments: ['S5'] },
   { label: 'Con che cemento', segments: ['S6'] },
 ];
-export const CHAIN = CHAIN_LINKS.map(l => l.label);

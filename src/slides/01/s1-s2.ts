@@ -1,17 +1,17 @@
-import { slide, notes, frag } from '../kit';
+import { slide, notes, frag, FIELD_COLOR } from '../kit';
 import { slot } from '../../components/slot';
 import { mensolaFigure } from '../../components/figures/mensola';
 
-const photo = (code: string, caption: string, hint?: string) =>
-  slot({ src: `assets/clinical/01/${code}.webp`, code, caption, hint });
+const photo = (code: string, caption: string, id?: string) =>
+  slot({ src: `assets/clinical/01/${code}.webp`, code, caption, id });
 
-export const cover = slide({ seg: 'cover', layout: 'l-cover', notes: notes({
+export const cover = slide({ seg: 'cover', layout: 'l-cover', field: 'warm', notes: notes({
   time: '90 minuti, 86 di contenuto. Quattro di margine.',
   extra: ['Da dire una volta, all\'inizio: le figure riprodotte vengono da articoli citati in slide e servono per uso didattico.'],
 }) }, `
-  <h1 data-animate>Il restauro indiretto <em>parziale</em></h1>
-  <p class="lead" data-animate>Dalla decisione strutturale alla cementazione.</p>
-  <footer data-animate><span>Conservativa 4. Lezione 1</span><span>Francesco Motta</span></footer>`);
+  <p class="lead" data-animate>Francesco Motta</p>
+  <h1 data-carry data-id="lesson-title">Il restauro indiretto parziale</h1>
+  <p class="lead" data-animate>Dalla decisione strutturale alla cementazione.</p>`);
 
 export const s1 = [
   slide({ seg: 'S1', notes: notes({
@@ -40,7 +40,7 @@ export const s1 = [
   slide({ seg: 'S1', notes: notes({ regia: 'Due fotografie: occlusale iniziale, e dopo rimozione del vecchio restauro con le creste marginali assenti. La Rx come inserto piccolo.' }) }, `
   <header><h2 data-animate>Il caso in immagini</h2></header>
   <div class="slots two-one" data-animate>
-    ${photo('F1', '3.6, occlusale iniziale: vecchio MOD con incrinatura')}
+    ${photo('F1', '3.6, occlusale iniziale: vecchio MOD con incrinatura', 'case-F1')}
     ${photo('F3', 'Dopo la rimozione: creste marginali assenti')}
     ${photo('F2', 'Rx endorale: margine distale sottogengivale')}
   </div>`),
@@ -50,9 +50,13 @@ export const s1 = [
     extra: ['Nessun inlay fra le opzioni: il corso non tratta restauri intracoronali. Se qualcuno lo propone a voce, è un\'occasione: una cavità che si accontenta di un inlay quasi sempre si accontenta anche di un diretto.'],
     ponte: '"Oggi seguiamo una catena: quando serve l\'indiretto, come si prepara, con quale materiale, con quale cemento. Ogni risposta dipende dalla precedente."',
   }) }, `
-  <header><h2 data-animate>Cosa fate su questo dente?</h2><p class="lead muted" data-animate>Alzate la mano.</p></header>
-  <div class="body stack">
-    <p class="options" data-animate><span>Composito diretto</span><span>Onlay</span><span>Overlay</span><span>Veneerlay</span><span>Corona</span></p>
+  <div class="body">
+    <div class="col narrow">${photo('F1', '3.6, occlusale iniziale', 'case-F1')}</div>
+    <div class="col center-v">
+      <h2 data-animate>Cosa fate su questo dente?</h2>
+      <p class="lead muted" data-animate>Alzate la mano.</p>
+      <p class="options" data-animate><span>Composito diretto</span><span>Onlay</span><span>Overlay</span><span>Veneerlay</span><span>Corona</span></p>
+    </div>
   </div>`),
 ];
 
@@ -124,7 +128,7 @@ export const s2 = [
     </figure>
   </div>`),
 
-  slide({ seg: 'S2', layout: 'l-statement', notes: notes({
+  slide({ seg: 'S2', layout: 'l-statement', stripes: FIELD_COLOR.blue, notes: notes({
     extra: ['Il corollario è il caso più frequente: molare devitalizzato, una cresta persa e l\'altra intatta, cuspidi ben sostenute. Copertura parziale.'],
     ponte: '"Sappiamo cosa coprire. Adesso la domanda vera: come si prepara? E qui non c\'è una risposta sola: ce ne sono due, e vengono da due modi diversi di pensare al restauro."',
   }) }, `

@@ -6,7 +6,7 @@ import '../styles/figures.css';
 import type { Lesson } from './types';
 import { animateSlide } from '../animations/entrance';
 import { syncSteps } from '../animations/steps';
-import { createChain } from '../components/chain';
+import { metaStrip } from '../components/chain';
 import { loadSlots } from '../components/slot';
 
 const esc = (s: string) => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
@@ -15,6 +15,33 @@ export async function mountLesson(lesson: Lesson) {
   const root = document.querySelector<HTMLElement>('.reveal .slides')!;
   root.innerHTML = lesson.slides;
   document.title = `Lezione ${Number(lesson.id)} · ${lesson.title}`;
+  const sections = [...root.querySelectorAll<HTMLElement>(':scope > section')];
+
+  sections.forEach((s, i) => {
+    const frame = s.querySelector<HTMLElement>('.frame');
+    if (!frame) return;
+    // Striscia in alto, identica in ogni slide: resta ferma durante il morph.
+    frame.insertAdjacentHTML('afterbegin', metaStrip({ left: `Conservativa 4 · Lezione ${Number(lesson.id)}`, chain: lesson.chain, segment: s.dataset.seg }));
+    // Morph fra slide consecutive (Reveal Auto-Animate): gli elementi con lo stesso data-id si trasformano.
+    if (s.dataset.autoAnimate !== 'false') s.setAttribute('data-auto-animate', '');
+    // Elementi data-carry: una copia fantasma, tagliata in alto, apre la slide successiva.
+    const next = sections[i + 1]?.querySelector<HTMLElement>('.frame');
+    const carried = [...s.querySelectorAll<HTMLElement>('[data-carry]')];
+    if (next && carried.length) {
+      const layer = document.createElement('div');
+      layer.className = 'ghost-layer';
+      layer.setAttribute('aria-hidden', 'true');
+      carried.forEach((el, k) => {
+        el.dataset.id ||= `carry-${i}-${k}`;
+        const ghost = el.cloneNode(true) as HTMLElement;
+        ghost.removeAttribute('data-carry');
+        ghost.removeAttribute('data-animate');
+        ghost.removeAttribute('aria-label');
+        layer.append(ghost);
+      });
+      next.prepend(layer);
+    }
+  });
 
   // Contenuti da validare: badge in sviluppo o con ?revisione, mai nella build per l'aula.
   if (import.meta.env.DEV || new URLSearchParams(location.search).has('revisione')) {
@@ -25,19 +52,22 @@ export async function mountLesson(lesson: Lesson) {
   loadSlots(root);
 
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const setChain = createChain(lesson.chain);
   const deck = new Reveal({
     hash: true, controls: true, progress: true, slideNumber: 'c/t',
-    width: 1600, height: 900, margin: 0.07, center: false,
-    transition: reducedMotion ? 'none' : 'fade', transitionSpeed: 'fast', backgroundTransition: 'none',
+    width: 1600, height: 900, margin: 0, center: false,
+    transition: reducedMotion ? 'none' : 'fade', transitionSpeed: 'fast', backgroundTransition: reducedMotion ? 'none' : 'fade',
+    autoAnimate: !reducedMotion, autoAnimateDuration: 0.8, autoAnimateEasing: 'cubic-bezier(0.22, 0.8, 0.2, 1)', autoAnimateUnmatched: false,
     plugins: [Notes],
   });
   const refresh = () => {
-    const slide = deck.getCurrentSlide();
-    setChain(slide?.dataset.seg);
-    syncSteps(slide);
+    syncSteps(deck.getCurrentSlide());
   };
-  deck.on('slidechanged', () => { refresh(); animateSlide(deck.getCurrentSlide(), reducedMotion); });
+  deck.on('slidechanged', (e: Event) => {
+    const ev = e as Event & { indexh: number; previousSlide?: HTMLElement };
+    const prev = ev.previousSlide ? [...root.children].indexOf(ev.previousSlide) : -1;
+    refresh();
+    animateSlide(deck.getCurrentSlide(), reducedMotion, ev.indexh > prev);
+  });
   deck.on('fragmentshown', refresh);
   deck.on('fragmenthidden', refresh);
   await deck.initialize();

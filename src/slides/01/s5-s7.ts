@@ -1,13 +1,12 @@
-import { slide, notes, frag, divider } from '../kit';
+import { slide, notes, frag, divider, FIELD_COLOR } from '../kit';
 import { slot } from '../../components/slot';
 import { bars } from '../../components/bars';
 import { luceFigure } from '../../components/figures/luce';
-import { CHAIN } from './chain';
 
-const photo = (code: string, caption: string) => slot({ src: `assets/clinical/01/${code}.webp`, code, caption });
+const photo = (code: string, caption: string, id?: string) => slot({ src: `assets/clinical/01/${code}.webp`, code, caption, id });
 
 export const s5 = [
-  divider({ seg: 'S5', num: '5', title: 'Materiali: spessori, indicazioni, limiti', meta: 'min 47-62, disilicato e compositi CAD-CAM', chain: CHAIN, current: 2, notes: notes({
+  divider({ seg: 'S5', num: '05', short: 'Materiali', title: 'Materiali: spessori, indicazioni, limiti', meta: 'min 47-62, disilicato e compositi CAD-CAM', field: 'amber', notes: notes({
     time: 'S5, min 47-62, 7 slide.',
     extra: ['Divisione con la Lezione 2: qui quando lo scelgo e cosa mi limita. Lezione 2: come nasce il pezzo. La zirconia compare solo come paragone.'],
   }) }),
@@ -37,7 +36,7 @@ export const s5 = [
         <li>La rigidità trasmette il carico all'interfaccia invece di ammortizzarlo</li>
       </ul>
     </div>
-    <div class="col narrow" data-animate>${photo('F10', 'Manufatto in disilicato sul modello')}</div>
+    <div class="col narrow" data-animate>${photo('F10', 'Manufatto in disilicato sul modello', 'material-photo')}</div>
   </div>`),
 
   slide({ seg: 'S5', notes: notes({}) }, `
@@ -52,7 +51,7 @@ export const s5 = [
         <li>Non si mordenzano con fluoridrico: si sabbiano</li>
       </ul>
     </div>
-    <div class="col narrow" data-animate>${photo('F11', 'Manufatto in composito o ibrida CAD-CAM')}</div>
+    <div class="col narrow" data-animate>${photo('F11', 'Manufatto in composito o ibrida CAD-CAM', 'material-photo')}</div>
   </div>`),
 
   slide({ seg: 'S5', verify: 'Spessori minimi: allineare alle istruzioni d\'uso dei materiali della clinica del corso.', notes: notes({
@@ -84,7 +83,7 @@ export const s5 = [
     </div>
   </div>`),
 
-  slide({ seg: 'S5', layout: 'l-statement', notes: notes({}) }, `
+  slide({ seg: 'S5', layout: 'l-statement', stripes: FIELD_COLOR.amber, notes: notes({}) }, `
   <p class="flow" data-animate><span>Spessore disponibile</span><i>→</i><span>antagonista</span><i>→</i><span>esigenza estetica</span><i>→</i><span>riparabilità</span></p>
   <p class="after" data-animate>Non «qual è il migliore». Quale regge <strong>in questo spazio</strong>, contro quell'antagonista, con quel margine.</p>`),
 
@@ -114,12 +113,12 @@ export const s5 = [
 ];
 
 export const s6 = [
-  divider({ seg: 'S6', num: '6', title: 'Cementi e cementazione', meta: 'min 62-81, il segmento che non si taglia', chain: CHAIN, current: 3, notes: notes({
+  divider({ seg: 'S6', num: '06', short: 'Cementi', title: 'Cementi e cementazione', meta: 'min 62-81, il segmento che non si taglia', field: 'blue', notes: notes({
     time: 'S6, min 62-81, 9 slide.',
     extra: ['La cementazione è l\'unico segmento di cui gli studenti non vedranno mai una dimostrazione altrove.'],
   }) }),
 
-  slide({ seg: 'S6', layout: 'l-statement', notes: notes({}) }, `
+  slide({ seg: 'S6', layout: 'l-statement', stripes: FIELD_COLOR.blue, notes: notes({}) }, `
   <blockquote data-animate>Non è cementazione. È <em>incollaggio</em>.</blockquote>
   <p class="after" data-animate>Un cemento riempie uno spazio. Un adesivo trasferisce carichi. Il restauro parziale sta in bocca perché è incollato, non perché è ritenuto.</p>`),
 
@@ -169,7 +168,7 @@ export const s6 = [
   </div>
   ${frag('Non è una contraddizione: <strong>misurano cose diverse</strong>.', { cls: 'callout' })}`),
 
-  slide({ seg: 'S6', layout: 'l-statement', notes: notes({ extra: ['La scelta del cemento non è indipendente dalla preparazione. È la stessa decisione, presa due ore dopo.'] }) }, `
+  slide({ seg: 'S6', layout: 'l-statement', stripes: FIELD_COLOR.blue, notes: notes({ extra: ['La scelta del cemento non è indipendente dalla preparazione. È la stessa decisione, presa due ore dopo.'] }) }, `
   <p class="after" data-animate>Gli autoadesivi sono pensati per restauri ritentivi.</p>
   <blockquote data-animate>Se prepari alla Politano hai rinunciato alla ritenzione. Non puoi rinunciare anche all'<em>adesione</em>.</blockquote>`),
 

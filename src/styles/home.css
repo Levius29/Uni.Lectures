@@ -1,22 +1,27 @@
-body.home { min-height: 100vh; font-family: var(--text); }
-#corso { box-sizing: border-box; max-width: 1180px; margin: 0 auto; padding: clamp(40px, 8vw, 112px) 16px 64px; display: flex; flex-direction: column; gap: 56px; }
-.home-head h1 { font-family: var(--title); font-weight: 400; font-size: clamp(48px, 8vw, 104px); line-height: 1; letter-spacing: -0.03em; margin: 0; }
-.home-sub { margin: 18px 0 0; font-size: clamp(18px, 2vw, 24px); color: var(--muted); }
-.lesson-list { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
-.lesson-list li { border-bottom: 1px solid var(--rule); }
-.lesson-list a, .lesson-list li > div { display: grid; grid-template-columns: 72px 1fr auto; gap: 8px 24px; align-items: baseline; padding: 26px 4px; color: inherit; text-decoration: none; }
-.lesson-list a { transition: background-color 160ms ease-out; }
-.lesson-list a:hover { background: var(--paper-deep); }
-.lesson-list a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-.l-num { font-family: var(--title); font-size: 44px; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
-.l-title { font-family: var(--title); font-size: clamp(22px, 2.4vw, 32px); line-height: 1.2; text-wrap: balance; }
-.l-meta { font-size: 16px; color: var(--muted); white-space: nowrap; }
+body.home { min-height: 100vh; font-family: var(--font); }
+#corso { display: flex; flex-direction: column; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.home-hero { position: relative; min-height: min(62vh, 620px); display: flex; flex-direction: column; justify-content: flex-end; gap: 12px; padding: 32px 0 28px; background: var(--field-warm); overflow: hidden; }
+.home-sub { margin: 0 clamp(16px, 5vw, 72px); font-size: clamp(16px, 1.6vw, 22px); font-weight: 600; }
+.home-marquee { white-space: nowrap; font-size: clamp(64px, 13vw, 210px); font-weight: 750; letter-spacing: -0.05em; line-height: 1.02; }
+.home-marquee .main { display: inline-block; position: relative; margin-left: clamp(16px, 5vw, 72px); }
+.home-marquee .pre { position: absolute; right: 100%; }
+.home-list { box-sizing: border-box; width: 100%; max-width: 1180px; margin: 0 auto; padding: 40px 16px 64px; display: flex; flex-direction: column; gap: 40px; }
+.lesson-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.lesson-list a, .lesson-list li > div { display: grid; grid-template-columns: 72px 1fr auto; gap: 8px 24px; align-items: baseline; padding: 26px 28px; border-radius: 18px; background: var(--surface); color: inherit; text-decoration: none; }
+.lesson-list a { transition: background-color 160ms ease-out, transform 160ms ease-out; }
+.lesson-list a:hover { background: var(--surface-2); }
+.lesson-list a:active { transform: scale(0.99); }
+.lesson-list a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.l-num { font-size: 22px; font-weight: 650; color: var(--accent); font-variant-numeric: tabular-nums; }
+.l-title { font-size: clamp(22px, 2.4vw, 32px); font-weight: 650; letter-spacing: -0.02em; line-height: 1.2; text-wrap: balance; }
+.l-meta { font-size: 15px; color: var(--muted); white-space: nowrap; }
 .pending .l-num, .pending .l-title { color: var(--muted); }
-.home-foot { display: flex; flex-direction: column; gap: 8px; font-size: 16px; color: var(--muted); }
+.pending > div { background: transparent; border: 1px dashed var(--rule); }
+.home-foot { display: flex; flex-direction: column; gap: 8px; font-size: 15px; color: var(--muted); }
 .home-foot p { margin: 0; }
-kbd { font-family: var(--text); font-size: 0.9em; padding: 1px 6px; border: 1px solid var(--rule); border-radius: 4px; background: var(--paper-deep); }
+kbd { font-family: var(--font); font-size: 0.9em; padding: 1px 6px; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
 @media (max-width: 640px) {
-  .lesson-list a, .lesson-list li > div { grid-template-columns: 44px 1fr; }
-  .l-num { font-size: 32px; }
+  .lesson-list a, .lesson-list li > div { grid-template-columns: 40px 1fr; padding: 20px; }
   .l-meta { grid-column: 2; }
 }

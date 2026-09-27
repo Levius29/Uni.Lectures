@@ -1,16 +1,15 @@
-import { slide, notes, frag, divider } from '../kit';
+import { slide, notes, frag, divider, FIELD_COLOR } from '../kit';
 import { slot } from '../../components/slot';
 import { bars } from '../../components/bars';
 import { preparazioneFigure } from '../../components/figures/preparazioni';
 import { margineFigure } from '../../components/figures/margine';
 import { restauriFigure } from '../../components/figures/restauri';
 import { biselloFigure } from '../../components/figures/bisello';
-import { CHAIN } from './chain';
 
 const photo = (code: string, caption: string) => slot({ src: `assets/clinical/01/${code}.webp`, code, caption });
 
 export const s3 = [
-  divider({ seg: 'S3', num: '3', title: 'Due scuole di preparazione', meta: 'min 13-29, il cuore della lezione', chain: CHAIN, current: 1, notes: notes({ time: 'S3, min 13-29, 8 slide.' }) }),
+  divider({ seg: 'S3', num: '03', short: 'Due scuole', title: 'Due scuole di preparazione', meta: 'min 13-29, il cuore della lezione', field: 'coral', notes: notes({ time: 'S3, min 13-29, 8 slide.' }) }),
 
   slide({ seg: 'S3', verify: 'La contrapposizione fra le due scuole è una costruzione didattica del corso: dichiararla.', notes: notes({
     say: '"Il modello che vi ho dato è mio; gli autori sono loro. Così potete non essere d\'accordo con me e restare d\'accordo con loro."',
@@ -39,7 +38,7 @@ export const s3 = [
       <p class="callout" data-animate>Il manufatto è stabile <strong>prima</strong> di essere incollato. La geometria contribuisce alla ritenzione, l'adesione la completa.</p>
       <p class="source" data-animate>Bottacchiari S. <i>Intarsi in composito.</i> Quintessenza, 2024</p>
     </div>
-    <figure class="figure fig-col w-760" data-animate>${preparazioneFigure('geometrica')}<figcaption class="schema-tag">onlay con copertura di una cuspide</figcaption></figure>
+    <figure class="figure fig-col w-760" data-id="fig-prep">${preparazioneFigure('geometrica')}<figcaption class="schema-tag">onlay con copertura di una cuspide</figcaption></figure>
   </div>`),
 
   slide({ seg: 'S3', verify: 'Parametri numerici della preparazione non ritentiva: verificare riduzioni e spessori sull\'articolo originale.', notes: notes({
@@ -58,7 +57,7 @@ export const s3 = [
       <p class="callout" data-animate>L'adesione fa il lavoro che prima faceva la forma.</p>
       <p class="source" data-animate>Politano G, Van Meerbeek B, Peumans M. <i>J Adhes Dent</i> 2018;20(6):495-510</p>
     </div>
-    <figure class="figure fig-col w-760" data-animate>${preparazioneFigure('parametrica')}<figcaption class="schema-tag">overlay non ritentivo, stessa inquadratura</figcaption></figure>
+    <figure class="figure fig-col w-760" data-id="fig-prep">${preparazioneFigure('parametrica')}<figcaption class="schema-tag">overlay non ritentivo, stessa inquadratura</figcaption></figure>
   </div>`),
 
   slide({ seg: 'S3', notes: notes({ regia: 'L\'ultima riga arriva con un clic: è la lezione.' }) }, `
@@ -76,7 +75,7 @@ export const s3 = [
     </tbody>
   </table>`),
 
-  slide({ seg: 'S3', layout: 'l-statement', notes: notes({ extra: ['Uno studente che esce avendo capito questo ha capito la lezione.'] }) }, `
+  slide({ seg: 'S3', layout: 'l-statement', stripes: FIELD_COLOR.coral, notes: notes({ extra: ['Uno studente che esce avendo capito questo ha capito la lezione.'] }) }, `
   <blockquote data-animate>Non c'è una scuola giusta. C'è una scuola che ti salva se sbagli a <em>incollare</em>, e una che ti punisce se sbagli a <em>misurare</em>.</blockquote>`),
 
   slide({ seg: 'S3', notes: notes({ regia: 'Le barre crescono da sole all\'ingresso.' }) }, `
@@ -105,7 +104,7 @@ export const s3 = [
 ];
 
 export const s4 = [
-  divider({ seg: 'S4', num: '4', title: 'Il margine: dove, come, perché', meta: 'min 29-47, il segmento più lungo', chain: CHAIN, current: 1, notes: notes({
+  divider({ seg: 'S4', num: '04', short: 'Il margine', title: 'Il margine: dove, come, perché', meta: 'min 29-47, il segmento più lungo', field: 'mint', notes: notes({
     time: 'S4, min 29-47, 12 slide.',
     extra: ['Contingenza: se a metà S4 sei in ritardo di 5 minuti, comprimi S7 a 3 minuti e togli la slide dei disegni di Ferraris. Non toccare S6.'],
   }) }),
@@ -121,7 +120,7 @@ export const s4 = [
     <div class="col narrow" data-animate>${photo('F4', 'Build-up in composito: sottosquadri eliminati, pareti ricostruite')}</div>
   </div>`),
 
-  slide({ seg: 'S4', layout: 'l-statement', notes: notes({}) }, `
+  slide({ seg: 'S4', layout: 'l-statement', stripes: FIELD_COLOR.mint, notes: notes({}) }, `
   <blockquote data-animate>Il margine non va dove finisce la carie. Va dove riesci a <em>incollare</em>.</blockquote>`),
 
   slide({ seg: 'S4', notes: notes({ regia: 'Un livello per clic: il numero si accende sullo schema.' }) }, `
@@ -137,7 +136,7 @@ export const s4 = [
         </tbody>
       </table>
     </div>
-    <figure class="figure fig-col w-700" data-steps="margine" data-animate>${margineFigure('livelli')}<figcaption class="schema-tag">sezione mesio-distale</figcaption></figure>
+    <figure class="figure fig-col w-700" data-steps="margine" data-id="fig-margine">${margineFigure('livelli')}<figcaption class="schema-tag">sezione mesio-distale</figcaption></figure>
   </div>`),
 
   slide({ seg: 'S4', notes: notes({}) }, `
@@ -152,7 +151,7 @@ export const s4 = [
       </ul>
       ${frag('<p class="muted">1 mm più coronale o 1 mm più cervicale è gestibile. Esattamente lì, no.</p>')}
     </div>
-    <figure class="figure fig-col w-700" data-animate>${margineFigure('contatto')}<figcaption class="schema-tag">sezione mesio-distale</figcaption></figure>
+    <figure class="figure fig-col w-700" data-id="fig-margine">${margineFigure('contatto')}<figcaption class="schema-tag">sezione mesio-distale</figcaption></figure>
   </div>`),
 
   slide({ seg: 'S4', notes: notes({ extra: ['La funzione 2 è quella che decide il risultato a dieci anni, e quasi nessuno la nomina.'] }) }, `
@@ -221,7 +220,7 @@ export const s4 = [
     say: 'Il chamfer profondo costa riduzione periferica e lascia un margine di ceramica più sottile in una zona già caricata. Il butt joint dà spessore pieno fino al margine.',
     extra: ['Se hai la foto F8 (preparazione butt joint, occlusale) puoi mostrarla qui.'],
   }) }, `
-  <header><h2 data-animate>Butt joint o chamfer? Il dato</h2><p class="muted" data-animate>Occlusal veneer in disilicato, stessa riduzione occlusale di 1 mm. Studio in vitro.</p></header>
+  <header><h2 data-animate>Butt joint o chamfer? Il dato</h2><p class="muted small" data-animate>Occlusal veneer in disilicato, stessa riduzione occlusale di 1 mm. Studio in vitro.</p></header>
   <div class="body">
     <div class="col">
       <p class="tag" data-animate>Carico a frattura</p>
@@ -245,7 +244,7 @@ export const s4 = [
     extra: ['Questa slide previene la contraddizione che altrimenti si crea in aula.', 'Angoli interni arrotondati: se lasciate uno spigolo acuto, il software lo arrotonda comunque e il pezzo non seggerà.'],
   }) }, `
   <header><h2 data-animate>Il bisello: due oggetti, un nome</h2></header>
-  <figure class="figure w-1000" data-animate>${biselloFigure()}<figcaption class="schema-tag">profili semplificati</figcaption></figure>
+  <figure class="figure w-900" data-animate>${biselloFigure()}<figcaption class="schema-tag">profili semplificati</figcaption></figure>
   <div class="pair" data-animate>
     <p><strong>Vietato:</strong> sottile, a lama di coltello, al margine. Ceramica fragile, illeggibile per lo scanner, irriproducibile dal CAM.</p>
     <p><strong>Di Ferraris:</strong> superficie ampia su smalto vestibolare. Diluisce la giunzione ottica e aumenta la superficie adesiva.</p>

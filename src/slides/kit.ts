@@ -1,21 +1,34 @@
 /** Mattoni condivisi per scrivere le slide in HTML. */
 const attr = (s: string) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 
+/** Campi sfumati disponibili (variabili in theme.css). */
+export type Field = 'warm' | 'blue' | 'coral' | 'amber' | 'mint';
+
 export interface SlideOpts {
-  /** Segmento della lezione (es. "S3"): pilota la catena narrativa. "cover" la nasconde. */
+  /** Segmento della lezione (es. "S3"): pilota la catena nella striscia in alto. "cover" per la copertina. */
   seg: string;
   /** Classe di impaginazione del telaio: l-cover, l-divider, l-statement o vuota. */
   layout?: string;
+  /** Campo sfumato a tutto schermo come sfondo. */
+  field?: Field;
+  /** Righe decorative orizzontali (colore del segmento). */
+  stripes?: string;
   /** Contenuto da validare dal docente: compare come badge solo in revisione. */
   verify?: string;
   /** Note relatore (tasto S). */
   notes: string;
 }
 
-export const slide = (o: SlideOpts, body: string) => `<section data-seg="${o.seg}"${o.verify ? ` data-verify="${attr(o.verify)}"` : ''}>
-<div class="frame${o.layout ? ` ${o.layout}` : ''}">${body}</div>
+export const FIELD_COLOR: Record<Field, string> = { warm: '#ff8f5e', blue: '#6f8dff', coral: '#ff7a59', amber: '#f2b64a', mint: '#6fd9c0' };
+
+export const slide = (o: SlideOpts, body: string) => {
+  const bg = o.field ? ` data-background-gradient="var(--field-${o.field})"` : '';
+  const stripes = o.stripes ? `<div class="stripes" aria-hidden="true" style="--stripe:${o.stripes}"></div>` : '';
+  return `<section data-seg="${o.seg}"${bg}${o.verify ? ` data-verify="${attr(o.verify)}"` : ''}>
+<div class="frame${o.layout ? ` ${o.layout}` : ''}">${stripes}${body}</div>
 <aside class="notes">${o.notes}</aside>
 </section>`;
+};
 
 /** Note relatore: tempo, regia, frasi da dire, ponte al segmento successivo. */
 export function notes(n: { time?: string; say?: string; regia?: string; ponte?: string; extra?: string[]; verify?: string }) {
@@ -36,12 +49,15 @@ export const frag = (html: string, o: { tag?: string; cls?: string; step?: numbe
   return `<${tag} class="fragment${o.cls ? ` ${o.cls}` : ''}"${data}>${html}</${tag}>`;
 };
 
-/** Divisore di segmento con la catena narrativa in grande. */
-export function divider(o: { seg: string; num: string; title: string; meta: string; chain: string[]; current: number; notes: string }) {
-  const chain = o.chain.map((c, i) => `<span${i === o.current ? ' aria-current="step"' : ''}>${c}</span>`).join('<span aria-hidden="true">›</span>');
-  return slide({ seg: o.seg, layout: 'l-divider', notes: o.notes }, `
+/**
+ * Divisore di segmento: campo sfumato e titolo gigante ripetuto che esce dai bordi.
+ * Il titolo prosegue, tagliato in alto, nella slide successiva (morph).
+ */
+export function divider(o: { seg: string; num: string; short: string; title: string; meta: string; field: Field; notes: string }) {
+  const rep = (n: number) => Array.from({ length: n }, () => o.short).join('&nbsp;- ');
+  return slide({ seg: o.seg, layout: 'l-divider', field: o.field, notes: o.notes }, `
   <p class="seg-num" data-animate>${o.num}</p>
+  <div class="marquee-wrap" aria-hidden="true"><p class="marquee" data-carry data-id="marquee-${o.seg}"><span class="main"><span class="pre">${o.short}&nbsp;-&nbsp;</span>${rep(4)}</span></p></div>
   <h2 data-animate>${o.title}</h2>
-  <p class="seg-meta" data-animate>${o.meta}</p>
-  <p class="chain-big" data-animate>${chain}</p>`);
+  <p class="seg-meta" data-animate>${o.meta}</p>`);
 }

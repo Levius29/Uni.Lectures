@@ -7,6 +7,7 @@
 - Il testo sorgente di ogni lezione è in docs/lezioni/NN/. Le slide lo seguono; se una slide se ne discosta, annotalo in docs/lezioni/NN/stato.md.
 - Contenuti da validare: attributo `verify` sulla slide (badge in sviluppo o con ?revisione) e riga in stato.md.
 - Schemi SVG: etichetta «Schema illustrativo», forme semplificate, testo ≥ 25 px sulla tela. Stati guidati dai frammenti con data-steps / data-step-of.
+- Stile: fondo scuro, campi sfumati, Inter, morph fra slide (data-id uguali, data-carry). Regole in DESIGN_SYSTEM.md.
 - Testo visibile senza trattini lunghi (— –): usa punto, virgola, due punti o trattino semplice negli intervalli.
 - Mai leggere, caricare o inviare clinical-originals a servizi esterni senza esplicita richiesta.
 - Mai includere identificativi paziente, metadati clinici o fotografie non approvate in Git, note relatore, prompt o log.
