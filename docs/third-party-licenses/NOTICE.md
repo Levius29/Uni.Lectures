@@ -6,6 +6,7 @@
 | `web-design-guidelines` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | `063bee94c3f4df8453406c830b0a7df0f2860278` | Adattamento locale della procedura; il repository upstream non contiene un file di licenza alla revisione indicata. |
 | Regole Web Interface Guidelines | [vercel-labs/web-interface-guidelines](https://github.com/vercel-labs/web-interface-guidelines) | `e3d624baaf29dc1fc645aff3e38f03e564d2d6b1` | MIT, `web-interface-guidelines-LICENSE` |
 | `playwright-cli` skill | [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli) | `74354ecc7a43da16d91a9bc54fa8db8283a3fcf5` | Apache-2.0, `playwright-cli-LICENSE` |
+| `apple-design` | [dickwu/apple-design-skill](https://github.com/dickwu/apple-design-skill) | `39ea3fbab3011e0798c076dbeabf4917001499da` | Il repository upstream non contiene un file di licenza. I testi in `references/hig/` sono di Apple Inc., riprodotti dalle [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/) con link alla fonte in ogni file. |
 | Font Inter (variabile) | [@fontsource-variable/inter](https://fontsource.org/fonts/inter) via npm, incluso nella build | 5.3.0 | SIL OFL 1.1, nel pacchetto npm |
 | 2 schede `DESIGN.md` | [VoltAgent/awesome-design-md](https://github.com/voltagent/awesome-design-md) | `f6961238d5cddcf8042a74a70fc400ec67181abb` | MIT, `awesome-design-md-LICENSE` |
 
