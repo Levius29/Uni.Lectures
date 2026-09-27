@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.playwright/
+playwright-report/
+test-results/
+**/clinical-originals/
+clinical-processed/
+public/assets/clinical/*
+!public/assets/clinical/.gitkeep
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log

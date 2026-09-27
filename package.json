@@ -1,0 +1,32 @@
+{
+  "name": "intarsi-lecture",
+  "version": "0.1.0",
+  "description": "Presentazione universitaria sugli intarsi posteriori",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "images:prepare": "node scripts/prepare-clinical.mjs"
+  },
+  "keywords": [],
+  "type": "module",
+  "dependencies": {
+    "@lottiefiles/dotlottie-web": "^0.80.0",
+    "gsap": "^3.15.0",
+    "reveal.js": "^6.0.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.3",
+    "@types/reveal.js": "^5.2.2",
+    "sharp": "^0.35.4",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.1"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}
