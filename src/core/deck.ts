@@ -3,6 +3,7 @@ import Notes from 'reveal.js/plugin/notes';
 import 'reveal.js/reveal.css';
 import '../styles/theme.css';
 import '../styles/figures.css';
+import '../styles/deck.css';
 import type { Lesson } from './types';
 import { animateSlide } from '../animations/entrance';
 import { syncSteps } from '../animations/steps';
@@ -52,8 +53,9 @@ export async function mountLesson(lesson: Lesson) {
   loadSlots(root);
 
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canUseHash = (() => { try { history.replaceState(history.state, '', location.href); return true; } catch { return false; } })();
   const deck = new Reveal({
-    hash: true, controls: true, progress: true, slideNumber: 'c/t',
+    hash: canUseHash, controls: true, progress: true, slideNumber: 'c/t',
     width: 1600, height: 900, margin: 0, center: false,
     transition: reducedMotion ? 'none' : 'fade', transitionSpeed: 'fast', backgroundTransition: reducedMotion ? 'none' : 'fade',
     autoAnimate: !reducedMotion, autoAnimateDuration: 0.8, autoAnimateEasing: 'cubic-bezier(0.22, 0.8, 0.2, 1)', autoAnimateUnmatched: false,

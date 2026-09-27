@@ -24,6 +24,9 @@ test('la lezione si naviga da tastiera e ripristina il deep link', async ({ page
   await page.goto(LESSON);
   await expect(page.locator('.reveal.ready')).toBeVisible();
   await expect(page.locator('section.present h1')).toContainText('Il restauro indiretto');
+  // Tema applicato dopo reveal.css anche nella build
+  await expect(page.locator('.reveal .slides')).toHaveCSS('text-align', 'left');
+  await expect(page.locator('.reveal-viewport')).toHaveCSS('background-color', 'rgb(14, 16, 19)');
   await page.keyboard.press('ArrowRight');
   await expect(page.locator('section.present h2')).toHaveText('Il caso');
   await expect(page).toHaveURL(/#\/1$/);

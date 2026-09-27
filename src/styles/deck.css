@@ -1,0 +1,7 @@
+/* Regole che sovrascrivono reveal.css: importate DOPO reveal.css nello stesso chunk (vedi core/deck.ts),
+   così l'ordine resta giusto anche nella build, dove theme.css finisce in un file condiviso caricato prima. */
+.reveal-viewport { background: var(--bg); color: var(--ink); }
+.reveal .slides { text-align: left; }
+.reveal .controls { color: var(--ink); }
+.reveal .progress { color: var(--accent); height: 3px; }
+.reveal .slide-number { background: transparent; color: var(--muted); font-family: var(--font); font-size: 15px; }
