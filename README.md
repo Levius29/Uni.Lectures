@@ -25,7 +25,9 @@ Build in dist/. Gli asset clinici presenti in public/ saranno inclusi nella buil
 
 ## Codex e Claude Code
 
-Apri questa stessa cartella come progetto in entrambi. AGENTS.md contiene le regole comuni; CLAUDE.md le richiama. Nessun MCP necessario per avvio o test: Playwright funziona da terminale. Evita due agenti sullo stesso file contemporaneamente.
+Apri questa stessa cartella come progetto in entrambi. AGENTS.md contiene le regole comuni; CLAUDE.md le richiama. Evita due agenti sullo stesso file contemporaneamente.
+
+Playwright MCP è configurato per Codex in `.codex/config.toml` e per Claude Code in `.mcp.json`. Usa la versione installata da `npm ci`, un browser isolato e una finestra di 1920×1080. Dopo l'installazione, avvia `npm run dev` e chiedi all'agente di controllare `http://127.0.0.1:5173/`. Claude Code può chiedere di approvare il server della repo al primo avvio. I test automatici restano disponibili con `npm test`.
 
 Leggi PROJECT_SPEC.md, DESIGN_SYSTEM.md, LESSON_STRUCTURE.md e docs/ASSETS.md. Le quattro slide iniziali sono una demo editoriale; la lezione clinica va completata e validata.
 
