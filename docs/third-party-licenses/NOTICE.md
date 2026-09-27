@@ -1,0 +1,13 @@
+# Materiale di terzi incluso
+
+| Materiale | Origine | Revisione | Licenza |
+| --- | --- | --- | --- |
+| `design-taste-frontend`, `image-to-code` | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | `ce26fc25c0e5e8cab638f883de62d9a86ee5e45b` | MIT, `taste-skill-LICENSE` |
+| `web-design-guidelines` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | `063bee94c3f4df8453406c830b0a7df0f2860278` | Adattamento locale della procedura; il repository upstream non contiene un file di licenza alla revisione indicata. |
+| Regole Web Interface Guidelines | [vercel-labs/web-interface-guidelines](https://github.com/vercel-labs/web-interface-guidelines) | `e3d624baaf29dc1fc645aff3e38f03e564d2d6b1` | MIT, `web-interface-guidelines-LICENSE` |
+| `playwright-cli` skill | [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli) | `74354ecc7a43da16d91a9bc54fa8db8283a3fcf5` | Apache-2.0, `playwright-cli-LICENSE` |
+| 2 schede `DESIGN.md` | [VoltAgent/awesome-design-md](https://github.com/voltagent/awesome-design-md) | `f6961238d5cddcf8042a74a70fc400ec67181abb` | MIT, `awesome-design-md-LICENSE` |
+
+Le dipendenze npm mantengono licenze e versioni in `package-lock.json`. Le copie delle skill sono in `.agents/skills/`; `.claude/skills/` contiene solo collegamenti simbolici agli stessi file.
+La skill `playwright-cli` ha una nota iniziale adattata all'installazione locale del progetto.
+`web-design-guidelines` usa una guida locale aggiornata alla revisione indicata; può confrontarla con la fonte quando è disponibile la rete.

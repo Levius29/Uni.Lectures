@@ -1,6 +1,8 @@
 node_modules/
 dist/
-.playwright/
+.playwright/*
+!.playwright/cli.config.json
+.playwright-cli/
 playwright-report/
 test-results/
 **/clinical-originals/
