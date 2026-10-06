@@ -9,7 +9,7 @@ import { biselloFigure } from '../../components/figures/bisello';
 const photo = (code: string, caption: string) => slot({ src: `assets/clinical/01/${code}.webp`, code, caption });
 
 export const s3 = [
-  divider({ seg: 'S3', short: 'Due scuole', title: 'Due scuole di preparazione', field: 'coral', notes: notes({ time: 'S3, min 13-29, 8 slide. Il cuore della lezione.' }) }),
+  divider({ seg: 'S3', short: 'Due scuole', title: 'Due scuole di preparazione', field: 'coral', notes: notes({ time: 'S3, min 13-29, 7 slide. Il cuore della lezione.' }) }),
 
   slide({ seg: 'S3', verify: 'La contrapposizione fra le due scuole è una costruzione didattica del corso: dichiararla.', notes: notes({
     say: '"Il modello che vi ho dato è mio; gli autori sono loro. Così potete non essere d\'accordo con me e restare d\'accordo con loro."',
@@ -60,7 +60,7 @@ export const s3 = [
     <figure class="figure fig-col w-760" data-id="fig-prep">${preparazioneFigure('parametrica')}<figcaption class="schema-tag">overlay non ritentivo, stessa inquadratura</figcaption></figure>
   </div>`),
 
-  slide({ seg: 'S3', notes: notes({ regia: 'L\'ultima riga arriva con un clic: è la lezione.' }) }, `
+  slide({ seg: 'S3', notes: notes({}) }, `
   <header><h2 data-animate>Il confronto</h2></header>
   <table class="tbl lg" data-animate>
     <thead><tr><th></th><th>Geometrica</th><th>Parametrica</th></tr></thead>
@@ -71,12 +71,8 @@ export const s3 = [
       <tr><th>Superficie interna</th><td>Pareti, box, angoli definiti</td><td>Liscia, aperta, arrotondata</td></tr>
       <tr><th>Margini</th><td>Chamfer, box prossimali</td><td>Butt-joint, smalto preservato</td></tr>
       <tr><th>Costo biologico</th><td>Maggiore</td><td>Minore</td></tr>
-      <tr class="fragment key"><th>Cosa perdona</th><td>Un errore di adesione</td><td>Un errore di spessore</td></tr>
     </tbody>
   </table>`),
-
-  slide({ seg: 'S3', layout: 'l-statement', stripes: FIELD_COLOR.coral, notes: notes({ extra: ['Uno studente che esce avendo capito questo ha capito la lezione.'] }) }, `
-  <blockquote data-animate>Non c'è una scuola giusta. C'è una scuola che ti salva se sbagli a <em>incollare</em>, e una che ti punisce se sbagli a <em>misurare</em>.</blockquote>`),
 
   slide({ seg: 'S3', notes: notes({ regia: 'Le barre crescono da sole all\'ingresso.' }) }, `
   <header><h2 data-animate>Il costo biologico, in numeri</h2></header>
