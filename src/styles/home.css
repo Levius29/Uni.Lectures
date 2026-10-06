@@ -1,3 +1,7 @@
+/* Home del corso. Font locale (Inter, OFL) importato in src/home.ts: nessun font remoto. */
+html, body { margin: 0; background: var(--bg); color: var(--ink); }
+/* Grana su tutto, anche sul campo sfumato */
+body.home::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 20; background-image: var(--grain); background-size: 220px; opacity: 0.09; mix-blend-mode: screen; }
 body.home { min-height: 100vh; font-family: var(--font); }
 #corso { display: flex; flex-direction: column; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -23,4 +27,8 @@ kbd { font-family: var(--font); font-size: 0.9em; padding: 1px 6px; border: 1px 
 @media (max-width: 640px) {
   .lesson-list a, .lesson-list li > div { grid-template-columns: 40px 1fr; padding: 20px 8px; }
   .l-meta { grid-column: 2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }

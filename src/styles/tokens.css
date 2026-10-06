@@ -1,0 +1,29 @@
+/* Token condivisi da home e lezioni (vedi DESIGN_SYSTEM.md). */
+:root {
+  --bg: #0e1013;
+  --surface: #171a1f;
+  --surface-2: #20242a;
+  --ink: #f3f1ec;
+  --muted: #9ca3a7;
+  --rule: rgba(255, 255, 255, 0.14);
+  --accent: #ff8f5e;
+  /* Solo negli schemi: materiale da restauro, tessuti, luce. Vedi DESIGN_SYSTEM.md. */
+  --restoration: #4fb8b1;
+  --enamel: #f6f3ec;
+  --dentin: #dcc9a0;
+  --pulp: #cf8a7c;
+  --gingiva: #cf9087;
+  --bone: #7d766a;
+  --outline: #b8c0c4;
+  --light: #5b9cff;
+  --font: 'Inter Variable', Inter, 'Helvetica Neue', Arial, sans-serif;
+  /* Campi sfumati (sfondi a tutta pagina) */
+  --field-warm: radial-gradient(60% 75% at 12% 90%, #e0487a 0%, rgba(224, 72, 122, 0) 70%), radial-gradient(70% 80% at 88% 8%, #f6c453 0%, rgba(246, 196, 83, 0) 70%), linear-gradient(135deg, #f08a3c 0%, #e8594f 100%);
+  --field-blue: radial-gradient(60% 75% at 85% 85%, #8a5cff 0%, rgba(138, 92, 255, 0) 70%), radial-gradient(70% 75% at 12% 15%, #36b0ff 0%, rgba(54, 176, 255, 0) 70%), linear-gradient(135deg, #2a4fd6 0%, #5a3fd0 100%);
+  --field-coral: radial-gradient(65% 80% at 85% 20%, #ffb36b 0%, rgba(255, 179, 107, 0) 70%), radial-gradient(60% 70% at 10% 90%, #9b2d4f 0%, rgba(155, 45, 79, 0) 70%), linear-gradient(135deg, #e0553a 0%, #c9412f 100%);
+  --field-amber: radial-gradient(65% 80% at 20% 15%, #ffe08a 0%, rgba(255, 224, 138, 0) 70%), radial-gradient(60% 70% at 90% 90%, #d2573a 0%, rgba(210, 87, 58, 0) 70%), linear-gradient(135deg, #e8a33a 0%, #d0722f 100%);
+  --field-mint: radial-gradient(65% 80% at 15% 20%, #a6f2d6 0%, rgba(166, 242, 214, 0) 70%), radial-gradient(60% 70% at 88% 85%, #3a6fd0 0%, rgba(58, 111, 208, 0) 70%), linear-gradient(135deg, #3aa597 0%, #2f7fa8 100%);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+:root { color-scheme: dark; }

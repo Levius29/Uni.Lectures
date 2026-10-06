@@ -1,6 +1,6 @@
 # Lezione 1 · stato
 
-Bozza completa in `src/slides/01/`: 47 slide del testo sorgente più la copertina (48). Fonte: `protocollo.md` (copia del documento nel progetto Claude «Conservativa 4», 13 settembre 2026).
+Bozza completa in `src/slides/01/`: 47 slide del testo sorgente più la copertina (48). Dal 6 ottobre 2026 la lezione è una composizione HyperFrames (`public/compositions/01/`, generata con `npm run compose`) al posto di Reveal.js: stessi testi, slide, schemi e note; cambiano motore e navigazione (vista relatore con P, niente panoramica con Esc). Fonte: `protocollo.md` (copia del documento nel progetto Claude «Conservativa 4», 13 settembre 2026).
 
 ## Da validare prima di erogare
 
@@ -54,5 +54,5 @@ La lista immagini prevedeva 11 schemi da generare con un modello di immagini. Ne
 
 - Copertina aggiunta (slide 0).
 - Titoli accorciati dove superavano due righe: «L'asse verticale», «L'asse vestibolare», «Il punto di contatto, zona proibita», «Condizionare il manufatto», «Due evidenze, direzioni opposte», «Il bisello: due oggetti, un nome».
-- Testi lunghi della slide spostati nelle note relatore (tasto S): regia, frasi da dire, ponti fra segmenti, contingenza.
+- Testi lunghi della slide spostati nelle note relatore (vista relatore, tasto P): regia, frasi da dire, ponti fra segmenti, contingenza.
 - Nomi commerciali assenti, come nel sorgente.

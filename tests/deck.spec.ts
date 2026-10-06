@@ -8,6 +8,43 @@ function trackErrors(page: Page) {
   return errors;
 }
 
+/** Documento della composizione HyperFrames dentro il player. */
+const comp = (page: Page) => page.frameLocator('hyperframes-player iframe');
+
+async function open(page: Page, url = LESSON) {
+  await page.goto(url);
+  await expect(page.locator('html.lesson-ready')).toHaveCount(1);
+  // Controller pronto: la posizione compare nell'indirizzo o il contatore è disegnato.
+  await expect(page.locator('hyperframes-slideshow')).toBeVisible();
+}
+
+/** Scena visibile (decisa dal runtime HyperFrames) e tempo del player. */
+async function state(page: Page) {
+  return page.evaluate(() => {
+    const player = document.querySelector('hyperframes-player') as HTMLElement & { iframeElement: HTMLIFrameElement; currentTime: number };
+    const doc = player.iframeElement.contentDocument!;
+    const scene = [...doc.querySelectorAll<HTMLElement>('.scene')].find(s => getComputedStyle(s).visibility === 'visible');
+    return {
+      time: player.currentTime,
+      scene: scene?.id ?? '',
+      title: scene?.querySelector('.frame > header h2, .frame > h1, .frame > h2, .body h2, blockquote')?.textContent?.trim() ?? '',
+      chain: scene?.querySelector('.chain [aria-current]')?.textContent ?? '',
+      step: scene?.querySelector<HTMLElement>('[data-steps]')?.dataset.step ?? '',
+    };
+  });
+}
+
+/** Attende che la navigazione animata arrivi alla tappa. */
+async function settle(page: Page) {
+  let last = -1;
+  await expect.poll(async () => {
+    const t = (await state(page)).time;
+    const still = t === last;
+    last = t;
+    return still;
+  }, { intervals: [150] }).toBe(true);
+}
+
 test('la home elenca le lezioni e apre la lezione 1', async ({ page }) => {
   const errors = trackErrors(page);
   await page.goto('/');
@@ -15,65 +52,89 @@ test('la home elenca le lezioni e apre la lezione 1', async ({ page }) => {
   await expect(page.locator('.lesson-list li')).toHaveCount(2);
   await page.locator('.lesson-list a').first().click();
   await expect(page).toHaveURL(/\/lezioni\/01\//);
-  await expect(page.locator('.reveal.ready')).toBeVisible();
+  await expect(page.locator('html.lesson-ready')).toHaveCount(1);
   expect(errors).toEqual([]);
 });
 
-test('la lezione si naviga da tastiera e ripristina il deep link', async ({ page }) => {
+test('la lezione è una composizione HyperFrames con isola slideshow e tela 1600×900', async ({ page }) => {
+  await open(page);
+  const root = comp(page).locator('#root');
+  await expect(root).toHaveAttribute('data-composition-id', 'lezione-01');
+  await expect(root).toHaveAttribute('data-width', '1600');
+  await expect(root).toHaveAttribute('data-height', '900');
+  const slides = await page.evaluate(() => JSON.parse(document.querySelector('hyperframes-slideshow script[type="application/hyperframes-slideshow+json"]')!.textContent!).slides.length);
+  await expect(comp(page).locator('#root > .scene')).toHaveCount(slides);
+  await expect(comp(page).locator('#s00 .bg')).toHaveCSS('opacity', '1');
+});
+
+test('si naviga da tastiera, avanti e indietro, e il deep link si ripristina', async ({ page }) => {
   const errors = trackErrors(page);
-  await page.goto(LESSON);
-  await expect(page.locator('.reveal.ready')).toBeVisible();
-  await expect(page.locator('section.present h1')).toContainText('Il restauro indiretto');
-  // Tema applicato dopo reveal.css anche nella build
-  await expect(page.locator('.reveal .slides')).toHaveCSS('text-align', 'left');
-  await expect(page.locator('.reveal-viewport')).toHaveCSS('background-color', 'rgb(14, 16, 19)');
+  await open(page);
+  await settle(page);
+  expect((await state(page)).scene).toBe('s00');
   await page.keyboard.press('ArrowRight');
-  await expect(page.locator('section.present h2')).toHaveText('Il caso');
+  await settle(page);
   await expect(page).toHaveURL(/#\/1$/);
+  expect((await state(page)).title).toBe('Il caso');
+  expect((await state(page)).chain).toBe('');
+  await page.keyboard.press('ArrowLeft');
+  await settle(page);
+  expect((await state(page)).scene).toBe('s00');
+  await page.keyboard.press('ArrowRight');
+  await settle(page);
   await page.reload();
-  await expect(page.locator('section.present h2')).toHaveText('Il caso');
-  await expect(page.locator('section.present .chain [aria-current]')).toHaveCount(0);
+  await expect(page.locator('html.lesson-ready')).toHaveCount(1);
+  await settle(page);
+  expect((await state(page)).title).toBe('Il caso');
   expect(errors).toEqual([]);
 });
 
-test('i frammenti guidano lo stato degli schemi e la catena segue il segmento', async ({ page }) => {
-  await page.goto(`${LESSON}#/7`);
-  await expect(page.locator('section.present h2')).toHaveText('Le soglie, e la cuspide-mensola');
-  await expect(page.locator('section.present .chain [aria-current]')).toHaveText('Quando indiretto');
-  const fig = page.locator('section.present [data-steps="mensola"]');
-  await expect(fig).toHaveAttribute('data-step', '0');
+test('i frammenti guidano lo stato degli schemi; indietro torna di un frammento', async ({ page }) => {
+  await open(page, `${LESSON}#/7`);
+  await settle(page);
+  let s = await state(page);
+  expect(s.title).toBe('Le soglie, e la cuspide-mensola');
+  expect(s.chain).toBe('Quando indiretto');
+  expect(s.step).toBe('0');
   await page.keyboard.press('ArrowRight');
-  await expect(fig).toHaveAttribute('data-step', '1');
+  await settle(page);
+  expect((await state(page)).step).toBe('1');
+  await expect(page).toHaveURL(/#\/7\/1$/);
   await page.keyboard.press('ArrowRight');
-  await expect(fig).toHaveAttribute('data-step', '2');
+  await settle(page);
+  expect((await state(page)).step).toBe('2');
   await page.keyboard.press('ArrowLeft');
-  await expect(fig).toHaveAttribute('data-step', '1');
+  await settle(page);
+  s = await state(page);
+  expect(s.step).toBe('1');
+  expect(s.title).toBe('Le soglie, e la cuspide-mensola');
 });
 
 test('movimento ridotto: contenuto visibile senza animazioni', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto(LESSON);
-  await expect(page.locator('section.present h1')).toBeVisible();
-  await expect(page.locator('section.present h1')).toHaveCSS('opacity', '1');
+  await open(page);
+  const h1 = comp(page).locator('#s00 h1');
+  await expect(h1).toBeVisible();
+  await expect(h1).toHaveCSS('opacity', '1');
+  await expect(comp(page).locator('#s00 .lead').first()).toHaveCSS('opacity', '1');
 });
 
 test('nessuna slide esce dalla tela 1600×900', async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: 'reduce' }); // niente morph in corso durante la misura
-  await page.goto(LESSON);
-  await expect(page.locator('.reveal.ready')).toBeVisible();
-  const total = await page.locator('.reveal .slides > section').count();
-  const overflowing: string[] = [];
-  for (let i = 0; i < total; i++) {
-    await page.evaluate(n => { location.hash = `#/${n}`; }, i);
-    await page.waitForFunction(n => document.querySelectorAll('.reveal .slides > section')[n]?.classList.contains('present'), i);
-    // Il telaio e ogni blocco flessibile (.body, .col) devono contenere i propri figli.
-    const o = await page.locator('section.present .frame').evaluate(f => {
+  await open(page);
+  // Ogni scena si misura all'ultima tappa, a ingresso e frammenti completati.
+  const overflowing = await page.evaluate(() => {
+    const frame = (document.querySelector('hyperframes-player') as HTMLElement & { iframeElement: HTMLIFrameElement }).iframeElement;
+    const doc = frame.contentDocument!;
+    const tl = (frame.contentWindow as unknown as { __timelines: Record<string, { seek(t: number): void }> }).__timelines['lezione-01']!;
+    return [...doc.querySelectorAll<HTMLElement>('.scene')].flatMap(scene => {
+      tl.seek(Number(scene.dataset.holds!.split(',').pop()));
+      const f = scene.querySelector<HTMLElement>('.frame')!;
       const boxes = [f, ...f.querySelectorAll<HTMLElement>('.body, .col')];
       const h = Math.max(...boxes.map(b => b.scrollHeight - b.clientHeight));
       const w = Math.max(...boxes.map(b => b.scrollWidth - b.clientWidth));
-      return { h, w, title: f.querySelector('h1,h2,blockquote')?.textContent?.slice(0, 40) ?? '' };
+      const title = f.querySelector('h1,h2,blockquote')?.textContent?.slice(0, 40) ?? '';
+      return h > 1 || w > 1 ? [`${scene.id} ${title} (+${h}px, +${w}px)`] : [];
     });
-    if (o.h > 1 || o.w > 1) overflowing.push(`#/${i} ${o.title} (+${o.h}px, +${o.w}px)`);
-  }
+  });
   expect(overflowing).toEqual([]);
 });

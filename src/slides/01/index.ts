@@ -9,6 +9,6 @@ const lesson: Lesson = {
   id: '01',
   title: 'Il restauro indiretto parziale',
   chain: CHAIN_LINKS,
-  slides: [cover, ...s1, ...s2, ...s3, ...s4, ...s5, ...s6, ...s7].join('\n'),
+  slides: [cover, ...s1, ...s2, ...s3, ...s4, ...s5, ...s6, ...s7],
 };
 export default lesson;

@@ -1,4 +1,4 @@
-/* Schemi SVG. Stati guidati da data-step (vedi src/animations/steps.ts). */
+/* Schemi SVG. Stati guidati da data-step, impostato dalla timeline sui frammenti (src/hyperframes/timeline.js). */
 .figure svg text { font-family: var(--font); font-size: 26px; fill: var(--ink); }
 /* Corpo testo negli schemi ≥ 25 px sulla tela, alla larghezza di impaginazione (w-700 / w-1000). */
 .figure svg.fig-molar text { font-size: 34px; }
@@ -61,12 +61,6 @@
 
 /* Luce (slide 38) */
 .lamp { fill: var(--ink); }
-.beam, .beam-out { transform-box: fill-box; transform-origin: 50% 0; transform: scaleY(0); transition: transform 700ms cubic-bezier(.2,.7,.2,1); }
-.beam { transition-delay: calc(200ms + var(--i, 0) * 180ms); }
-.beam-out { transition-delay: calc(700ms + var(--i, 0) * 180ms); }
-.present .beam, .present .beam-out { transform: scaleY(1); }
+/* Fasci di luce: crescono all'ingresso della slide (timeline). */
+.beam, .beam-out { transform-box: fill-box; transform-origin: 50% 0; }
 .cement { fill: var(--light); fill-opacity: calc(0.12 + var(--reach, 0) * 0.88); stroke: var(--outline); stroke-width: 1; }
-
-/* Panoramica (Esc) e stampa (?print-pdf): mostra gli stati finali */
-.reveal.overview .bars .fill, html.print-pdf .bars .fill,
-.reveal.overview .beam, .reveal.overview .beam-out, html.print-pdf .beam, html.print-pdf .beam-out { transform: none; transition: none; }

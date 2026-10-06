@@ -16,3 +16,6 @@ public/assets/articoli/*
 !.env.example
 .DS_Store
 *.log
+
+# Composizioni HyperFrames generate da src/slides (npm run compose)
+public/compositions/

@@ -5,12 +5,12 @@ Riferimento di stile scelto da Francesco: presentazione Canva «Gradient Texture
 Rifinitura (27 settembre 2026) con la disciplina di `docs/design-references/awesome-design-md/apple/DESIGN.md` e i controlli della skill `design-taste-frontend`: pesi tipografici 400/600, niente schede né ombre, lo schema o la foto al centro, un solo accento. I campi sfumati restano: sono la scelta di Francesco, anche se Apple non usa gradienti.
 
 ## Tela
-Formato 16:9, tela 1600×900 a tutto schermo (margine Reveal 0). Margini interni del telaio: 92 px in alto (sotto la striscia), 88 px ai lati, 44 px in basso. `center: false`: titolo sempre in alto.
+Formato 16:9, tela 1600×900 (composizione HyperFrames, scalata a tutto schermo dal player). Margini interni del telaio: 92 px in alto (sotto la striscia), 88 px ai lati, 44 px in basso. `center: false`: titolo sempre in alto.
 
 ## Colore
 Fondo quasi nero `#0E1013` con grana leggera su tutto. Testo `#F3F1EC`, secondario `#9CA3A7`, superfici `#171A1F` e `#20242A`, filetti bianco al 14%. Un solo accento, corallo `#FF8F5E`: parole chiave, righe chiave delle tabelle, numeri delle liste.
 
-Il colore pieno vive solo nei **campi sfumati** a tutto schermo (sfondi Reveal): copertina e divisori di segmento. Cinque campi, variabili in `src/styles/theme.css`: `warm` (arancio-rosa), `blue` (blu-viola), `coral`, `amber`, `mint`. Lezione 1: copertina e S1/S7 warm, S3 coral, S4 mint, S5 amber, S6 blue. Le affermazioni restano scure, con righe orizzontali sfumate nel colore del segmento.
+Il colore pieno vive solo nei **campi sfumati** a tutto schermo (livello `.bg` della scena): copertina e divisori di segmento. Cinque campi, variabili in `src/styles/theme.css`: `warm` (arancio-rosa), `blue` (blu-viola), `coral`, `amber`, `mint`. Lezione 1: copertina e S1/S7 warm, S3 coral, S4 mint, S5 amber, S6 blue. Le affermazioni restano scure, con righe orizzontali sfumate nel colore del segmento.
 
 ## Tipografia
 Inter variabile (locale, OFL, nessun font remoto). Pesi 400 e 600 (700 solo per la parola gigante dei divisori), niente 500. Titoli 600 con spaziatura stretta: copertina 150 px, slide 72 px, affermazioni 84 px, titolo gigante dei divisori 190 px. Corpo 32 px con interlinea 1,44, tabelle 27 px (31 px con `.tbl.lg` quando sono poche righe), didascalie e fonti 22-24 px, striscia in alto 20 px. Enfasi con il colore d'accento, non con un secondo carattere.
@@ -25,11 +25,13 @@ Inter variabile (locale, OFL, nessun font remoto). Pesi 400 e 600 (700 solo per 
 - Striscia in alto su ogni slide: corso e lezione a sinistra, catena narrativa a destra con l'anello corrente sottolineato.
 
 ## Movimento
-- **Morph** (Reveal Auto-Animate) fra slide consecutive: gli elementi con lo stesso `data-id` si spostano e si ridimensionano (0,8 s). Esempi: la foto del caso da grande a pannello, lo schema che resta fermo mentre cambia il testo.
+Tutto il movimento vive in un'unica timeline GSAP della composizione HyperFrames (`src/hyperframes/timeline.js`). Ogni slide ha delle tappe: ingresso completato, poi un frammento per tappa. Andando avanti la timeline si percorre a velocità reale, all'indietro a velocità 2,2: ogni animazione si vede anche al contrario. Salti oltre 6 s (deep link) sono istantanei.
+- **Morph** fra slide consecutive: gli elementi con lo stesso `data-id` partono da posizione e dimensione della slide precedente e arrivano alla propria (FLIP, 0,8 s). La striscia in alto resta ferma. Esempi: la foto del caso da grande a pannello, lo schema che resta fermo mentre cambia il testo.
 - **Continuità**: il titolo della copertina e la parola gigante dei divisori (`data-carry`) salgono e restano, tagliati e tenui, in cima alla slide successiva.
 - **Ingresso**: gli elementi `data-animate` salgono di 28 px in 0,6 s, in sequenza di 80 ms; la parola gigante dei divisori entra da destra.
-- Schemi: stati guidati dai frammenti (450-700 ms). Barre e luce crescono all'ingresso.
-- Con `prefers-reduced-motion` tutto è istantaneo e il morph è spento. Niente loop decorativi.
+- **Uscita**: prima del cambio di scena (0,4 s) sfuma ciò che non prosegue; il campo sfumato si dissolve se la slide successiva non lo condivide.
+- Frammenti: dissolvenza 0,5 s. Schemi: stati guidati dai frammenti (`data-step` impostato in timeline, disegno con transizioni CSS 450-700 ms). Barre e luce crescono all'ingresso.
+- Con `prefers-reduced-motion` la navigazione salta da tappa a tappa senza percorrere la timeline e le transizioni CSS sono spente. Niente loop decorativi.
 
 ## Schemi SVG
 Su fondo scuro: restauro teal `#4FB8B1`, smalto `#F6F3EC`, dentina `#DCC9A0`, polpa `#CF8A7C`, gengiva `#CF9087`, osso `#7D766A`, contorni `#B8C0C4`, luce di polimerizzazione blu `#5B9CFF`. Il corallo segnala ciò che va notato (carico, zona proibita, linea di finitura). Etichette ≥ 25 px sulla tela, didascalia «Schema illustrativo». Forme semplificate, da validare dal docente.

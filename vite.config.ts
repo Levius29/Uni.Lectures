@@ -1,6 +1,7 @@
 import { defineConfig, type Plugin } from 'vite';
 import { existsSync, readdirSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
+import { composeAll } from './scripts/compose-lib.mjs';
 
 // Ogni cartella lezioni/NN con un index.html diventa una pagina della build.
 const lessons = readdirSync('lezioni').filter(id => existsSync(resolve('lezioni', id, 'index.html'))).sort();
@@ -38,10 +39,33 @@ function localAssets(): Plugin {
   };
 }
 
+/**
+ * In sviluppo rigenera le composizioni HyperFrames (public/compositions/NN/) all'avvio
+ * e a ogni modifica di slide, componenti, stili o timeline, poi ricarica la pagina.
+ * In build lo fa scripts/compose.mjs prima di vite build.
+ */
+function compositions(): Plugin {
+  const watched = ['src/slides', 'src/components', 'src/styles', 'src/hyperframes'].map(d => resolve(d));
+  return {
+    name: 'hyperframes-compositions',
+    apply: 'serve',
+    async configureServer(server) {
+      const run = () => composeAll((p: string) => server.ssrLoadModule(p)).catch((e: unknown) => server.config.logger.error(String(e)));
+      await run();
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      server.watcher.on('change', file => {
+        if (!watched.some(d => file.startsWith(d))) return;
+        clearTimeout(timer);
+        timer = setTimeout(async () => { await run(); server.ws.send({ type: 'full-reload' }); }, 80);
+      });
+    },
+  };
+}
+
 export default defineConfig({
   base: './',
   appType: 'mpa',
-  plugins: [localAssets()],
+  plugins: [localAssets(), compositions()],
   server: { host: '127.0.0.1' },
   preview: { host: '127.0.0.1' },
   build: { rollupOptions: { input } },

@@ -1,4 +1,5 @@
-import './styles/theme.css';
+import '@fontsource-variable/inter/opsz.css';
+import './styles/tokens.css';
 import './styles/home.css';
 import { course, lessons } from './lessons';
 
@@ -23,6 +24,6 @@ ${lessons.map(l => {
 </ol>
 <footer class="home-foot">
   <p>${pending > 0 ? `Altre ${pending} lezioni in preparazione.` : ''}</p>
-  <p>In aula: frecce per avanzare, <kbd>S</kbd> note del relatore, <kbd>F</kbd> schermo intero, <kbd>Esc</kbd> panoramica.</p>
+  <p>In aula: frecce per avanzare e tornare indietro, <kbd>P</kbd> vista relatore con note, <kbd>F</kbd> schermo intero.</p>
 </footer>
 </section>`;

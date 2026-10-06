@@ -1,0 +1,4 @@
+/* Pagina di una lezione: il deck HyperFrames occupa tutta la finestra. Le slide hanno il loro CSS in linea nella composizione. */
+html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); color: var(--ink); }
+hyperframes-slideshow.lesson { display: block; position: relative; width: 100vw; height: 100vh; outline: none; }
+hyperframes-slideshow.lesson hyperframes-player { position: absolute; inset: 0; }
