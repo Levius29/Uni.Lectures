@@ -9,7 +9,7 @@ import { biselloFigure } from '../../components/figures/bisello';
 const photo = (code: string, caption: string) => slot({ src: `assets/clinical/01/${code}.webp`, code, caption });
 
 export const s3 = [
-  divider({ seg: 'S3', short: 'Due scuole', title: 'Due scuole di preparazione', field: 'coral', notes: notes({ time: 'S3, min 13-29, 7 slide. Il cuore della lezione.' }) }),
+  divider({ seg: 'S3', short: 'Due scuole', title: 'Due scuole di preparazione', field: 'coral', notes: notes({ time: 'S3, min 13-29, 8 slide. Il cuore della lezione.' }) }),
 
   slide({ seg: 'S3', verify: 'La contrapposizione fra le due scuole è una costruzione didattica del corso: dichiararla.', notes: notes({
     say: '"Il modello che vi ho dato è mio; gli autori sono loro. Così potete non essere d\'accordo con me e restare d\'accordo con loro."',
@@ -60,9 +60,9 @@ export const s3 = [
     <figure class="figure fig-col w-760" data-id="fig-prep">${preparazioneFigure('parametrica')}<figcaption class="schema-tag">overlay non ritentivo, stessa inquadratura</figcaption></figure>
   </div>`),
 
-  slide({ seg: 'S3', notes: notes({}) }, `
+  slide({ seg: 'S3', notes: notes({ regia: 'Le ultime due righe arrivano con un clic: sono la differenza vera.' }) }, `
   <header><h2 data-animate>Il confronto</h2></header>
-  <table class="tbl lg" data-animate>
+  <table class="tbl" data-animate>
     <thead><tr><th></th><th>Geometrica</th><th>Parametrica</th></tr></thead>
     <tbody>
       <tr><th>Cosa tiene il restauro</th><td>Geometria <strong>e</strong> adesione</td><td>Adesione</td></tr>
@@ -71,8 +71,16 @@ export const s3 = [
       <tr><th>Superficie interna</th><td>Pareti, box, angoli definiti</td><td>Liscia, aperta, arrotondata</td></tr>
       <tr><th>Margini</th><td>Chamfer, box prossimali</td><td>Butt-joint, smalto preservato</td></tr>
       <tr><th>Costo biologico</th><td>Maggiore</td><td>Minore</td></tr>
+      <tr class="fragment key"><th>Manufatto</th><td>Angoli vivi da riprodurre</td><td>Nessun angolo vivo: si realizza più facilmente</td></tr>
+      <tr class="fragment key"><th>Cementazione</th><td>Il composito scaldato fuoriesce con più difficoltà</td><td>Il composito scaldato fuoriesce facilmente</td></tr>
     </tbody>
   </table>`),
+
+  slide({ seg: 'S3', layout: 'l-statement', stripes: FIELD_COLOR.coral, notes: notes({
+    say: '"La differenza vera fra le due scuole non è filosofica, è pratica. Senza angoli vivi il manufatto si realizza più facilmente. E in cementazione il composito scaldato fuoriesce facilmente: l\'adesione risulta facilitata."',
+  }) }, `
+  <blockquote data-animate>Senza angoli vivi il manufatto si fa <em>meglio</em>, e il composito scaldato <em>fuoriesce</em> senza ostacoli.</blockquote>
+  <p class="after" data-animate>È questa la differenza vera fra le due scuole: la parametrica facilita la realizzazione del pezzo e l'adesione.</p>`),
 
   slide({ seg: 'S3', notes: notes({ regia: 'Le barre crescono da sole all\'ingresso.' }) }, `
   <header><h2 data-animate>Il costo biologico, in numeri</h2></header>

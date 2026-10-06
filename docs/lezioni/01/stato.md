@@ -1,6 +1,6 @@
 # Lezione 1 · stato
 
-Bozza completa in `src/slides/01/`: 46 slide del testo sorgente più la copertina (47). La slide 14 del protocollo è stata tolta il 6 ottobre 2026. Fonte: `protocollo.md` (copia del documento nel progetto Claude «Conservativa 4», 13 settembre 2026).
+Bozza completa in `src/slides/01/`: 47 slide del testo sorgente più la copertina (48). Slide 14 del protocollo riscritta il 6 ottobre 2026 (differenza vera fra le due scuole). Fonte: `protocollo.md` (copia del documento nel progetto Claude «Conservativa 4», 13 settembre 2026).
 
 ## Da validare prima di erogare
 

@@ -3,7 +3,7 @@
 > Copia del documento `claude/lezione-01-intarsi-protocolli-clinici.md` del progetto Claude «Conservativa 4» (13 settembre 2026). È il testo sorgente delle slide in `src/slides/01/`.
 
 **Corso:** Conservativa 4 — Restaurativa indiretta · III anno, II semestre
-**Durata:** 90 minuti · **46 slide**
+**Durata:** 90 minuti · **47 slide**
 **Prerequisiti attesi:** adesione dentale, compositi diretti, isolamento del campo, anatomia occlusale
 **Nota di perimetro:** impronta e produzione sono trattate altrove. Questa lezione copre la decisione, la preparazione, la scelta del materiale, il provvisorio e l'incollaggio. Il flusso digitale è la Lezione 2.
 
@@ -38,7 +38,7 @@ Al termine lo studente è in grado di:
 
 1. **Ordinare** le quattro strutture della gerarchia di Fichera e **dedurre** dalla struttura persa se il restauro va diretto o indiretto.
 2. **Applicare la regola della cresta marginale** per decidere quali cuspidi coprire, e **giustificare** perché lo stato pulpare da solo non è un criterio.
-3. **Distinguere** la preparazione geometrica dalla preparazione parametrica, e **riconoscere** quando la geometria serve ancora.
+3. **Distinguere** la preparazione geometrica dalla preparazione parametrica, e **spiegare** perché la parametrica, senza angoli vivi, rende più facile realizzare il manufatto e incollarlo.
 4. **Collocare** la linea di finitura — in profondità cervicale e in estensione vestibolare — e **denominare** il restauro che ne risulta.
 5. **Scegliere** il materiale in funzione di spessore disponibile, mordenzabilità, modulo elastico e riparabilità, **dichiarandone i limiti**.
 6. **Scegliere** il materiale da incollaggio in funzione di spessore e traslucenza del manufatto, e **spiegare** perché un autoadesivo è incompatibile con una preparazione non ritentiva.
@@ -53,12 +53,12 @@ Sei obiettivi, non sette. Uno per segmento sostanziale.
 |---|---|---|
 | 0–5 | **S1** · Il caso e il voto | 3 |
 | 5–13 | **S2** · Quando indiretto: il modello strutturale in sintesi | 5 |
-| 13–29 | **S3** · Due scuole di preparazione | 7 |
+| 13–29 | **S3** · Due scuole di preparazione | 8 |
 | 29–47 | **S4** · Il margine: dove, come, perché | 12 |
 | 47–62 | **S5** · Materiali: spessori, indicazioni, limiti | 7 |
 | 62–81 | **S6** · Cementi e cementazione | 9 |
 | 81–86 | **S7** · Provvisorio e chiusura | 3 |
-| | **Totale** | **86 min · 46 slide** |
+| | **Totale** | **86 min · 47 slide** |
 
 Quattro minuti di margine, che in aula si consumano da soli.
 
@@ -143,7 +143,7 @@ Non "corona perché è devitalizzato". Non "overlay perché così stiamo tranqui
 
 ---
 
-## S3 · Due scuole di preparazione — 16 min · 7 slide
+## S3 · Due scuole di preparazione — 16 min · 8 slide
 
 Il nuovo cuore della lezione.
 
@@ -183,10 +183,16 @@ L'adesione fa il lavoro che prima faceva la forma.
 | Superficie interna | Pareti, box, angoli definiti | Liscia, aperta, arrotondata |
 | Margini | Chamfer, box prossimali | Butt-joint, smalto preservato |
 | Costo biologico | Maggiore | Minore |
+| **Manufatto** | Angoli vivi da riprodurre | Nessun angolo vivo: si realizza più facilmente |
+| **Cementazione** | Il composito scaldato fuoriesce con più difficoltà | Il composito scaldato fuoriesce facilmente |
 
-### Slide 14 — Tolta (6 ottobre 2026)
+### Slide 14 — La differenza vera (6 ottobre 2026, indicazione di Francesco)
 
-Tolta su indicazione di Francesco, insieme alla riga «Cosa perdona» del confronto: nessuna preparazione salva da un errore di adesione. Non riproporre il concetto.
+> **Senza angoli vivi il manufatto si fa meglio, e il composito scaldato fuoriesce senza ostacoli.**
+
+La differenza vera fra le due scuole è pratica: la parametrica, senza angoli vivi, permette di realizzare il manufatto più facilmente; in cementazione il composito scaldato fuoriesce facilmente e l'adesione risulta facilitata.
+
+Sostituisce la vecchia slide 14 e la riga «Cosa perdona»: nessuna preparazione salva da un errore di adesione. Non riproporre quel concetto.
 
 ### Slide 15 — Il costo biologico, in numeri
 
