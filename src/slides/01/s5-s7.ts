@@ -251,6 +251,27 @@ export const s7 = [
   <p class="muted small" data-animate>Tecnica diretta in composito, oppure fresato in PMMA.</p>`),
 
   slide({ seg: 'S7', notes: notes({
+    say: '"Abbiamo deciso, preparato, scelto il materiale e incollato. Manca il pezzo in mezzo: come quel manufatto è nato. La prossima volta partiamo dal dente preparato e arriviamo all\'oggetto finito attraverso il flusso digitale."',
+    extra: ['Bibliografia completa distribuita a parte.'],
+  }) }, `
+  <header><h2 data-animate>La prossima volta: come nasce il pezzo</h2><p class="lead muted" data-animate>Lezione 2. Dal dente preparato al manufatto finito, attraverso il flusso digitale.</p></header>
+  <div class="body stack">
+    <p class="tag" data-animate>Letture di riferimento</p>
+    <ul class="list tight" data-animate>
+      <li>Fichera G, Devoto W, Re D. Cavity configurations for indirect partial-coverage adhesive-cemented restorations. <i>QDT</i> 2006;29:55-67</li>
+      <li>Politano G, Van Meerbeek B, Peumans M. Nonretentive bonded ceramic partial crowns. <i>J Adhes Dent</i> 2018;20(6):495-510</li>
+      <li>Bottacchiari S. <i>Intarsi in composito. Aspetti strutturali, parodontali ed endodontici.</i> Quintessenza, 2024</li>
+      <li>Ferraris F. Posterior indirect adhesive restorations (PIAR). <i>Int J Esthet Dent</i> 2017;12(4):482-502</li>
+    </ul>
+  </div>`),
+];
+
+/**
+ * «Si rivota»: tolta dalla lezione il 6 ottobre 2026 su indicazione del docente (non gli piace così).
+ * Resta qui per reintegrarla in un'altra forma; non è inclusa in index.ts.
+ */
+export const rivoto =
+  slide({ seg: 'S7', notes: notes({
     regia: 'Rivotare prima di mostrare le risposte. Poi una riga per clic.',
     extra: ['Linea vestibolare: dipende dall\'estetica richiesta.'],
   }) }, `
@@ -266,20 +287,4 @@ export const s7 = [
     </ul>
     <div class="col narrow">${frag(photo('F14', 'Restauro finito, rifinito e lucidato'), { cls: 'slot-wrap' })}</div>
   </div>
-  ${frag('Non è cambiato il dente. È cambiato il numero di decisioni che sapete vedere.', { cls: 'callout' })}`),
-
-  slide({ seg: 'S7', notes: notes({
-    say: '"Abbiamo deciso, preparato, scelto il materiale e incollato. Manca il pezzo in mezzo: come quel manufatto è nato. La prossima volta partiamo dal dente preparato e arriviamo all\'oggetto finito attraverso il flusso digitale."',
-    extra: ['Bibliografia completa distribuita a parte.'],
-  }) }, `
-  <header><h2 data-animate>La prossima volta: come nasce il pezzo</h2><p class="lead muted" data-animate>Lezione 2. Dal dente preparato al manufatto finito, attraverso il flusso digitale.</p></header>
-  <div class="body stack">
-    <p class="tag" data-animate>Letture di riferimento</p>
-    <ul class="list tight" data-animate>
-      <li>Fichera G, Devoto W, Re D. Cavity configurations for indirect partial-coverage adhesive-cemented restorations. <i>QDT</i> 2006;29:55-67</li>
-      <li>Politano G, Van Meerbeek B, Peumans M. Nonretentive bonded ceramic partial crowns. <i>J Adhes Dent</i> 2018;20(6):495-510</li>
-      <li>Bottacchiari S. <i>Intarsi in composito. Aspetti strutturali, parodontali ed endodontici.</i> Quintessenza, 2024</li>
-      <li>Ferraris F. Posterior indirect adhesive restorations (PIAR). <i>Int J Esthet Dent</i> 2017;12(4):482-502</li>
-    </ul>
-  </div>`),
-];
+  ${frag('Non è cambiato il dente. È cambiato il numero di decisioni che sapete vedere.', { cls: 'callout' })}`);

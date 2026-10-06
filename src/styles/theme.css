@@ -20,6 +20,9 @@
   --bone: #7d766a;
   --outline: #b8c0c4;
   --light: #5b9cff;
+  /* Curve di movimento: entrate e uscite (--ease-out), spostamenti sullo schermo (--ease-in-out). */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --font: 'Inter Variable', Inter, 'Helvetica Neue', Arial, sans-serif;
   /* Campi sfumati (sfondi a tutta pagina) */
   --field-warm: radial-gradient(60% 75% at 12% 90%, #e0487a 0%, rgba(224, 72, 122, 0) 70%), radial-gradient(70% 80% at 88% 8%, #f6c453 0%, rgba(246, 196, 83, 0) 70%), linear-gradient(135deg, #f08a3c 0%, #e8594f 100%);
@@ -187,7 +190,7 @@ ol.steps .d { display: block; font-size: 26px; font-weight: 400; color: var(--mu
 .bars.lg .track { height: 44px; }
 .bars .val { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
 .bars .axis { font-size: 22px; color: var(--muted); }
-.bars .fill { transform: scaleX(0); transition: transform 900ms cubic-bezier(.2,.7,.2,1); transition-delay: calc(250ms + var(--i, 0) * 120ms); }
+.bars .fill { transform: scaleX(0); transition: transform 900ms var(--ease-out); transition-delay: calc(250ms + var(--i, 0) * 120ms); }
 .present .bars .fill { transform: scaleX(1); }
 
 /* Badge contenuti da validare: solo in sviluppo o con ?revisione */
@@ -195,6 +198,15 @@ ol.steps .d { display: block; font-size: 26px; font-weight: 400; color: var(--mu
 .verify-badge b { display: block; letter-spacing: 0.06em; text-transform: uppercase; font-size: 18px; }
 
 
+/* Frammenti: salgono di poco mentre compaiono, invece della dissolvenza piatta di Reveal. */
+.reveal .slides section .fragment:not(.custom) { transform: translateY(14px); transition: opacity 400ms var(--ease-out), transform 600ms var(--ease-out), visibility 0s linear 400ms; }
+.reveal .slides section .fragment.visible { transform: none; transition: opacity 400ms var(--ease-out), transform 600ms var(--ease-out), visibility 0s; }
+html.print-pdf .reveal .slides section .fragment { transform: none !important; }
+/* Parole delle affermazioni (SplitText con maschera): spazio per i discendenti. */
+.l-statement blockquote .w { padding-bottom: 0.08em; margin-bottom: -0.08em; }
+
+/* Movimento ridotto: niente spostamenti, restano solo brevi dissolvenze che aiutano a capire cosa cambia. */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
+  *, *::before, *::after { animation: none !important; transition-property: opacity, visibility !important; transition-duration: 200ms !important; transition-delay: 0s !important; }
+  .reveal .slides section .fragment { transform: none !important; }
 }

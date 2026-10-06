@@ -70,7 +70,7 @@ export async function mountLesson(lesson: Lesson) {
     const ev = e as Event & { indexh: number; previousSlide?: HTMLElement };
     const prev = ev.previousSlide ? [...root.children].indexOf(ev.previousSlide) : -1;
     refresh();
-    animateSlide(deck.getCurrentSlide(), reducedMotion, ev.indexh > prev);
+    animateSlide(deck.getCurrentSlide(), reducedMotion, ev.indexh > prev, ev.previousSlide);
   });
   deck.on('fragmentshown', refresh);
   deck.on('fragmenthidden', refresh);

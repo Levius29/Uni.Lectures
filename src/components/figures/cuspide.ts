@@ -20,7 +20,7 @@ export function cuspideFigure() {
     <path d="M392 -30 L392 62" class="arrow-line"/>
     <path d="M380 48 L392 70 L404 48" class="arrow-head"/>
   </g>
-  <path class="strain" d="M334 262 Q352 246 366 262"/>
+  <path class="strain" pathLength="1" d="M334 262 Q352 246 366 262"/>
   ${label({ x: -180, y: 60, lines: ['dentina', 'interassiale'], from: [30, 84], to: [250, 160], cls: 'lbl-core' })}
   ${label({ x: 476, y: 196, lines: ['cuspide non', 'supportata'], from: [446, 186], to: [470, 186], cls: 'lbl-free' })}
 </svg>`;

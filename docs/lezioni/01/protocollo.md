@@ -486,7 +486,9 @@ Le classi non si imparano a memoria. Si ordinano su **spessore × traslucenza de
 
 Tecnica diretta in composito, oppure fresato in PMMA — quest'ultimo è il ponte verso la Lezione 2. *(Nomi commerciali tolti: cambiano, e in aula sono pubblicità involontaria.)*
 
-### Slide 46 — Si rivota
+### Slide 46 — Si rivota (tolta per ora, 6 ottobre 2026)
+
+Tolta dalla presentazione su indicazione di Francesco: così non gli piace, da reintegrare in un'altra forma. Il codice resta in `src/slides/01/s5-s7.ts` (`rivoto`). Testo originale sotto.
 
 Stesso caso, ma la domanda cambia: **non "che restauro", ma "quale preparazione, con che linea di finitura, con che materiale, con che cemento".**
 
