@@ -85,6 +85,14 @@ export async function mountLesson(lesson: Lesson) {
   });
   animateSlide(deck.getCurrentSlide(), reducedMotion);
 
+  // Clic sul numero di slide in basso: casella per saltare a una slide (scrivi il numero, Invio). Esc mostra tutte le slide.
+  const reveal = root.closest<HTMLElement>('.reveal')!;
+  reveal.querySelector('.slide-number')?.addEventListener('click', e => {
+    e.preventDefault();
+    (deck as unknown as { toggleJumpToSlide(open?: boolean): void }).toggleJumpToSlide(true);
+    reveal.querySelector<HTMLInputElement>('.jump-to-slide-input')?.setAttribute('placeholder', 'Vai alla slide: numero e Invio');
+  });
+
   // Lottie opzionale: <canvas data-lottie="assets/lottie/file.lottie">. Caricato solo se serve.
   const canvases = [...root.querySelectorAll<HTMLCanvasElement>('canvas[data-lottie]')];
   if (canvases.length) {

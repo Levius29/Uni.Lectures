@@ -6,3 +6,9 @@
 .reveal .progress { color: var(--accent); height: 3px; }
 /* Numero slide a sinistra delle frecce, non sotto. */
 .reveal .slide-number { background: transparent; color: var(--muted); font-family: var(--font); font-size: 15px; font-variant-numeric: tabular-nums; right: 104px; bottom: 16px; }
+/* Numero slide cliccabile e casella «vai alla slide» in basso a destra, nello stile del tema. */
+.reveal .slide-number { cursor: pointer; padding: 6px 8px; border-radius: 8px; }
+.reveal .slide-number:hover { color: var(--ink); background: rgba(255, 255, 255, 0.08); }
+.reveal .slide-number a { color: inherit; }
+.reveal .jump-to-slide { top: auto; left: auto; right: 96px; bottom: 44px; font-family: var(--font); font-size: 18px; background: var(--surface-2); color: var(--ink); border: 1px solid var(--rule); border-radius: 12px; padding: 2px 6px; }
+.reveal .jump-to-slide-input { width: 18ch; }

@@ -91,3 +91,14 @@ test('la stampa PDF ha una pagina per slide e gli schemi nello stato finale', as
   await expect(page.locator('[data-steps="restauri"]')).toHaveAttribute('data-step', '4');
   expect(errors).toEqual([]);
 });
+
+test('clic sul numero di slide: si salta alla slide scritta', async ({ page }) => {
+  await page.goto(LESSON);
+  await expect(page.locator('.reveal.ready')).toBeVisible();
+  await page.locator('.reveal .slide-number').click();
+  const input = page.locator('.jump-to-slide-input');
+  await expect(input).toBeFocused();
+  await input.fill('20');
+  await input.press('Enter');
+  await expect(page.locator('.reveal .slide-number-a')).toHaveText('20');
+});
