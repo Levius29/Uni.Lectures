@@ -1,6 +1,6 @@
 # Lezione 1 · stato
 
-Bozza completa in `src/slides/01/`: 47 slide del testo sorgente più la copertina (48). Dal 6 ottobre 2026 la lezione è una composizione HyperFrames (`public/compositions/01/`, generata con `npm run compose`) al posto di Reveal.js: stessi testi, slide, schemi e note; cambiano motore e navigazione (vista relatore con P, niente panoramica con Esc). Fonte: `protocollo.md` (copia del documento nel progetto Claude «Conservativa 4», 13 settembre 2026).
+Bozza completa in `src/slides/01/`: 46 slide del testo sorgente più la copertina (47). Slide 14 del protocollo riscritta e slide 46 «Si rivota» tolta per ora (6 ottobre 2026). Dal 6 ottobre 2026 la lezione è una composizione HyperFrames (`public/compositions/01/`, generata con `npm run compose`) al posto di Reveal.js: stessi testi, slide, schemi e note; cambiano motore e navigazione (vista relatore con P, niente panoramica con Esc). Fonte: `protocollo.md` (copia del documento nel progetto Claude «Conservativa 4», 13 settembre 2026).
 
 ## Da validare prima di erogare
 
@@ -38,7 +38,7 @@ La lista immagini prevedeva 11 schemi da generare con un modello di immagini. Ne
 
 | Schema | Slide | Stato |
 |---|---|---|
-| S1 cuspide-mensola | 7 | SVG, tre passi: dentina interassiale, cavità, carico e flessione |
+| S1 cuspide non supportata | 7 | SVG, tre passi: dentina interassiale, cavità, carico e flessione |
 | S2, S3 preparazione geometrica e parametrica | 11, 12 | SVG, stessa inquadratura |
 | S4 costo biologico | 15 | Barre con i dati (70-75%, 32-47%) |
 | S5 margine e punto di contatto | 20, 21, 23 | SVG: tre livelli del margine, fascia di contatto, DME e distanza dalla cresta ossea |

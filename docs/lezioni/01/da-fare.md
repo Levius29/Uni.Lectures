@@ -44,7 +44,7 @@ Generare tutto nella stessa sessione, perché lo stile resti coerente.
 
 | Codice | Slide | Proposta |
 |---|---|---|
-| S1 cuspide-mensola | 7 | Tenere l'SVG animato: i tre passi sono la spiegazione |
+| S1 cuspide non supportata | 7 | Tenere l'SVG animato: i tre passi sono la spiegazione |
 | S2, S3 preparazione geometrica e parametrica | 11, 12 | Immagine generata, stessa inquadratura. Il morph fra le due slide funziona se entrambe usano lo stesso `data-id` sulla figura |
 | S4 costo biologico | 15 | Immagine (tre sezioni) accanto alle barre, che restano |
 | S5 margine e contatto | 20, 21 | Tenere l'SVG (livelli a clic). Generare la variante con matrice e cuneo per la slide 21 o 22 |
@@ -69,7 +69,7 @@ Le fornisce Francesco. Passaggi: `clinical-originals/` → `npm run images:prepa
 
 - Morph e ingressi su browser reale e proiettore. In Playwright headless funzionano; nell'anteprima artifact di Claude non sono stati osservati a finestra attiva.
 - Proiettore 16:10: la tela è 16:9 a tutto schermo, controllare bande e titoli giganti dei divisori.
-- Stampa PDF (`?print-pdf`): gli schemi mostrano lo stato finale; da provare.
+- Stampa PDF (`?print-pdf`): una pagina per slide, frammenti mostrati, schemi nello stato finale (coperto da test). Le foto cliniche, se presenti, finiscono nel PDF: non distribuirlo agli studenti senza controllo.
 - CI: Playwright ora testa la build (`vite preview`).
 
 ## 6. Lezione 2

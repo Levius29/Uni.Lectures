@@ -13,6 +13,12 @@ import available from 'virtual:local-assets';
 import { siteUrl } from './core/site';
 import { animateSeeks, patchNavigation, type PlayerEl, type SlideshowEl } from './hyperframes/navigation';
 
+// Stampa PDF (?print-pdf): la composizione si apre da sola, una pagina per slide, tutto nello stato finale.
+if (/[?&]print-pdf/i.test(location.search)) {
+  location.replace(siteUrl(`compositions/${document.body.dataset.lesson}/index.html?print-pdf`));
+  await new Promise(() => {});
+}
+
 const esc = (s: string) => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
 const id = document.body.dataset.lesson ?? '';
 const src = siteUrl(`compositions/${id}/index.html`);
@@ -70,4 +76,35 @@ player.addEventListener('ready', () => {
   if (review) addBadges(doc);
   document.documentElement.classList.add('lesson-ready');
 });
-await nav.ready;
+const controller = await nav.ready;
+
+/**
+ * Salto a una slide: clic sul contatore in basso (casella, numero e Invio),
+ * oppure numero digitato sulla tastiera seguito da Invio.
+ */
+const jump = document.createElement('form');
+jump.className = 'jump';
+jump.hidden = true;
+jump.innerHTML = '<input type="text" inputmode="numeric" aria-label="Vai alla slide" placeholder="Vai alla slide: numero e Invio">';
+const jumpInput = jump.querySelector('input')!;
+document.body.append(jump);
+const goTo = (n: number) => {
+  const total = controller.show.slides.length;
+  if (Number.isInteger(n) && n >= 1 && n <= total) controller.goToSlide(n - 1);
+};
+const closeJump = () => { jump.hidden = true; jumpInput.value = ''; show.focus(); };
+jump.addEventListener('submit', e => { e.preventDefault(); goTo(Number(jumpInput.value.trim())); closeJump(); });
+jumpInput.addEventListener('keydown', e => { if (e.key === 'Escape') closeJump(); });
+jumpInput.addEventListener('blur', () => { if (!jump.hidden) closeJump(); });
+show.addEventListener('click', e => {
+  if (!e.composedPath().some(el => el instanceof Element && el.hasAttribute('data-hf-counter'))) return;
+  jump.hidden = false;
+  jumpInput.focus();
+});
+let typed = '';
+window.addEventListener('keydown', e => {
+  if (!jump.hidden || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (/^\d$/.test(e.key)) typed = (typed + e.key).slice(-3);
+  else if (e.key === 'Enter' && typed) { goTo(Number(typed)); typed = ''; }
+  else typed = '';
+});

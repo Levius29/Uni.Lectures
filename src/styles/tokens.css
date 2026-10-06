@@ -16,6 +16,9 @@
   --bone: #7d766a;
   --outline: #b8c0c4;
   --light: #5b9cff;
+  /* Curve di movimento: entrate e uscite (--ease-out), spostamenti sullo schermo (--ease-in-out). */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --font: 'Inter Variable', Inter, 'Helvetica Neue', Arial, sans-serif;
   /* Campi sfumati (sfondi a tutta pagina) */
   --field-warm: radial-gradient(60% 75% at 12% 90%, #e0487a 0%, rgba(224, 72, 122, 0) 70%), radial-gradient(70% 80% at 88% 8%, #f6c453 0%, rgba(246, 196, 83, 0) 70%), linear-gradient(135deg, #f08a3c 0%, #e8594f 100%);

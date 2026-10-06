@@ -2,3 +2,8 @@
 html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); color: var(--ink); }
 hyperframes-slideshow.lesson { display: block; position: relative; width: 100vw; height: 100vh; outline: none; }
 hyperframes-slideshow.lesson hyperframes-player { position: absolute; inset: 0; }
+/* Contatore cliccabile e casella «vai alla slide», nello stile del tema. */
+hyperframes-slideshow.lesson [data-hf-counter] { cursor: pointer; }
+.jump { position: fixed; right: 24px; bottom: 84px; z-index: 10; margin: 0; }
+.jump input { font: 18px/1.2 var(--font); width: 24ch; padding: 10px 14px; background: var(--surface-2); color: var(--ink); border: 1px solid var(--rule); border-radius: 12px; outline: none; }
+.jump input:focus-visible { border-color: var(--accent); }

@@ -251,24 +251,6 @@ export const s7 = [
   <p class="muted small" data-animate>Tecnica diretta in composito, oppure fresato in PMMA.</p>`),
 
   slide({ seg: 'S7', notes: notes({
-    regia: 'Rivotare prima di mostrare le risposte. Poi una riga per clic.',
-    extra: ['Linea vestibolare: dipende dall\'estetica richiesta.'],
-  }) }, `
-  <header><h2 data-animate>Si rivota</h2><p class="muted" data-animate>Stesso 3.6. Non «che restauro», ma quale preparazione, linea di finitura, materiale, cemento.</p></header>
-  <div class="body">
-    <ul class="checks col">
-      ${frag('<span>Creste perse, cuspide mesio-linguale a 1,2 mm sotto soglia</span><b>copertura</b>', { tag: 'li' })}
-      ${frag('<span>Cuspidi vestibolari spesse ma senza cresta adiacente: mensole</span><b>copertura</b>', { tag: 'li' })}
-      ${frag('<span>Margine distale 1 mm sottogengivale, distanza dalla cresta ossea verificata</span><b>DME</b>', { tag: 'li' })}
-      ${frag('<span>Linea vestibolare, secondo l\'estetica</span><b>overlay butt joint, o veneerlay bevel</b>', { tag: 'li' })}
-      ${frag('<span>Spessore disponibile dopo la copertura</span><b>disilicato o ibrida</b>', { tag: 'li' })}
-      ${frag('<span>Manufatto spesso e coprente, oppure sottile e traslucido</span><b>duale, o iniettabile</b>', { tag: 'li' })}
-    </ul>
-    <div class="col narrow">${frag(photo('F14', 'Restauro finito, rifinito e lucidato'), { cls: 'slot-wrap' })}</div>
-  </div>
-  ${frag('Non è cambiato il dente. È cambiato il numero di decisioni che sapete vedere.', { cls: 'callout' })}`),
-
-  slide({ seg: 'S7', notes: notes({
     say: '"Abbiamo deciso, preparato, scelto il materiale e incollato. Manca il pezzo in mezzo: come quel manufatto è nato. La prossima volta partiamo dal dente preparato e arriviamo all\'oggetto finito attraverso il flusso digitale."',
     extra: ['Bibliografia completa distribuita a parte.'],
   }) }, `
@@ -283,3 +265,26 @@ export const s7 = [
     </ul>
   </div>`),
 ];
+
+/**
+ * «Si rivota»: tolta dalla lezione il 6 ottobre 2026 su indicazione del docente (non gli piace così).
+ * Resta qui per reintegrarla in un'altra forma; non è inclusa in index.ts.
+ */
+export const rivoto =
+  slide({ seg: 'S7', notes: notes({
+    regia: 'Rivotare prima di mostrare le risposte. Poi una riga per clic.',
+    extra: ['Linea vestibolare: dipende dall\'estetica richiesta.'],
+  }) }, `
+  <header><h2 data-animate>Si rivota</h2><p class="muted" data-animate>Stesso 3.6. Non «che restauro», ma quale preparazione, linea di finitura, materiale, cemento.</p></header>
+  <div class="body">
+    <ul class="checks col">
+      ${frag('<span>Creste perse, cuspide mesio-linguale a 1,2 mm sotto soglia</span><b>copertura</b>', { tag: 'li' })}
+      ${frag('<span>Cuspidi vestibolari spesse ma senza cresta adiacente: non supportate</span><b>copertura</b>', { tag: 'li' })}
+      ${frag('<span>Margine distale 1 mm sottogengivale, distanza dalla cresta ossea verificata</span><b>DME</b>', { tag: 'li' })}
+      ${frag('<span>Linea vestibolare, secondo l\'estetica</span><b>overlay butt joint, o veneerlay bevel</b>', { tag: 'li' })}
+      ${frag('<span>Spessore disponibile dopo la copertura</span><b>disilicato o ibrida</b>', { tag: 'li' })}
+      ${frag('<span>Manufatto spesso e coprente, oppure sottile e traslucido</span><b>duale, o iniettabile</b>', { tag: 'li' })}
+    </ul>
+    <div class="col narrow">${frag(photo('F14', 'Restauro finito, rifinito e lucidato'), { cls: 'slot-wrap' })}</div>
+  </div>
+  ${frag('Non è cambiato il dente. È cambiato il numero di decisioni che sapete vedere.', { cls: 'callout' })}`);

@@ -17,6 +17,7 @@ export interface Controller {
   show: { slides: ResolvedSlide[] };
   prev(): void;
   syncTo(sequenceId: string, slideIndex: number, fragmentIndex: number): void;
+  goToSlide(index: number): void;
   onChange(cb: () => void): () => void;
 }
 interface Player { seek(t: number): void; readonly currentTime: number; readonly iframeElement: HTMLIFrameElement }

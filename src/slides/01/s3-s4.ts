@@ -60,9 +60,9 @@ export const s3 = [
     <figure class="figure fig-col w-760" data-id="fig-prep">${preparazioneFigure('parametrica')}<figcaption class="schema-tag">overlay non ritentivo, stessa inquadratura</figcaption></figure>
   </div>`),
 
-  slide({ seg: 'S3', notes: notes({ regia: 'L\'ultima riga arriva con un clic: è la lezione.' }) }, `
+  slide({ seg: 'S3', notes: notes({ regia: 'Le ultime due righe arrivano con un clic: sono la differenza vera.' }) }, `
   <header><h2 data-animate>Il confronto</h2></header>
-  <table class="tbl lg" data-animate>
+  <table class="tbl" data-animate>
     <thead><tr><th></th><th>Geometrica</th><th>Parametrica</th></tr></thead>
     <tbody>
       <tr><th>Cosa tiene il restauro</th><td>Geometria <strong>e</strong> adesione</td><td>Adesione</td></tr>
@@ -71,12 +71,16 @@ export const s3 = [
       <tr><th>Superficie interna</th><td>Pareti, box, angoli definiti</td><td>Liscia, aperta, arrotondata</td></tr>
       <tr><th>Margini</th><td>Chamfer, box prossimali</td><td>Butt-joint, smalto preservato</td></tr>
       <tr><th>Costo biologico</th><td>Maggiore</td><td>Minore</td></tr>
-      <tr class="fragment key"><th>Cosa perdona</th><td>Un errore di adesione</td><td>Un errore di spessore</td></tr>
+      <tr class="fragment key"><th>Manufatto</th><td>Angoli vivi da riprodurre</td><td>Nessun angolo vivo: si realizza più facilmente</td></tr>
+      <tr class="fragment key"><th>Cementazione</th><td>Il composito scaldato fuoriesce con più difficoltà</td><td>Il composito scaldato fuoriesce facilmente</td></tr>
     </tbody>
   </table>`),
 
-  slide({ seg: 'S3', layout: 'l-statement', stripes: FIELD_COLOR.coral, notes: notes({ extra: ['Uno studente che esce avendo capito questo ha capito la lezione.'] }) }, `
-  <blockquote data-animate>Non c'è una scuola giusta. C'è una scuola che ti salva se sbagli a <em>incollare</em>, e una che ti punisce se sbagli a <em>misurare</em>.</blockquote>`),
+  slide({ seg: 'S3', layout: 'l-statement', stripes: FIELD_COLOR.coral, notes: notes({
+    say: '"La differenza vera fra le due scuole non è filosofica, è pratica. Senza angoli vivi il manufatto si realizza più facilmente. E in cementazione il composito scaldato fuoriesce facilmente: l\'adesione risulta facilitata."',
+  }) }, `
+  <blockquote data-animate>Senza angoli vivi il manufatto si fa <em>meglio</em>, e il composito scaldato <em>fuoriesce</em> senza ostacoli.</blockquote>
+  <p class="after" data-animate>È questa la differenza vera fra le due scuole: la parametrica facilita la realizzazione del pezzo e l'adesione.</p>`),
 
   slide({ seg: 'S3', notes: notes({ regia: 'Le barre crescono da sole all\'ingresso.' }) }, `
   <header><h2 data-animate>Il costo biologico, in numeri</h2></header>

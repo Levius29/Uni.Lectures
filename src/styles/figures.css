@@ -15,11 +15,12 @@
 .resto path, path.resto, rect.resto { fill: var(--restoration); fill-opacity: 0.9; }
 .lbl path { fill: none; stroke: var(--muted); stroke-width: 1.5; }
 .dim path { fill: none; stroke: var(--ink); stroke-width: 2; }
+/* Cambi di stato: comparse con --ease-out, movimenti sullo schermo con --ease-in-out. */
 .fig-anim, .resto, .finish, .level, .core, .cavity, .free-cusp, .load, .strain, .lbl-core, .lbl-free {
-  transition: opacity 450ms ease-out, transform 600ms cubic-bezier(.2,.7,.2,1);
+  transition: opacity 450ms var(--ease-out), transform 700ms var(--ease-in-out), stroke-dashoffset 500ms var(--ease-out);
 }
 
-/* Mensola (slide 7) */
+/* Cuspide non supportata (slide 8) */
 .core path { fill: var(--restoration); fill-opacity: 0.18; stroke: var(--restoration); stroke-width: 2.5; stroke-dasharray: 8 6; }
 .cavity path { fill: var(--bg); stroke: var(--outline); stroke-width: 2; stroke-dasharray: 6 6; }
 .cavity, .free-cusp, .load, .strain, .lbl-free { opacity: 0; }
@@ -27,12 +28,14 @@
 [data-step="1"] .cavity, [data-step="2"] .cavity { opacity: 1; }
 .free-cusp path { fill: var(--restoration); fill-opacity: 0.32; }
 .free-cusp { transform-box: view-box; transform-origin: 354px 244px; }
-[data-step="2"] .free-cusp { opacity: 1; transform: rotate(4deg); }
+/* Passo 2 in sequenza: arriva il carico, poi la cuspide flette, poi compare la tensione. */
+[data-step="2"] .free-cusp { opacity: 1; transform: rotate(4deg); transition-delay: 300ms; }
 .load .arrow-line, .load .arrow-head { fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
 .load { transform: translateY(-24px); }
 [data-step="2"] .load { opacity: 1; transform: none; }
-.strain { fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round; }
-[data-step="2"] .strain, [data-step="2"] .lbl-free { opacity: 1; transition-delay: 350ms; }
+.strain { fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+[data-step="2"] .strain { opacity: 1; stroke-dashoffset: 0; transition-delay: 750ms; }
+[data-step="2"] .lbl-free { opacity: 1; transition-delay: 900ms; }
 
 /* Quattro restauri (slide 24) */
 .resto[class*="type-"], .finish { opacity: 0; }
@@ -50,9 +53,9 @@
 .level path { stroke: var(--accent); stroke-width: 6; stroke-linecap: round; }
 .level circle { fill: var(--accent); }
 .figure svg .level text { fill: var(--bg); font-weight: 700; font-size: 22px; }
-.level { opacity: 0; }
+.level { opacity: 0; transform-box: fill-box; transform-origin: center; transform: scale(0.9); }
 [data-step="1"] .level-1, [data-step="2"] .level-1, [data-step="2"] .level-2,
-[data-step="3"] .level-1, [data-step="3"] .level-2, [data-step="3"] .level-3 { opacity: 1; }
+[data-step="3"] .level-1, [data-step="3"] .level-2, [data-step="3"] .level-3 { opacity: 1; transform: none; }
 .contact-band { fill: var(--accent); fill-opacity: 0.28; stroke: var(--accent); stroke-width: 2.5; }
 .dme { fill: var(--restoration); fill-opacity: 0.45; stroke: var(--restoration); stroke-width: 2; }
 

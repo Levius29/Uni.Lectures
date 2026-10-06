@@ -93,7 +93,7 @@ test('i frammenti guidano lo stato degli schemi; indietro torna di un frammento'
   await open(page, `${LESSON}#/7`);
   await settle(page);
   let s = await state(page);
-  expect(s.title).toBe('Le soglie, e la cuspide-mensola');
+  expect(s.title).toBe('Le soglie, e la cuspide non supportata');
   expect(s.chain).toBe('Quando indiretto');
   expect(s.step).toBe('0');
   await page.keyboard.press('ArrowRight');
@@ -107,7 +107,7 @@ test('i frammenti guidano lo stato degli schemi; indietro torna di un frammento'
   await settle(page);
   s = await state(page);
   expect(s.step).toBe('1');
-  expect(s.title).toBe('Le soglie, e la cuspide-mensola');
+  expect(s.title).toBe('Le soglie, e la cuspide non supportata');
 });
 
 test('movimento ridotto: contenuto visibile senza animazioni', async ({ page }) => {
@@ -137,4 +137,35 @@ test('nessuna slide esce dalla tela 1600×900', async ({ page }) => {
     });
   });
   expect(overflowing).toEqual([]);
+});
+
+
+test('la stampa PDF ha una pagina per slide e gli schemi nello stato finale', async ({ page }) => {
+  const errors = trackErrors(page);
+  await page.goto(`${LESSON}?print-pdf`);
+  await expect(page).toHaveURL(/\/compositions\/01\/index\.html\?print-pdf$/);
+  await expect(page.locator('html.print-pdf')).toHaveCount(1);
+  await expect(page.locator('[data-steps="cuspide"]')).toHaveAttribute('data-step', '2');
+  await expect(page.locator('[data-steps="margine"]')).toHaveAttribute('data-step', '3');
+  await expect(page.locator('[data-steps="restauri"]')).toHaveAttribute('data-step', '4');
+  // Una pagina per scena: in stampa le scene si impilano, ciascuna alta 900 px, tutte visibili.
+  const scenes = await page.locator('.scene').count();
+  const height = await page.evaluate(() => document.getElementById('root')!.scrollHeight);
+  expect(height).toBe(scenes * 900);
+  await expect(page.locator('.scene').last()).toBeVisible();
+  // Nessuna uscita applicata: il contenuto di ogni scena resta pieno.
+  await expect(page.locator('#s05 header')).toHaveCSS('opacity', '1');
+  expect(errors).toEqual([]);
+});
+
+test('clic sul contatore: si salta alla slide scritta', async ({ page }) => {
+  await open(page);
+  await settle(page);
+  await page.locator('hyperframes-slideshow [data-hf-counter]').first().click();
+  const input = page.locator('.jump input');
+  await expect(input).toBeFocused();
+  await input.fill('20');
+  await input.press('Enter');
+  await settle(page);
+  await expect(page).toHaveURL(/#\/19$/);
 });

@@ -1,6 +1,6 @@
 import { slide, notes, frag, FIELD_COLOR } from '../kit';
 import { slot } from '../../components/slot';
-import { mensolaFigure } from '../../components/figures/mensola';
+import { cuspideFigure } from '../../components/figures/cuspide';
 
 const photo = (code: string, caption: string, id?: string) =>
   slot({ src: `assets/clinical/01/${code}.webp`, code, caption, id });
@@ -108,7 +108,7 @@ export const s2 = [
     regia: 'Primo clic: sparisce la dentina interassiale. Secondo clic: carico sulla cuspide, che flette.',
     verify: 'Soglie di spessore smalto-dentina: verificare che coincidano con la convenzione usata altrove nel corso.',
   }) }, `
-  <header><h2 data-animate>Le soglie, e la cuspide-mensola</h2></header>
+  <header><h2 data-animate>Le soglie, e la cuspide non supportata</h2></header>
   <div class="body">
     <div class="col">
       <table class="tbl" data-animate>
@@ -119,11 +119,11 @@ export const s2 = [
         </tbody>
       </table>
       <p class="muted small" data-animate>Sotto soglia la parete è sostenuta dal solo smalto: il rinforzo del build-up non è affidabile.</p>
-      ${frag('<p>Persa la cresta adiacente, la cuspide perde <strong>tutti</strong> i legami con la parete opposta.</p>', { of: 'mensola', step: 1 })}
-      ${frag('<p class="callout">Si comporta da mensola anche se è spessa. Si copre, salvo spessore superiore a 2,5-3 mm.</p>', { of: 'mensola', step: 2 })}
+      ${frag('<p>Persa la cresta adiacente, la cuspide perde <strong>tutti</strong> i legami con la parete opposta.</p>', { of: 'cuspide', step: 1 })}
+      ${frag('<p class="callout">Resta non supportata anche se è spessa, e sotto carico flette. Si copre, salvo spessore superiore a 2,5-3 mm.</p>', { of: 'cuspide', step: 2 })}
     </div>
-    <figure class="figure fig-col w-760" data-steps="mensola" data-animate>
-      ${mensolaFigure()}
+    <figure class="figure fig-col w-760" data-steps="cuspide" data-animate>
+      ${cuspideFigure()}
       <figcaption class="schema-tag">sezione vestibolo-linguale</figcaption>
     </figure>
   </div>`),

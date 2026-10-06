@@ -5,15 +5,19 @@
    (ingresso completato, poi un frammento per tappa). Tutto il movimento vive in un'unica timeline GSAP in pausa,
    registrata su window.__timelines: la navigazione la percorre in avanti e all'indietro (src/lesson.ts).
 
-   - Ingresso: [data-animate] sale e compare in sequenza; la parola gigante dei divisori entra da destra;
-     barre e fasci di luce crescono.
-   - Frammenti: .fragment compare alla tappa successiva; con data-step-of imposta data-step sulla figura
+   - Ingresso: [data-animate] sale e compare in sequenza; tabelle ed elenchi entrano riga per riga;
+     le affermazioni salgono parola per parola (SplitText); i numeri grandi contano fino al valore;
+     gli schemi si costruiscono (contorni disegnati con DrawSVG, tessuti, restauro, linee guida, etichette),
+     salvo che arrivino per morph; la parola gigante dei divisori entra da destra; barre e fasci di luce crescono.
+   - Frammenti: .fragment sale di poco e compare alla tappa successiva; con data-step-of imposta data-step sulla figura
      data-steps corrispondente (il CSS disegna ogni stato).
    - Morph: un elemento con lo stesso data-id della slide precedente parte dalla posizione e dimensione
      di quello e arriva alla propria (FLIP). La striscia in alto (data-id="meta") resta ferma.
    - Continuità: gli elementi [data-carry] si copiano, tagliati e tenui, in cima alla slide successiva.
    - Uscita: prima del cambio di scena il contenuto che non prosegue sfuma; il campo sfumato
-     si dissolve se la slide successiva ne ha un altro. */
+     si dissolve se la slide successiva ne ha un altro.
+   - Stampa (?print-pdf nell'indirizzo della composizione): niente uscite, timeline alla fine,
+     una pagina per scena (slides.css). */
 function buildLessonTimeline(T) {
   var root = document.getElementById('root');
   var compositionId = root.getAttribute('data-composition-id');
@@ -21,6 +25,29 @@ function buildLessonTimeline(T) {
   var all = function (el, sel) { return Array.prototype.slice.call(el.querySelectorAll(sel)); };
   var frameOf = function (scene) { return scene.querySelector(':scope > .frame'); };
   var holdsOf = function (scene) { return scene.getAttribute('data-holds').split(',').map(Number); };
+  var print = /[?&]print-pdf/i.test(location.search);
+  if (print) document.documentElement.classList.add('print-pdf');
+
+  gsap.registerPlugin(CustomEase, DrawSVGPlugin, SplitText);
+  // Stesse curve dei token CSS --ease-out e --ease-in-out (tokens.css).
+  CustomEase.create('ui-out', '0.23, 1, 0.32, 1');
+  CustomEase.create('ui-in-out', '0.77, 0, 0.175, 1');
+
+  /** Elementi con uno stato guidato dai frammenti: li governa il CSS, non l'ingresso. */
+  var STEP_CONTROLLED = '.core, .cavity, .free-cusp, .load, .strain, .lbl-core, .lbl-free, .level, .finish, [class*="type-"]';
+
+  /** Blocchi che entrano voce per voce: righe di tabella, voci di elenco. I frammenti entrano al clic. */
+  var pieces = function (el) {
+    var children = el.matches('table') ? all(el, ':scope > thead > tr, :scope > tbody > tr')
+      : el.matches('ul, ol') ? Array.prototype.slice.call(el.children) : [];
+    var items = children.filter(function (c) { return !c.classList.contains('fragment'); });
+    return items.length > 1 ? items : [el];
+  };
+
+  // Affermazioni divise in parole prima di misurare: ognuna sale dalla sua maschera.
+  all(root, '.l-statement blockquote[data-animate]').forEach(function (q) {
+    SplitText.create(q, { type: 'words', mask: 'words', wordsClass: 'w' });
+  });
 
   // Continuità: copia fantasma degli elementi data-carry in cima alla slide successiva.
   scenes.forEach(function (scene, i) {
@@ -40,6 +67,39 @@ function buildLessonTimeline(T) {
 
   function build() {
     var tl = gsap.timeline({ paused: true });
+
+    /** Numero grande che conta fino al valore scritto (virgola decimale italiana). */
+    var countUp = function (el, at) {
+      var node = Array.prototype.find.call(el.childNodes, function (n) { return n.nodeType === 3 && /\d/.test(n.textContent); });
+      if (!node) return;
+      var text = node.textContent.trim();
+      var target = Number(text.replace(',', '.'));
+      if (!isFinite(target)) return;
+      var decimals = text.indexOf(',') >= 0 ? text.split(',')[1].length : 0;
+      var state = { v: 0 };
+      tl.fromTo(state, { v: 0 }, {
+        v: target, duration: T.count.duration, ease: 'ui-out', immediateRender: false,
+        onUpdate: function () { node.textContent = state.v >= target ? text : state.v.toFixed(decimals).replace('.', ','); },
+      }, at);
+    };
+
+    /** Schema SVG che si costruisce: contorni disegnati, tessuti, restauro, linee guida, etichette. */
+    var buildFigure = function (svg, at) {
+      var q = function (sel) { return all(svg, sel).filter(function (el) { return !el.closest(STEP_CONTROLLED); }); };
+      var outlines = q('path.outline');
+      var fades = q('.crest-line, .enamel, .dentin, .pulp, .gingiva, .bone');
+      var parts = q('.resto.on, .blockout, .thick, .dme, .contact-band, .crack');
+      var leaders = q('.lbl path, .dim path');
+      var texts = q('.lbl text, .dim text, text.side, text.cap');
+      // Le transizioni CSS degli stati non devono rincorrere i valori della timeline.
+      [].concat(outlines, fades, parts, leaders, texts).forEach(function (el) { el.style.transition = 'none'; });
+      var F = T.figure;
+      if (outlines.length) tl.fromTo(outlines, { drawSVG: '0%' }, { drawSVG: '100%', duration: 1, ease: 'ui-in-out', stagger: 0.12 }, at);
+      if (fades.length) tl.fromTo(fades, { opacity: 0 }, { opacity: 1, duration: 0.7, ease: 'ui-out', stagger: 0.08 }, at + F.tissues);
+      if (parts.length) tl.fromTo(parts, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.6, ease: 'ui-out', stagger: 0.08 }, at + F.parts);
+      if (leaders.length) tl.fromTo(leaders, { drawSVG: '0%' }, { drawSVG: '100%', duration: 0.5, ease: 'ui-out', stagger: 0.06 }, at + F.leaders);
+      if (texts.length) tl.fromTo(texts, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'ui-out', stagger: 0.06 }, at + F.texts);
+    };
     var box = function (el, scene) {
       var r = el.getBoundingClientRect(), s = scene.getBoundingClientRect();
       return { x: r.left - s.left, y: r.top - s.top, w: r.width, h: r.height };
@@ -93,11 +153,26 @@ function buildLessonTimeline(T) {
       });
 
       // Ingresso.
-      var rising = all(scene, '[data-animate]').filter(function (el) {
-        return targets.indexOf(el) < 0 && !hasInside(el, targets) && !isInside(el, targets);
+      var t0 = start;
+      var free = function (el) { return targets.indexOf(el) < 0 && !hasInside(el, targets) && !isInside(el, targets); };
+      var quotes = all(scene, '.l-statement blockquote[data-animate]').filter(free);
+      var blocks = all(scene, '[data-animate]').filter(function (el) { return free(el) && quotes.indexOf(el) < 0; });
+      var rising = [].concat.apply([], blocks.map(pieces));
+      var flat = rising.filter(function (el) { return el.matches('figure') && el.querySelector('svg'); });
+      var moving = rising.filter(function (el) { return flat.indexOf(el) < 0; });
+      if (moving.length) tl.fromTo(moving, { opacity: 0, y: T.rise },
+        { opacity: 1, y: 0, duration: T.enter, stagger: T.stagger, ease: 'ui-out' }, t0 + T.delay);
+      if (flat.length) tl.fromTo(flat, { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'ui-out' }, t0 + T.delay);
+      quotes.forEach(function (q, k) {
+        tl.fromTo(all(q, '.w'), { yPercent: 100 },
+          { yPercent: 0, duration: T.words.duration, stagger: T.words.stagger, ease: 'ui-out' }, t0 + T.words.delay + k * 0.2);
       });
-      if (rising.length) tl.fromTo(rising, { opacity: 0, y: T.rise },
-        { opacity: 1, y: 0, duration: T.enter, stagger: T.stagger, ease: 'power3.out' }, start + T.delay);
+      all(scene, '.big-num').filter(free).forEach(function (el) { countUp(el, t0 + T.count.delay); });
+      // Gli schemi si costruiscono, salvo che arrivino per morph (sono già sullo schermo).
+      all(scene, '.figure svg:not(.fig-luce)').forEach(function (svg) {
+        if (!free(svg)) return;
+        buildFigure(svg, t0 + T.figure.delay);
+      });
       var marquees = all(scene, '.l-divider .marquee .main');
       if (marquees.length) tl.fromTo(marquees, { x: 220, opacity: 0 },
         { x: 0, opacity: 1, duration: T.marquee, ease: 'power3.out' }, start);
@@ -113,14 +188,14 @@ function buildLessonTimeline(T) {
       // Frammenti: uno per tappa, nell'ordine del documento.
       all(scene, '.fragment').forEach(function (f, k) {
         var at = holds[k] + 0.05;
-        tl.fromTo(f, { opacity: 0 }, { opacity: 1, duration: T.frag, ease: 'power1.out' }, at);
+        tl.fromTo(f, { opacity: 0, y: T.fragRise }, { opacity: 1, y: 0, duration: T.frag, ease: 'ui-out' }, at);
         var of = f.getAttribute('data-step-of');
         var fig = of && scene.querySelector('[data-steps="' + of + '"]');
         if (fig) tl.set(fig, { attr: { 'data-step': f.getAttribute('data-step') } }, at);
       });
 
       // Uscita: sfuma ciò che non prosegue nella slide successiva.
-      if (next) {
+      if (next && !print) {
         var fading = [];
         var collect = function (el) {
           if (sources.indexOf(el) >= 0) return;
@@ -138,7 +213,15 @@ function buildLessonTimeline(T) {
         }
       }
     });
-    window.__timelines[compositionId] = tl;
+    if (!print) { window.__timelines[compositionId] = tl; return; }
+    // In stampa la timeline non si registra: il runtime la riporterebbe all'inizio.
+    tl.seek(tl.duration());
+    // Foto presenti: in stampa la composizione è aperta da sola, senza la pagina della lezione.
+    all(root, '.slot[data-src]').forEach(function (fig) {
+      var img = fig.querySelector('img');
+      img.addEventListener('load', function () { img.hidden = false; fig.classList.add('loaded'); fig.querySelector('.slot-ph').hidden = true; });
+      img.src = '../../' + fig.getAttribute('data-src');
+    });
   }
 
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(build);

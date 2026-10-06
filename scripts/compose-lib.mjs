@@ -12,11 +12,12 @@ const read = p => readFileSync(join(ROOT, p), 'utf8');
 /** File da copiare in vendor/ accanto a ogni composizione: nessuna rete in aula. */
 function vendorFiles() {
   const gsap = require.resolve('gsap/dist/gsap.min.js');
+  const plugins = ['CustomEase', 'DrawSVGPlugin', 'SplitText'].map(p => [join(dirname(gsap), `${p}.min.js`), `${p}.min.js`]);
   const runtime = join(dirname(require.resolve('@hyperframes/core/package.json')), 'dist/hyperframe.runtime.iife.js');
   const fontCss = require.resolve('@fontsource-variable/inter/opsz.css');
   const fonts = [...readFileSync(fontCss, 'utf8').matchAll(/url\(\.\/files\/([^)]+)\)/g)].map(m => m[1]);
   return {
-    files: [[gsap, 'gsap.min.js'], [runtime, 'hyperframe.runtime.iife.js'], ...fonts.map(f => [join(dirname(fontCss), 'files', f), `fonts/${f}`])],
+    files: [[gsap, 'gsap.min.js'], ...plugins, [runtime, 'hyperframe.runtime.iife.js'], ...fonts.map(f => [join(dirname(fontCss), 'files', f), `fonts/${f}`])],
     fontFaces: readFileSync(fontCss, 'utf8').replace(/url\(\.\/files\//g, 'url(vendor/fonts/'),
   };
 }

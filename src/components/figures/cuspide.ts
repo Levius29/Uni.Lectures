@@ -5,12 +5,12 @@ const CUSP = 'M354 20 L560 20 L560 244 L354 244 Z';
 
 /**
  * Slide 7. Passi: 0 dente integro con dentina interassiale evidenziata,
- * 1 dentina interassiale persa, 2 carico sulla cuspide libera che flette come una mensola.
+ * 1 dentina interassiale persa, 2 carico sulla cuspide non supportata, che flette.
  */
-export function mensolaFigure() {
-  const id = nextId('mensola');
+export function cuspideFigure() {
+  const id = nextId('cuspide');
   return `<svg class="fig-molar" viewBox="${MOLAR_VIEWBOX}" role="img" aria-labelledby="${id}-t">
-  <title id="${id}-t">Sezione schematica di un molare: senza dentina interassiale la cuspide resta libera e flette sotto carico come una mensola.</title>
+  <title id="${id}-t">Sezione schematica di un molare: senza dentina interassiale la cuspide resta non supportata e flette sotto carico.</title>
   <defs>${molarDefs(id)}</defs>
   ${molarBody(id)}
   ${toothRegion(id, CORE, 'core')}
@@ -20,8 +20,8 @@ export function mensolaFigure() {
     <path d="M392 -30 L392 62" class="arrow-line"/>
     <path d="M380 48 L392 70 L404 48" class="arrow-head"/>
   </g>
-  <path class="strain" d="M334 262 Q352 246 366 262"/>
+  <path class="strain" pathLength="1" d="M334 262 Q352 246 366 262"/>
   ${label({ x: -180, y: 60, lines: ['dentina', 'interassiale'], from: [30, 84], to: [250, 160], cls: 'lbl-core' })}
-  ${label({ x: 476, y: 196, lines: ['mensola'], from: [446, 186], to: [470, 186], cls: 'lbl-free' })}
+  ${label({ x: 476, y: 196, lines: ['cuspide non', 'supportata'], from: [446, 186], to: [470, 186], cls: 'lbl-free' })}
 </svg>`;
 }

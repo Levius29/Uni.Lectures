@@ -167,6 +167,20 @@ ol.steps .d { display: block; font-size: 26px; font-weight: 400; color: var(--mu
 .verify-badge b { display: block; letter-spacing: 0.06em; text-transform: uppercase; font-size: 18px; }
 
 
+/* Frammenti: salgono di poco mentre compaiono (timeline). */
+/* Parole delle affermazioni (SplitText con maschera): spazio per i discendenti. */
+.l-statement blockquote .w { padding-bottom: 0.08em; margin-bottom: -0.08em; }
+
+/* Movimento ridotto: la navigazione salta fra le tappe; dei cambi di stato degli schemi restano brevi dissolvenze. */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
+  *, *::before, *::after { animation: none !important; transition-property: opacity !important; transition-duration: 200ms !important; transition-delay: 0s !important; }
 }
+
+/* Stampa (?print-pdf): una pagina per slide, ogni scena nello stato finale (timeline.js). */
+@page { size: 1600px 900px; margin: 0; }
+html.print-pdf, html.print-pdf body { width: 1600px; height: auto; overflow: visible; }
+/* !important: il runtime HyperFrames scrive in linea dimensioni della radice e visibilità delle scene. */
+html.print-pdf #root { height: auto !important; overflow: visible !important; }
+html.print-pdf .scene { position: relative !important; display: block !important; width: 1600px; height: 900px; visibility: visible !important; opacity: 1 !important; break-after: page; }
+html.print-pdf .deck::after { display: none; }
+html.print-pdf .figure * { transition: none !important; }

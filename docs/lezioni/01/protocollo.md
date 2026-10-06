@@ -38,7 +38,7 @@ Al termine lo studente è in grado di:
 
 1. **Ordinare** le quattro strutture della gerarchia di Fichera e **dedurre** dalla struttura persa se il restauro va diretto o indiretto.
 2. **Applicare la regola della cresta marginale** per decidere quali cuspidi coprire, e **giustificare** perché lo stato pulpare da solo non è un criterio.
-3. **Distinguere** la preparazione geometrica dalla preparazione parametrica, e **argomentare** quale errore ciascuna delle due perdona.
+3. **Distinguere** la preparazione geometrica dalla preparazione parametrica, e **spiegare** perché la parametrica, senza angoli vivi, rende più facile realizzare il manufatto e incollarlo.
 4. **Collocare** la linea di finitura — in profondità cervicale e in estensione vestibolare — e **denominare** il restauro che ne risulta.
 5. **Scegliere** il materiale in funzione di spessore disponibile, mordenzabilità, modulo elastico e riparabilità, **dichiarandone i limiti**.
 6. **Scegliere** il materiale da incollaggio in funzione di spessore e traslucenza del manufatto, e **spiegare** perché un autoadesivo è incompatibile con una preparazione non ritentiva.
@@ -120,7 +120,7 @@ Sulla stessa slide, il modello: **strutture centrali** — dentina interassiale 
 
 Il nome da citare in slide è solo Reeh — il dato è così controintuitivo che vogliono sapere da dove viene. Mondelli, Larson e Hood si dicono a voce.
 
-### Slide 7 — Le soglie, e la cuspide-mensola
+### Slide 7 — Le soglie, e la cuspide non supportata
 
 | Condizione | Spessore minimo smalto-dentina |
 |---|---|
@@ -129,7 +129,7 @@ Il nome da citare in slide è solo Reeh — il dato è così controintuitivo che
 
 Sotto soglia la parete è sostenuta dal solo smalto, e il rinforzo del build-up non è affidabile.
 
-**Sulla stessa slide, il caso che conta:** una cuspide che ha perso la cresta marginale adiacente ha perso **tutti** i legami con la parete opposta. Si comporta da mensola pura anche se è spessa, e va coperta a meno di uno spessore superiore a 2,5–3 mm.
+**Sulla stessa slide, il caso che conta:** una cuspide che ha perso la cresta marginale adiacente ha perso **tutti** i legami con la parete opposta. Resta non supportata anche se è spessa e flette sotto carico, e va coperta a meno di uno spessore superiore a 2,5–3 mm.
 
 ### Slide 8 — La regola operativa
 
@@ -183,13 +183,16 @@ L'adesione fa il lavoro che prima faceva la forma.
 | Superficie interna | Pareti, box, angoli definiti | Liscia, aperta, arrotondata |
 | Margini | Chamfer, box prossimali | Butt-joint, smalto preservato |
 | Costo biologico | Maggiore | Minore |
-| **Cosa perdona** | **Un errore di adesione** | **Un errore di spessore** |
+| **Manufatto** | Angoli vivi da riprodurre | Nessun angolo vivo: si realizza più facilmente |
+| **Cementazione** | Il composito scaldato fuoriesce con più difficoltà | Il composito scaldato fuoriesce facilmente |
 
-### Slide 14 — L'ultima riga è la lezione
+### Slide 14 — La differenza vera (6 ottobre 2026, indicazione di Francesco)
 
-> **Non c'è una scuola giusta. C'è una scuola che ti salva se sbagli a incollare, e una che ti punisce se sbagli a misurare.**
+> **Senza angoli vivi il manufatto si fa meglio, e il composito scaldato fuoriesce senza ostacoli.**
 
-Uno studente che esce avendo capito questo ha capito la lezione.
+La differenza vera fra le due scuole è pratica: la parametrica, senza angoli vivi, permette di realizzare il manufatto più facilmente; in cementazione il composito scaldato fuoriesce facilmente e l'adesione risulta facilitata.
+
+Sostituisce la vecchia slide 14 e la riga «Cosa perdona»: nessuna preparazione salva da un errore di adesione. Non riproporre quel concetto.
 
 ### Slide 15 — Il costo biologico, in numeri
 
@@ -483,14 +486,16 @@ Le classi non si imparano a memoria. Si ordinano su **spessore × traslucenza de
 
 Tecnica diretta in composito, oppure fresato in PMMA — quest'ultimo è il ponte verso la Lezione 2. *(Nomi commerciali tolti: cambiano, e in aula sono pubblicità involontaria.)*
 
-### Slide 46 — Si rivota
+### Slide 46 — Si rivota (tolta per ora, 6 ottobre 2026)
+
+Tolta dalla presentazione su indicazione di Francesco: così non gli piace, da reintegrare in un'altra forma. Il codice resta in `src/slides/01/s5-s7.ts` (`rivoto`). Testo originale sotto.
 
 Stesso caso, ma la domanda cambia: **non "che restauro", ma "quale preparazione, con che linea di finitura, con che materiale, con che cemento".**
 
 Risposta attesa sul 3.6:
 
 - Entrambe le creste perse; cuspide mesio-linguale a 1,2 mm sotto soglia vitale → **copertura**
-- Cuspidi vestibolari a 2,5–3 mm ma con cresta adiacente persa → mensole → **copertura anch'esse**
+- Cuspidi vestibolari a 2,5–3 mm ma con cresta adiacente persa → cuspidi non supportate → **copertura anch'esse**
 - Margine distale sottogengivale a 1 mm → **DME**, verificando la distanza dalla cresta ossea
 - Linea vestibolare: dipende dall'estetica richiesta → overlay con butt joint, o veneerlay con bevel se la giunzione va diluita
 - Materiale: spessore disponibile dopo copertura → disilicato o ibrida

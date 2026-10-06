@@ -39,7 +39,7 @@ npx --no-install playwright-cli install-browser chromium
 npm run dev
 ```
 
-Apri l'indirizzo locale mostrato: la home elenca le lezioni. Frecce (o spazio e backspace): avanti e indietro fra slide e frammenti. F: schermo intero. P: vista relatore con note, slide successiva e cronometro; apre la finestra per il pubblico, sincronizzata (consenti l'apertura della finestra). L'indirizzo segue la posizione (`#/7/2`: slide 7, frammento 2).
+Apri l'indirizzo locale mostrato: la home elenca le lezioni. Frecce (o spazio e backspace): avanti e indietro fra slide e frammenti. F: schermo intero. P: vista relatore con note, slide successiva e cronometro; apre la finestra per il pubblico, sincronizzata (consenti l'apertura della finestra). L'indirizzo segue la posizione (`#/7/2`: slide 7, frammento 2). Clic sul contatore in basso, oppure numero e Invio: salto a una slide. `?print-pdf` in fondo all'indirizzo: versione per la stampa PDF, una pagina per slide.
 
 Strumenti HyperFrames sulla composizione generata: `npm run lint:hf` (lint), `npm run studio` (HyperFrames Studio), `npm run present` (vista relatore della CLI), `npx hyperframes snapshot public/compositions/01 --at 12.5` (fotogramma).
 
