@@ -38,9 +38,9 @@ test('la lezione si naviga da tastiera e ripristina il deep link', async ({ page
 
 test('i frammenti guidano lo stato degli schemi e la catena segue il segmento', async ({ page }) => {
   await page.goto(`${LESSON}#/7`);
-  await expect(page.locator('section.present h2')).toHaveText('Le soglie, e la cuspide-mensola');
+  await expect(page.locator('section.present h2')).toHaveText('Le soglie, e la cuspide non supportata');
   await expect(page.locator('section.present .chain [aria-current]')).toHaveText('Quando indiretto');
-  const fig = page.locator('section.present [data-steps="mensola"]');
+  const fig = page.locator('section.present [data-steps="cuspide"]');
   await expect(fig).toHaveAttribute('data-step', '0');
   await page.keyboard.press('ArrowRight');
   await expect(fig).toHaveAttribute('data-step', '1');
@@ -86,7 +86,7 @@ test('la stampa PDF ha una pagina per slide e gli schemi nello stato finale', as
   const slides = await page.locator('.reveal .slides section[data-seg]').count();
   expect(slides).toBeGreaterThan(0);
   await expect(page.locator('.pdf-page')).toHaveCount(slides);
-  await expect(page.locator('[data-steps="mensola"]')).toHaveAttribute('data-step', '2');
+  await expect(page.locator('[data-steps="cuspide"]')).toHaveAttribute('data-step', '2');
   await expect(page.locator('[data-steps="margine"]')).toHaveAttribute('data-step', '3');
   await expect(page.locator('[data-steps="restauri"]')).toHaveAttribute('data-step', '4');
   expect(errors).toEqual([]);

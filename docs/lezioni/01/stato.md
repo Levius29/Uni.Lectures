@@ -38,7 +38,7 @@ La lista immagini prevedeva 11 schemi da generare con un modello di immagini. Ne
 
 | Schema | Slide | Stato |
 |---|---|---|
-| S1 cuspide-mensola | 7 | SVG, tre passi: dentina interassiale, cavità, carico e flessione |
+| S1 cuspide non supportata | 7 | SVG, tre passi: dentina interassiale, cavità, carico e flessione |
 | S2, S3 preparazione geometrica e parametrica | 11, 12 | SVG, stessa inquadratura |
 | S4 costo biologico | 15 | Barre con i dati (70-75%, 32-47%) |
 | S5 margine e punto di contatto | 20, 21, 23 | SVG: tre livelli del margine, fascia di contatto, DME e distanza dalla cresta ossea |

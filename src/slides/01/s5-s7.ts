@@ -258,7 +258,7 @@ export const s7 = [
   <div class="body">
     <ul class="checks col">
       ${frag('<span>Creste perse, cuspide mesio-linguale a 1,2 mm sotto soglia</span><b>copertura</b>', { tag: 'li' })}
-      ${frag('<span>Cuspidi vestibolari spesse ma senza cresta adiacente: mensole</span><b>copertura</b>', { tag: 'li' })}
+      ${frag('<span>Cuspidi vestibolari spesse ma senza cresta adiacente: non supportate</span><b>copertura</b>', { tag: 'li' })}
       ${frag('<span>Margine distale 1 mm sottogengivale, distanza dalla cresta ossea verificata</span><b>DME</b>', { tag: 'li' })}
       ${frag('<span>Linea vestibolare, secondo l\'estetica</span><b>overlay butt joint, o veneerlay bevel</b>', { tag: 'li' })}
       ${frag('<span>Spessore disponibile dopo la copertura</span><b>disilicato o ibrida</b>', { tag: 'li' })}

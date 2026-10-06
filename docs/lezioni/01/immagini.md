@@ -61,7 +61,7 @@ Keep this exact visual style for every image in this conversation:
 Confirm you understand, then I'll send the diagrams one at a time.
 ```
 
-### S1 · Slide 7 — La cuspide come mensola
+### S1 · Slide 7 — La cuspide non supportata
 
 ```
 A schematic bucco-lingual cross-section of a lower molar, shown twice

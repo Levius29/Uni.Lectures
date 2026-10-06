@@ -120,7 +120,7 @@ Sulla stessa slide, il modello: **strutture centrali** — dentina interassiale 
 
 Il nome da citare in slide è solo Reeh — il dato è così controintuitivo che vogliono sapere da dove viene. Mondelli, Larson e Hood si dicono a voce.
 
-### Slide 7 — Le soglie, e la cuspide-mensola
+### Slide 7 — Le soglie, e la cuspide non supportata
 
 | Condizione | Spessore minimo smalto-dentina |
 |---|---|
@@ -129,7 +129,7 @@ Il nome da citare in slide è solo Reeh — il dato è così controintuitivo che
 
 Sotto soglia la parete è sostenuta dal solo smalto, e il rinforzo del build-up non è affidabile.
 
-**Sulla stessa slide, il caso che conta:** una cuspide che ha perso la cresta marginale adiacente ha perso **tutti** i legami con la parete opposta. Si comporta da mensola pura anche se è spessa, e va coperta a meno di uno spessore superiore a 2,5–3 mm.
+**Sulla stessa slide, il caso che conta:** una cuspide che ha perso la cresta marginale adiacente ha perso **tutti** i legami con la parete opposta. Resta non supportata anche se è spessa e flette sotto carico, e va coperta a meno di uno spessore superiore a 2,5–3 mm.
 
 ### Slide 8 — La regola operativa
 
@@ -493,7 +493,7 @@ Stesso caso, ma la domanda cambia: **non "che restauro", ma "quale preparazione,
 Risposta attesa sul 3.6:
 
 - Entrambe le creste perse; cuspide mesio-linguale a 1,2 mm sotto soglia vitale → **copertura**
-- Cuspidi vestibolari a 2,5–3 mm ma con cresta adiacente persa → mensole → **copertura anch'esse**
+- Cuspidi vestibolari a 2,5–3 mm ma con cresta adiacente persa → cuspidi non supportate → **copertura anch'esse**
 - Margine distale sottogengivale a 1 mm → **DME**, verificando la distanza dalla cresta ossea
 - Linea vestibolare: dipende dall'estetica richiesta → overlay con butt joint, o veneerlay con bevel se la giunzione va diluita
 - Materiale: spessore disponibile dopo copertura → disilicato o ibrida
