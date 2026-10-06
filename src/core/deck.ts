@@ -59,6 +59,8 @@ export async function mountLesson(lesson: Lesson) {
     width: 1600, height: 900, margin: 0, center: false,
     transition: reducedMotion ? 'none' : 'fade', transitionSpeed: 'fast', backgroundTransition: reducedMotion ? 'none' : 'fade',
     autoAnimate: !reducedMotion, autoAnimateDuration: 0.8, autoAnimateEasing: 'cubic-bezier(0.22, 0.8, 0.2, 1)', autoAnimateUnmatched: false,
+    // Stampa (?print-pdf): una pagina per slide, frammenti già mostrati.
+    pdfSeparateFragments: false,
     plugins: [Notes],
   });
   const refresh = () => {
@@ -75,6 +77,12 @@ export async function mountLesson(lesson: Lesson) {
   await deck.initialize();
   if (import.meta.env.DEV) Object.assign(window, { deck });
   refresh();
+  // In stampa ogni schema va nel suo stato finale, come i frammenti che lo accompagnano.
+  // Reveal entra in stampa con ?print-pdf (stesso controllo che fa Reveal).
+  if (/[?&]print-pdf/i.test(location.search)) root.querySelectorAll<HTMLElement>('[data-steps]').forEach(fig => {
+    const steps = [...root.querySelectorAll<HTMLElement>(`[data-step-of="${fig.dataset.steps}"]`)].map(f => Number(f.dataset.step ?? 0));
+    fig.dataset.step = String(Math.max(0, ...steps));
+  });
   animateSlide(deck.getCurrentSlide(), reducedMotion);
 
   // Lottie opzionale: <canvas data-lottie="assets/lottie/file.lottie">. Caricato solo se serve.

@@ -77,3 +77,17 @@ test('nessuna slide esce dalla tela 1600×900', async ({ page }) => {
   }
   expect(overflowing).toEqual([]);
 });
+
+test('la stampa PDF ha una pagina per slide e gli schemi nello stato finale', async ({ page }) => {
+  const errors = trackErrors(page);
+  await page.goto(`${LESSON}?print-pdf`);
+  await expect(page.locator('.reveal.ready')).toBeVisible();
+  // In stampa Reveal avvolge ogni slide in una .pdf-page: una pagina per slide, niente pagine per frammento.
+  const slides = await page.locator('.reveal .slides section[data-seg]').count();
+  expect(slides).toBeGreaterThan(0);
+  await expect(page.locator('.pdf-page')).toHaveCount(slides);
+  await expect(page.locator('[data-steps="mensola"]')).toHaveAttribute('data-step', '2');
+  await expect(page.locator('[data-steps="margine"]')).toHaveAttribute('data-step', '3');
+  await expect(page.locator('[data-steps="restauri"]')).toHaveAttribute('data-step', '4');
+  expect(errors).toEqual([]);
+});

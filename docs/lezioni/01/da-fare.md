@@ -69,7 +69,7 @@ Le fornisce Francesco. Passaggi: `clinical-originals/` → `npm run images:prepa
 
 - Morph e ingressi su browser reale e proiettore. In Playwright headless funzionano; nell'anteprima artifact di Claude non sono stati osservati a finestra attiva.
 - Proiettore 16:10: la tela è 16:9 a tutto schermo, controllare bande e titoli giganti dei divisori.
-- Stampa PDF (`?print-pdf`): gli schemi mostrano lo stato finale; da provare.
+- Stampa PDF (`?print-pdf`): una pagina per slide, frammenti mostrati, schemi nello stato finale (coperto da test). Le foto cliniche, se presenti, finiscono nel PDF: non distribuirlo agli studenti senza controllo.
 - CI: Playwright ora testa la build (`vite preview`).
 
 ## 6. Lezione 2
