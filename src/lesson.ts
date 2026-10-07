@@ -32,7 +32,8 @@ const esc = (s: string) => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;
 const id = standalone?.id ?? document.body.dataset.lesson ?? '';
 const src = siteUrl(`compositions/${id}/index.html`);
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const review = standalone?.review || import.meta.env.DEV || new URLSearchParams(location.search).has('revisione');
+// Badge «Da validare» solo su richiesta: ?revisione nell'indirizzo.
+const review = standalone?.review || new URLSearchParams(location.search).has('revisione');
 
 async function loadComposition() {
   if (standalone) return standalone.composition;

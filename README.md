@@ -26,7 +26,7 @@ Le slide contengono segnaposto con un codice (F1, F2, A1...). Metti le copie app
 
 ### Revisione dei contenuti
 
-In sviluppo (`npm run dev`) le slide con contenuti da validare mostrano un badge giallo. Nella build il badge compare solo aggiungendo `?revisione` all'indirizzo. L'elenco completo è in `docs/lezioni/NN/stato.md`.
+Le slide con contenuti da validare mostrano un badge giallo solo aggiungendo `?revisione` all'indirizzo (né in sviluppo per impostazione, né nei file standalone). L'elenco completo è in `docs/lezioni/NN/stato.md`.
 
 ## Avvio
 

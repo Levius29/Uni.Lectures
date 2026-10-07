@@ -4,7 +4,7 @@ Bozza completa in `src/slides/01/`: 46 slide del testo sorgente più la copertin
 
 ## Da validare prima di erogare
 
-Nelle slide compaiono come badge giallo in sviluppo o con `?revisione`.
+Nelle slide compaiono come badge giallo solo con `?revisione` nell'indirizzo.
 
 | # | Slide | Cosa | Perché |
 |---|---|---|---|

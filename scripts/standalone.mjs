@@ -1,7 +1,7 @@
 // npm run standalone: la lezione in un solo file HTML (script e font in linea), in due versioni.
 // - dist/standalone/Conservativa4-LezioneNN.html: presentazione navigabile (player e slideshow HyperFrames).
 // - dist/standalone/Conservativa4-LezioneNN-revisione.html: tutte le slide nella pagina, una sotto l'altra,
-//   nello stato finale, con note relatore e badge «Da validare». Niente iframe: ogni elemento si può
+//   nello stato finale, con note relatore. Niente iframe: ogni elemento si può
 //   selezionare e commentare (pagina pubblicata nel pannello di Claude).
 // Le foto cliniche non entrano mai: l'elenco delle immagini locali qui è vuoto, restano i segnaposto.
 import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
@@ -51,7 +51,7 @@ const html = `<!doctype html>
 ${css}
 :root { padding: 0 !important; }
 </style>
-<script>window.__LESSON_STANDALONE__ = ${noClose(JSON.stringify({ id, composition: comp, review: true }))};</script>
+<script>window.__LESSON_STANDALONE__ = ${noClose(JSON.stringify({ id, composition: comp, review: false }))};</script>
 <script type="module">
 ${noClose(js)}
 </script>
@@ -77,11 +77,9 @@ let n = 0;
 root = root.replace(/<section id="(s\d+)" class="scene[^>]*>[\s\S]*?\n<\/section>/g, (scene, sid) => {
   const i = n++;
   const label = scene.match(/data-label="([^"]*)"/)?.[1] ?? '';
-  const verify = scene.match(/data-verify="([^"]*)"/)?.[1];
   const notes = manifest.slides.find(x => x.sceneId === sid)?.notes ?? '';
-  const badge = verify ? `<p class="review-verify"><b>Da validare</b>${verify}</p>\n` : '';
   return `<h2 class="review-head" id="slide-${i + 1}"><span>${i + 1}</span>${label}</h2>
-${badge}${scene}
+${scene}
 ${notes ? `<aside class="review-notes"><b>Note relatore</b>${esc(notes)}</aside>` : ''}`;
 });
 const total = n;
@@ -97,8 +95,6 @@ html.print-pdf #root { width: 1600px; zoom: var(--k, 1); margin: 0 auto; padding
 .review-head { display: flex; gap: 20px; align-items: baseline; margin: 72px 0 18px !important; font: 600 34px/1.2 var(--font) !important; letter-spacing: -0.02em !important; color: var(--ink); }
 .review-head span { color: var(--accent); font-variant-numeric: tabular-nums; }
 html.print-pdf .scene { border-radius: 18px; }
-.review-verify { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; margin: 0 0 18px; padding: 12px 18px; font: 24px/1.35 var(--font); background: #3a2e12; color: #ffd98a; border: 1px solid #8a6a26; border-radius: 10px; }
-.review-verify b { letter-spacing: 0.06em; text-transform: uppercase; font-size: 20px; }
 .review-notes { display: flex; flex-direction: column; gap: 10px; max-width: 1400px; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--rule); white-space: pre-line; font: 26px/1.5 var(--font); color: var(--muted); }
 .review-notes b { color: var(--ink); font-weight: 600; font-size: 22px; letter-spacing: 0.02em; }
 </style>
