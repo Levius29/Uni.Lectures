@@ -16,8 +16,8 @@
    - Continuità: gli elementi [data-carry] si copiano, tagliati e tenui, in cima alla slide successiva.
    - Uscita: prima del cambio di scena il contenuto che non prosegue sfuma; il campo sfumato
      si dissolve se la slide successiva ne ha un altro.
-   - Stampa (?print-pdf nell'indirizzo della composizione): niente uscite, timeline alla fine,
-     una pagina per scena (slides.css). */
+   - Stampa (?print-pdf nell'indirizzo della composizione) e revisione (window.__LESSON_REVIEW__):
+     niente uscite, timeline alla fine, scene una sotto l'altra (slides.css). */
 function buildLessonTimeline(T) {
   var root = document.getElementById('root');
   var compositionId = root.getAttribute('data-composition-id');
@@ -25,7 +25,9 @@ function buildLessonTimeline(T) {
   var all = function (el, sel) { return Array.prototype.slice.call(el.querySelectorAll(sel)); };
   var frameOf = function (scene) { return scene.querySelector(':scope > .frame'); };
   var holdsOf = function (scene) { return scene.getAttribute('data-holds').split(',').map(Number); };
-  var print = /[?&]print-pdf/i.test(location.search);
+  // Revisione (npm run standalone): come la stampa, ma senza foto locali da caricare.
+  var review = window.__LESSON_REVIEW__ === true;
+  var print = review || /[?&]print-pdf/i.test(location.search);
   if (print) document.documentElement.classList.add('print-pdf');
 
   gsap.registerPlugin(CustomEase, DrawSVGPlugin, SplitText);
@@ -215,9 +217,10 @@ function buildLessonTimeline(T) {
     });
     if (!print) { window.__timelines[compositionId] = tl; return; }
     // In stampa la timeline non si registra: il runtime la riporterebbe all'inizio.
-    tl.seek(tl.duration());
+    // false: con i callback, così i numeri che contano arrivano al valore scritto.
+    tl.seek(tl.duration(), false);
     // Foto presenti: in stampa la composizione è aperta da sola, senza la pagina della lezione.
-    all(root, '.slot[data-src]').forEach(function (fig) {
+    if (!review) all(root, '.slot[data-src]').forEach(function (fig) {
       var img = fig.querySelector('img');
       img.addEventListener('load', function () { img.hidden = false; fig.classList.add('loaded'); fig.querySelector('.slot-ph').hidden = true; });
       img.src = '../../' + fig.getAttribute('data-src');
