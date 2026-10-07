@@ -9,7 +9,6 @@ body.home { min-height: 100vh; font-family: var(--font); }
 .home-sub { margin: 0 clamp(16px, 5vw, 72px); font-size: clamp(16px, 1.6vw, 22px); font-weight: 600; }
 .home-marquee { white-space: nowrap; font-size: clamp(64px, 13vw, 210px); font-weight: 700; letter-spacing: -0.05em; line-height: 1.02; }
 .home-marquee .main { display: inline-block; position: relative; margin-left: clamp(16px, 5vw, 72px); }
-.home-marquee .pre { position: absolute; right: 100%; }
 .home-list { box-sizing: border-box; width: 100%; max-width: 1180px; margin: 0 auto; padding: 40px 16px 64px; display: flex; flex-direction: column; gap: 40px; }
 .lesson-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-bottom: 1px solid var(--rule); }
 .lesson-list a, .lesson-list li > div { display: grid; grid-template-columns: 72px 1fr auto; gap: 8px 24px; align-items: baseline; padding: 28px 16px; border-top: 1px solid var(--rule); color: inherit; text-decoration: none; }

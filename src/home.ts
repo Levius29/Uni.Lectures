@@ -11,7 +11,7 @@ const pending = course.totalLessons - lessons.length;
 main.innerHTML = `
 <header class="home-hero">
   <p class="home-sub">${esc(course.subtitle)}</p>
-  <div class="home-marquee" aria-hidden="true"><span class="main"><span class="pre">${esc(course.title)}&nbsp;-&nbsp;</span>${Array.from({ length: 3 }, () => esc(course.title)).join('&nbsp;- ')}</span></div>
+  <div class="home-marquee" aria-hidden="true"><span class="main">${esc(course.title)}</span></div>
   <h1 class="visually-hidden">${esc(course.title)}</h1>
 </header>
 <section class="home-list" aria-label="Lezioni">

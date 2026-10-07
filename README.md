@@ -10,7 +10,7 @@ Corso di restaurativa indiretta (III anno, II semestre) in forma di presentazion
 - `src/slides/kit.ts`: mattoni comuni (`slide`, `notes`, `frag`, `divider`).
 - `src/hyperframes/`: `compose.ts` compila la lezione in una composizione HyperFrames (`public/compositions/NN/index.html`, generata da `npm run compose`, ignorata da Git); `timeline.js` costruisce le animazioni; `navigation.ts` aggiunge movimento fra le tappe, indietro di un frammento e deep link.
 - `src/components/`: foto e figure (`slot`), barre dati (`bars`), striscia in alto con la catena (`chain`), schemi SVG in `figures/`.
-- Morph: elementi con lo stesso `data-id` in slide consecutive si trasformano; `data-carry` porta un titolo, tagliato, nella slide successiva. Vedi `DESIGN_SYSTEM.md`.
+- Morph: elementi con lo stesso `data-id` in slide consecutive si trasformano Vedi `DESIGN_SYSTEM.md`.
 - `docs/lezioni/NN/`: testo sorgente della lezione, lista immagini, bibliografia, stato e punti da validare.
 
 ### Aggiungere una lezione

@@ -30,12 +30,11 @@ export const frag = (html: string, o: { tag?: string; cls?: string; step?: numbe
 };
 
 /**
- * Divisore di segmento: campo sfumato e titolo gigante ripetuto che esce dai bordi, sotto il titolo completo.
- * Il titolo prosegue, tagliato in alto, nella slide successiva (morph). Minuti e regia vanno nelle note, non in slide.
+ * Divisore di segmento: campo sfumato e parola gigante, una volta sola, che entra lettera per lettera
+ * (timeline.js); sotto il titolo completo. Minuti e regia vanno nelle note, non in slide.
  */
 export function divider(o: { seg: string; short: string; title: string; field: Field; notes: string }): Slide {
-  const rep = (n: number) => Array.from({ length: n }, () => o.short).join('&nbsp;- ');
   return slide({ seg: o.seg, layout: 'l-divider', field: o.field, notes: o.notes }, `
-  <div class="marquee-wrap" aria-hidden="true"><p class="marquee" data-carry data-id="marquee-${o.seg}"><span class="main"><span class="pre">${o.short}&nbsp;-&nbsp;</span>${rep(4)}</span></p></div>
+  <p class="big-word" aria-hidden="true">${o.short}</p>
   <h2 data-animate>${o.title}</h2>`);
 }

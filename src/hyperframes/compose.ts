@@ -12,7 +12,7 @@ export const CANVAS = { width: 1600, height: 900 };
 /** Durate in secondi. Le stesse costanti calcolano qui le tappe e guidano timeline.js. */
 export const TIMING = {
   delay: 0.12, enter: 0.7, stagger: 0.06, rise: 24,
-  marquee: 1.1, morph: 0.8, bg: 0.5,
+  word: { delay: 0.05, duration: 0.9, stagger: 0.035, settle: 1.4, spread: 14 }, morph: 0.8, bg: 0.5,
   words: { delay: 0.1, duration: 0.8, stagger: 0.035 },
   count: { delay: 0.3, duration: 1.1 },
   figure: { delay: 0.25, tissues: 0.25, parts: 0.7, leaders: 0.9, texts: 1.05, end: 1.9 },
@@ -46,7 +46,7 @@ export function enterTime(body: string, previous = '') {
     ...quoteWords.map((w, k) => T.words.delay + k * 0.2 + T.words.duration + T.words.stagger * (w - 1)),
     body.includes('class="big-num"') ? T.count.delay + T.count.duration : 0,
     figures ? T.figure.delay + T.figure.end : 0,
-    body.includes('class="marquee"') ? T.marquee : 0,
+    body.includes('class="big-word"') ? T.word.delay + T.word.settle : 0,
     fills ? T.bars.delay + T.bars.duration + T.bars.stagger * (fills - 1) : 0,
     beams ? T.beamOut.delay + T.beam.duration + T.beam.stagger * (beams - 1) : 0,
   ) * 20) / 20;

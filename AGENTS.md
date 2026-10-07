@@ -8,7 +8,7 @@
 - Contenuti da validare: attributo `verify` sulla slide (badge in sviluppo o con ?revisione) e riga in stato.md.
 - Schemi SVG: etichetta «Schema illustrativo», forme semplificate, testo ≥ 25 px sulla tela. Stati guidati dai frammenti con data-steps / data-step-of.
 - Contratto HyperFrames: ogni slide è una scena (`data-composition-id`, `data-start`, `data-duration`); l'isola `application/hyperframes-slideshow+json` porta ordine, note relatore (testo semplice) e tappe (`fragments`: ingresso completato, poi un frammento per tappa). Dopo ogni modifica: `npm run lint:hf` (0 errori). Studio: `npm run studio`; vista relatore della CLI: `npm run present`. Skill: `slideshow`, `hyperframes-core`, `hyperframes-animation`, `hyperframes-cli`.
-- Stile: fondo scuro, campi sfumati, Inter, morph fra slide (data-id uguali, data-carry), costruiti in timeline.js. Regole in DESIGN_SYSTEM.md.
+- Stile: fondo scuro, campi sfumati, Inter, morph fra slide (data-id uguali), costruiti in timeline.js. Regole in DESIGN_SYSTEM.md.
 - Testo visibile senza trattini lunghi (— –): usa punto, virgola, due punti o trattino semplice negli intervalli.
 - Mai leggere, caricare o inviare clinical-originals a servizi esterni senza esplicita richiesta.
 - Mai includere identificativi paziente, metadati clinici o fotografie non approvate in Git, note relatore, prompt o log.

@@ -8,12 +8,11 @@
    - Ingresso: [data-animate] sale e compare in sequenza; tabelle ed elenchi entrano riga per riga;
      le affermazioni salgono parola per parola (SplitText); i numeri grandi contano fino al valore;
      gli schemi si costruiscono (contorni disegnati con DrawSVG, tessuti, restauro, linee guida, etichette),
-     salvo che arrivino per morph; la parola gigante dei divisori entra da destra; barre e fasci di luce crescono.
+     salvo che arrivino per morph; la parola gigante dei divisori sale lettera per lettera; barre e fasci di luce crescono.
    - Frammenti: .fragment sale di poco e compare alla tappa successiva; con data-step-of imposta data-step sulla figura
      data-steps corrispondente (il CSS disegna ogni stato).
    - Morph: un elemento con lo stesso data-id della slide precedente parte dalla posizione e dimensione
      di quello e arriva alla propria (FLIP). La striscia in alto (data-id="meta") resta ferma.
-   - Continuità: gli elementi [data-carry] si copiano, tagliati e tenui, in cima alla slide successiva.
    - Uscita: prima del cambio di scena il contenuto che non prosegue sfuma; il campo sfumato
      si dissolve se la slide successiva ne ha un altro.
    - Stampa (?print-pdf nell'indirizzo della composizione) e revisione (window.__LESSON_REVIEW__):
@@ -50,21 +49,8 @@ function buildLessonTimeline(T) {
   all(root, '.l-statement blockquote[data-animate]').forEach(function (q) {
     SplitText.create(q, { type: 'words', mask: 'words', wordsClass: 'w' });
   });
-
-  // Continuità: copia fantasma degli elementi data-carry in cima alla slide successiva.
-  scenes.forEach(function (scene, i) {
-    var next = scenes[i + 1];
-    var carried = all(scene, '[data-carry]');
-    if (!next || !carried.length || next.querySelector(':scope > .frame > .ghost-layer')) return;
-    var layer = document.createElement('div');
-    layer.className = 'ghost-layer';
-    layer.setAttribute('aria-hidden', 'true');
-    carried.forEach(function (el) {
-      var ghost = el.cloneNode(true);
-      ['data-carry', 'data-animate', 'aria-label', 'id'].forEach(function (a) { ghost.removeAttribute(a); });
-      layer.appendChild(ghost);
-    });
-    frameOf(next).insertBefore(layer, frameOf(next).firstChild);
+  all(root, '.l-divider .big-word').forEach(function (w) {
+    SplitText.create(w, { type: 'chars', mask: 'chars', charsClass: 'ch' });
   });
 
   function build() {
@@ -175,9 +161,15 @@ function buildLessonTimeline(T) {
         if (!free(svg)) return;
         buildFigure(svg, t0 + T.figure.delay);
       });
-      var marquees = all(scene, '.l-divider .marquee .main');
-      if (marquees.length) tl.fromTo(marquees, { x: 220, opacity: 0 },
-        { x: 0, opacity: 1, duration: T.marquee, ease: 'power3.out' }, start);
+      // Parola gigante dei divisori: le lettere salgono dalla loro maschera, poi la parola si assesta.
+      all(scene, '.l-divider .big-word').forEach(function (w) {
+        tl.fromTo(all(w, '.ch'), { yPercent: 110 },
+          { yPercent: 0, duration: T.word.duration, stagger: T.word.stagger, ease: 'ui-out' }, start + T.word.delay);
+        // Le maschere delle lettere partono distanziate e si stringono (x, non letter-spacing: niente riflusso).
+        var masks = all(w, '.ch').map(function (c) { return c.parentElement; });
+        tl.fromTo(masks, { x: function (i) { return i * T.word.spread; } },
+          { x: 0, duration: T.word.settle, ease: 'ui-in-out' }, start + T.word.delay);
+      });
       var fills = all(scene, '.bars .fill');
       if (fills.length) tl.fromTo(fills, { scaleX: 0 },
         { scaleX: 1, duration: T.bars.duration, stagger: T.bars.stagger, ease: 'power3.out' }, start + T.bars.delay);

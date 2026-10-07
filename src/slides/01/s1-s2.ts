@@ -10,7 +10,7 @@ export const cover = slide({ seg: 'cover', layout: 'l-cover', field: 'warm', not
   extra: ['Da dire una volta, all\'inizio: le figure riprodotte vengono da articoli citati in slide e servono per uso didattico.'],
 }) }, `
   <p class="lead" data-animate>Francesco Motta</p>
-  <h1 data-carry data-id="lesson-title">Il restauro indiretto parziale</h1>
+  <h1 data-id="lesson-title">Il restauro indiretto parziale</h1>
   <p class="lead" data-animate>Dalla decisione strutturale alla cementazione.</p>`);
 
 export const s1 = [

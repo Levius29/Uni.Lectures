@@ -39,16 +39,10 @@ html, body { margin: 0; background: var(--bg); color: var(--ink); }
 
 /* Striscia in alto: corso a sinistra, catena a destra (inserita da hyperframes/compose.ts) */
 .meta { position: absolute; top: 34px; left: 88px; right: 88px; display: flex; justify-content: space-between; align-items: baseline; font-size: 20px; font-weight: 600; letter-spacing: 0.01em; color: var(--ink); z-index: 2; }
-.meta .chain { display: flex; gap: 22px; color: rgba(243, 241, 236, 0.55); font-weight: 400; }
-.l-cover .meta .chain, .l-divider .meta .chain { color: rgba(255, 255, 255, 0.78); }
-.meta .chain span[aria-current] { color: var(--ink); font-weight: 600; box-shadow: inset 0 -2px 0 var(--accent); }
+.meta .chain { display: flex; font-weight: 600; }
+/* Solo l'anello corrente, più grande, sottolineato con l'accento. */
+.meta .chain span[aria-current] { font-size: 30px; line-height: 1.1; letter-spacing: -0.015em; color: var(--ink); box-shadow: inset 0 -3px 0 var(--accent); padding-bottom: 4px; }
 
-/* Elementi che proseguono nella slide successiva (morph): copia fantasma tagliata in alto */
-.ghost-layer { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; }
-.ghost-layer > * { position: absolute; left: 88px; top: auto; bottom: calc(100% - 44px); margin: 0; white-space: nowrap; opacity: 0.1; }
-.ghost-layer > .marquee { left: 0; font-size: 190px; font-weight: 700; line-height: 1; letter-spacing: -0.05em; }
-.ghost-layer .marquee .main { margin-left: 88px; position: relative; display: inline-block; }
-.ghost-layer .marquee .pre { position: absolute; right: 100%; }
 
 /* Copertina: campo sfumato, titolo enorme in basso */
 .l-cover { justify-content: flex-end; gap: 22px; padding-bottom: 72px; }
@@ -57,10 +51,9 @@ html, body { margin: 0; background: var(--bg); color: var(--ink); }
 
 /* Divisori: titolo gigante ripetuto che esce dai bordi */
 .l-divider { justify-content: flex-end; gap: 8px; padding-bottom: 96px; }
-.l-divider .marquee-wrap { margin: 0 -88px; overflow: hidden; }
-.l-divider .marquee { display: block; white-space: nowrap; font-size: 190px; font-weight: 700; line-height: 1.02; letter-spacing: -0.05em; }
-.marquee .main { display: inline-block; position: relative; margin-left: 88px; }
-.marquee .pre { position: absolute; right: 100%; top: 0; }
+.l-divider .big-word { white-space: nowrap; font-size: 220px; font-weight: 700; line-height: 1.02; letter-spacing: -0.055em; }
+/* Lettere della parola gigante (SplitText con maschera): spazio per i discendenti. */
+.l-divider .big-word .ch { padding-bottom: 0.06em; margin-bottom: -0.06em; }
 .l-divider h2 { font-size: 56px; letter-spacing: -0.035em; }
 
 /* Affermazioni */
