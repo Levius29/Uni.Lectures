@@ -13,22 +13,36 @@ import available from 'virtual:local-assets';
 import { siteUrl } from './core/site';
 import { animateSeeks, patchNavigation, type PlayerEl, type SlideshowEl } from './hyperframes/navigation';
 
+/**
+ * Versione in un solo file (npm run standalone): la composizione arriva in linea, non da public/compositions.
+ * Serve per aprire e commentare la lezione fuori dal sito, per esempio come pagina nel pannello di Claude.
+ */
+declare global {
+  interface Window { __LESSON_STANDALONE__?: { id: string; composition: string; review: boolean } }
+}
+const standalone = window.__LESSON_STANDALONE__;
+
 // Stampa PDF (?print-pdf): la composizione si apre da sola, una pagina per slide, tutto nello stato finale.
-if (/[?&]print-pdf/i.test(location.search)) {
+if (!standalone && /[?&]print-pdf/i.test(location.search)) {
   location.replace(siteUrl(`compositions/${document.body.dataset.lesson}/index.html?print-pdf`));
   await new Promise(() => {});
 }
 
 const esc = (s: string) => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
-const id = document.body.dataset.lesson ?? '';
+const id = standalone?.id ?? document.body.dataset.lesson ?? '';
 const src = siteUrl(`compositions/${id}/index.html`);
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const review = import.meta.env.DEV || new URLSearchParams(location.search).has('revisione');
+const review = standalone?.review || import.meta.env.DEV || new URLSearchParams(location.search).has('revisione');
 
+async function loadComposition() {
+  if (standalone) return standalone.composition;
+  const res = await fetch(src);
+  if (!res.ok) throw new Error(`Composizione della lezione ${id} assente: esegui npm run compose`);
+  return res.text();
+}
+const compositionHtml = await loadComposition();
 // L'isola JSON va duplicata nel componente: <hyperframes-slideshow> la legge dal proprio contenuto.
-const res = await fetch(src);
-if (!res.ok) throw new Error(`Composizione della lezione ${id} assente: esegui npm run compose`);
-const composition = new DOMParser().parseFromString(await res.text(), 'text/html');
+const composition = new DOMParser().parseFromString(compositionHtml, 'text/html');
 const island = composition.querySelector('script[type="application/hyperframes-slideshow+json"]')!;
 document.title = composition.title || document.title;
 
@@ -38,7 +52,8 @@ show.tabIndex = 0;
 show.setAttribute('aria-label', composition.title);
 const player = document.createElement('hyperframes-player') as PlayerEl;
 player.setAttribute('interactive', '');
-player.setAttribute('src', src);
+if (standalone) player.setAttribute('srcdoc', standalone.composition);
+else player.setAttribute('src', src);
 const islandCopy = document.createElement('script');
 islandCopy.type = island.getAttribute('type')!;
 islandCopy.textContent = island.textContent;

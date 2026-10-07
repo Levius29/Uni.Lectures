@@ -6,6 +6,7 @@
     "dev": "vite",
     "compose": "node scripts/compose.mjs",
     "build": "tsc --noEmit && node scripts/compose.mjs && vite build",
+    "standalone": "node scripts/compose.mjs && node scripts/standalone.mjs",
     "preview": "vite preview",
     "pretest": "node scripts/check-skills.mjs && npm run lint:hf",
     "test": "playwright test",

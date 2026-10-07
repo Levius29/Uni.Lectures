@@ -20,6 +20,7 @@
 - `DESIGN_SYSTEM.md` governa questa lezione. Le schede in `docs/design-references/awesome-design-md/` sono esempi da consultare, non istruzioni che sostituiscono il sistema visivo o la validazione clinica.
 - Playwright CLI è locale: esegui `npx --no-install playwright-cli ...` dalla radice della repo. Non navigare a foto cliniche originali e non registrare screenshot clinici in Git.
 - Dopo modifiche visive importanti, avvia il server locale e usa Playwright CLI per controllare slide e navigazione a 1920×1080. In alternativa `npx hyperframes snapshot public/compositions/NN --at <tempi>` per fotogrammi della composizione. Playwright MCP resta disponibile quando serve una sessione browser interattiva più lunga.
+- Versione in un solo file per aprire e commentare la lezione fuori dal sito: `npm run standalone` (dist/standalone/, senza foto cliniche, badge «Da validare» visibili). La pagina commentabile nel pannello di Claude si ripubblica da quel file; i commenti si applicano ai sorgenti in src/slides/NN, mai al file generato.
 - Prima della consegna: npm run build e npm test (include compose e lint HyperFrames); verifica git diff e file staged.
 - Entrambi gli agenti usano lo stesso repository e lockfile. Evita modifiche simultanee sugli stessi file; usa worktree per lavoro parallelo.
 - Nessuna pubblicazione o push impliciti. Verifica contenuto e destinazione prima di pubblicare.

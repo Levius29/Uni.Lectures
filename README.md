@@ -45,6 +45,7 @@ Strumenti HyperFrames sulla composizione generata: `npm run lint:hf` (lint), `np
 
 ```sh
 npm run compose
+npm run standalone   # lezione in un solo file: dist/standalone/Conservativa4-Lezione01.html
 npm run build
 npm run preview
 npm test
