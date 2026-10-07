@@ -38,9 +38,14 @@ const js = readFileSync(join(tmp, 'lesson.js'), 'utf8');
 const css = readdirSync(tmp).filter(f => f.endsWith('.css')).map(f => readFileSync(join(tmp, f), 'utf8')).join('\n');
 rmSync(tmp, { recursive: true, force: true });
 
-// 3. File unico. Niente doctype né head: va bene aperto da solo e come pagina pubblicata.
+// 3. File unico, documento completo: si apre con doppio clic, senza server né rete.
 const title = comp.match(/<title>([^<]*)<\/title>/)?.[1] ?? `Lezione ${Number(id)}`;
-const html = `<title>${title}</title>
+const html = `<!doctype html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${title}</title>
 <meta name="theme-color" content="#0e1013">
 <style>
 ${css}
@@ -50,6 +55,9 @@ ${css}
 <script type="module">
 ${noClose(js)}
 </script>
+</head>
+<body></body>
+</html>
 `;
 mkdirSync(outDir, { recursive: true });
 const file = join(outDir, `Conservativa4-Lezione${id}.html`);
